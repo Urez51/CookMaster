@@ -1,0 +1,26 @@
+.Registration-section {
+  padding: 50px 0;
+}
+
+.Registration-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.Registration-form__input {
+  width: 100%;
+  margin-bottom: 10px!important;
+}
+
+.Registration-form__btn {
+  width: 50%;
+}
+
+.Registration-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
