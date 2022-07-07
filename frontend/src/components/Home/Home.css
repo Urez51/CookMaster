@@ -1,0 +1,8 @@
+#cardsDiv {
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: space-around;
+  justify-content: flex-start;
+  margin-top: 25px;
+}
+
