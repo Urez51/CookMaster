@@ -3,17 +3,17 @@ import { Provider } from 'react-redux';
 
 import './App.css';
 import Main from '../Main';
-import TasksList from '../TasksList';
 import store from '../../store';
 import Login from '../Login';
+import Registr from '../Registr/Registr';
 
 function App() {
   return (
     <Provider store={store}>
       <Routes>
         <Route path='/' element={<Main />} />
-        <Route path='/tasks' element={<TasksList />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/registration' element={<Registr />} />
       </Routes>
     </Provider>
   );
