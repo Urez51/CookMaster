@@ -21,16 +21,15 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.TEXT,
       allowNull: false,
-      unique: true,
     },
     password: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
     role: {
-      type: DataTypes.TEXT,
+      type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: 'user',
+      defaultValue: false,
     },
     img: {
       type: DataTypes.TEXT,

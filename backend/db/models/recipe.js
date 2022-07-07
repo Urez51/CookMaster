@@ -47,14 +47,17 @@ module.exports = (sequelize, DataTypes) => {
     delete_visible: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: false,
     },
     moder_visible: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: false,
     },
     private: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: false,
     },
   }, {
     sequelize,
