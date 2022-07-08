@@ -1,18 +1,16 @@
 const authRouter = require('express').Router();
 const bcrypt = require('bcrypt');
 const { User } = require('../../db/models');
-const Login = require('../../views/Login');
-const Register = require('../../views/Register');
 
 authRouter
   .route('/register')
-  .get((req, res) => {
-    res.renderComponent(Register);
-  })
+  // .get((req, res) => {
+  //   res.renderComponent(Register);
+  // })
   .post(async (req, res) => {
-    const { name, password } = req.body;
+    const { name, surname, email, password, role, img } = req.body;
 
-    const existingUser = await User.findOne({ where: { name } });
+    const existingUser = await User.findOne({ where: { email } });
     // проверяем есть ли уже такой пользователь в БД
     if (existingUser) {
       res.send('Такой пользователь уже есть');
@@ -22,8 +20,12 @@ authRouter
     // создаём нового пользователя
     const user = await User.create({
       name,
+      surname,
+      email,
       // хэшируем пароль, чтобы не хранить в открытом виде в БД
       password: await bcrypt.hash(password, 10),
+      role,
+      img
     });
 
     // кладём id нового пользователя в хранилище сессии (сразу логиним пользователя)
@@ -33,12 +35,12 @@ authRouter
 
 authRouter
   .route('/login')
-  .get((req, res) => {
-    res.renderComponent(Login);
-  })
+  // .get((req, res) => {
+  //   res.renderComponent(Login);
+  // })
   .post(async (req, res) => {
-    const { name, password } = req.body;
-    const existingUser = await User.findOne({ where: { name } });
+    const { email, password } = req.body;
+    const existingUser = await User.findOne({ where: { email } });
 
     // проверяем, что такой пользователь есть в БД и пароли совпадают
     if (existingUser && await bcrypt.compare(password, existingUser.password)) {
