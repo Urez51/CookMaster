@@ -1,9 +1,8 @@
 require('dotenv').config();
-
+const path = require('path')
 // не забудь установить babel:
 // npm i @babel/core @babel/preset - env @babel/preset-react @babel/register
 // также не забудь положить файл .babelrc в корень проекта
-require('@babel/register');
 const express = require('express');
 const expressConfig = require('./config/express');
 
@@ -17,7 +16,12 @@ const PORT = process.env.PORT ?? 3000;
 expressConfig(app);
 
 // подключаем роутеры
+
+
 app.use('/', authRouter);
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+})
 
 app.use((error, req, res, next) => {
   console.error('Произошла ошибка', error);
