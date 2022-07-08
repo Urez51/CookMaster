@@ -19,6 +19,12 @@ import { useNavigate } from 'react-router-dom';
 function Navbar({user}) {
 
   const navigate = useNavigate();
+
+  const handleClickHome = (e) => {
+    e.preventDefault();
+    navigate('/')
+  }
+
   const handleClickRega = (e) => {
     e.preventDefault();
     navigate('/registration')
@@ -78,8 +84,8 @@ function Navbar({user}) {
             <Typography
               variant="h6"
               noWrap
+              href='#'
               component="a"
-              href="/"
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
@@ -89,7 +95,7 @@ function Navbar({user}) {
                 textDecoration: 'none',
               }}
               className="typography"
-            >
+            onClick={handleClickHome}>
               LOGO
             </Typography>
 
