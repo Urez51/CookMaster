@@ -16,7 +16,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 
 
-function Navbar() {
+function Navbar({user}) {
 
   const navigate = useNavigate();
   const handleClickRega = (e) => {
@@ -147,53 +147,65 @@ function Navbar() {
               Главная
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Button sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleClickRega}>
+            { !user ? (
+              <><Button sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleClickRega}>
                 Зарегистрироваться
-              </Button>
-              <Button sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleClickLoga}>
-                Авторизоваться
-              </Button>
-              <Button sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleClickSearch}>
-                Поиск блюд
-              </Button>
+              </Button><Button sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleClickLoga}>
+                  Авторизоваться
+                </Button><Button sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleClickSearch}>
+                  Поиск блюд
+                </Button></>
+              ) : (
+              <><Button sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleClickSearch}>
+                  Поиск блюд
+                </Button><Button sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleClickLogout}>
+                    Выход
+                  </Button></>
+              )}
             </Box>
-
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                  <MenuItem>
-                    <Typography textAlign="center" onClick={handleClickLk}>Профиль</Typography>
-                  </MenuItem>
-                  <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center" onClick={handleClickRecipes}>Мои рецепты</Typography>
-                  </MenuItem>
-                  <MenuItem>
-                    <Typography textAlign="center" onClick={handleClickFavorites}>Избранное</Typography>
-                  </MenuItem>
-                  <MenuItem>
-                    <Typography textAlign="center" onClick={handleClickLogout}>Выход</Typography>
-                  </MenuItem>
-              </Menu>
-            </Box>
+            { !user ? (
+               <Tooltip title="Open settings" className="avatar_profile" style={{'display': 'none'}}>
+               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+               </IconButton>
+             </Tooltip>
+            ) : (
+                <><Tooltip title="Open settings" className="avatar_profile">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  </IconButton>
+                </Tooltip><Menu
+                  sx={{ mt: '45px' }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                    <MenuItem>
+                      <Typography textAlign="center" onClick={handleClickLk}>Профиль</Typography>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center" onClick={handleClickRecipes}>Мои рецепты</Typography>
+                    </MenuItem>
+                    <MenuItem>
+                      <Typography textAlign="center" onClick={handleClickFavorites}>Избранное</Typography>
+                    </MenuItem>
+                    <MenuItem>
+                      <Typography textAlign="center" onClick={handleClickLogout}>Выход</Typography>
+                    </MenuItem>
+                  </Menu></>
+            )}
+              </Box>
           </Toolbar>
         </Container>
       </AppBar>
