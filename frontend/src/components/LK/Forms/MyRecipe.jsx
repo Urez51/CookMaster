@@ -7,13 +7,14 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
 const recept = { rec: ['яичница', 'сырники', 'макароны с сосикой', 'кутчунез под луком', 'Санин бутер', 'чипсы с сыром']}
-console.log(recept)
-function MyRecipe() {
 
+
+function MyRecipe() {
+  
   return (
     <>
     <form className='MyRecipe-form'>
-    <h2>MyRecipe</h2>
+    <h2>Мои рецепты</h2>
     <TextField
             type="text"
             label="Поиск рецептов"

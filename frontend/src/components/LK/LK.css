@@ -7,8 +7,17 @@
 
 .body-lk {
   width: 20%;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .body-form {
   width: 80%;
+}
+
+.profile-left-navigate-li {
+  list-style-type: none
+}
+
+.profile-left-navigate-ul a {
+  text-decoration: none;
 }

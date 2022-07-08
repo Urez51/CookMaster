@@ -76,11 +76,11 @@ function LK() {
           </form>
 
           <form className="profile-left-navigate">
-            <ul>
-              <li><a className="my-recipe" href="/" onClick={RecipeVision}>My recipe</a></li>
-              <li><a className="new-recipe" href="/" onClick={NewRecipeVision}>New recipe</a></li>
-              <li><a className="likes-recipe" href="/" onClick={LikesRecipeVision}>Likes recipe</a></li>
-              <li><a className="edit-profile" href="/" onClick={EditProfileVision}>Edit profile</a></li>
+            <ul className="profile-left-navigate-ul">
+              <li className="profile-left-navigate-li"><a className="my-recipe" href="/" onClick={RecipeVision}>My recipe</a></li>
+              <li className="profile-left-navigate-li"><a className="new-recipe" href="/" onClick={NewRecipeVision}>New recipe</a></li>
+              <li className="profile-left-navigate-li"><a className="likes-recipe" href="/" onClick={LikesRecipeVision}>Likes recipe</a></li>
+              <li className="profile-left-navigate-li"><a className="edit-profile" href="/" onClick={EditProfileVision}>Edit profile</a></li>
             </ul>
           </form>
       </div>

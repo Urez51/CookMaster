@@ -23,7 +23,7 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path='/' element={<Main />} />
+        {/* <Route path='/' element={<Main />} /> */}
         <Route path='/login' element={<Login />} />
         <Route path='/registration' element={<Registr />} />
         <Route path='/profile' element={<LK />} />
