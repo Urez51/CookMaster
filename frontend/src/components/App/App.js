@@ -9,7 +9,6 @@ import Registr from '../Registr/Registr';
 import Navbar from '../UI/Navbar/Navbar';
 import LK from '../LK/LK';
 
-
 function App() {
   const dispatch = useDispatch();
   React.useEffect(() => {
@@ -24,7 +23,6 @@ function App() {
     <>
       <Navbar />
       <Routes>
-
         <Route path='/' element={<Main />} />
         <Route path='/login' element={<Login />} />
         <Route path='/registration' element={<Registr />} />

@@ -6,10 +6,8 @@ import EditProfile from './Forms/EditProfile'
 import { useSelector } from "react-redux";
 import './LK.css'
 
-const userData = {img: '', name: 'pavel', surname: 'malyshev', email: 'gomer_74@mail.ru'}
-
 function LK() {
-  const user = useSelector((state) => state.auth.user)
+  const user = useSelector((state) => state.auth.User)
   console.log(user)
 
   const [myRecipeFormVision, setmyRecipeFormVision] = useState(true) // базовое отображение по переходу на /profile
@@ -57,22 +55,22 @@ function LK() {
           <form className="profile-user-data">
             <div className="mb-3">
               <label htmlFor="name-input" className="form-label">
-                {userData.img}
+                <img src={user.img} alt="" />
               </label>
             </div>
             <div className="mb-3">
               <label htmlFor="name-input" className="form-label">
-                {userData.name}
+                Имя:{' '}{user.name}
               </label>
             </div>
             <div className="mb-3">
               <label htmlFor="exampleInputPassword1" className="form-label">
-                {userData.surname}
+              Фамилия:{' '}{user.surmane}
               </label>
             </div>
             <div className="mb-3">
               <label htmlFor="exampleInputPassword1" className="form-label">
-                {userData.email}
+              Почта:{' '}{user.email}
               </label>
             </div>
           </form>
