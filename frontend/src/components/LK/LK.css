@@ -1,0 +1,14 @@
+.cont {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 10px 50px;
+}
+
+.body-lk {
+  width: 20%;
+}
+
+.body-form {
+  width: 80%;
+}

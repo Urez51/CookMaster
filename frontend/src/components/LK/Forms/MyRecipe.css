@@ -1,0 +1,20 @@
+.searchRecipe-input {
+  width: 450px;
+}
+
+.searchRecipe-btn {
+  width: 120px;
+  height: 55px;
+  margin-left: 20px;
+}
+
+.recipe-card-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.recipe-card {
+  margin-top: 10px;
+  margin-right: 25px;
+  margin-bottom: 10px;
+}
