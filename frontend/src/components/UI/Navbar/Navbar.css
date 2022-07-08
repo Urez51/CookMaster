@@ -1,0 +1,17 @@
+.nav {
+  background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%)!important;
+  height: 5%;
+  margin-top: -25px;
+}
+
+.typography {
+  color: rgb(128, 118, 118)!important;
+}
+
+.MuiSvgIcon-root {
+  color: rgb(128, 118, 118)!important;
+}
+
+.MuiButton-root {
+  color: rgb(128, 118, 118)!important;
+}

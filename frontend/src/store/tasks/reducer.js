@@ -3,8 +3,8 @@ import {
   TASKS_ADD_SUCCESS,
   TASKS_LOADED,
   TASKS_RESET_VALIDATION,
-  TASKS_UPDATED
-} from "./actionsTypes";
+  TASKS_UPDATED,
+} from './actionsTypes';
 
 const initialState = {
   tasks: [],
@@ -38,8 +38,8 @@ export default function tasksReducer(state = initialState, action) {
       return {
         ...state,
         tasks: state.tasks.map(
-          (task) => task.id === newTask.id ? newTask : task
-        )
+          (task) => (task.id === newTask.id ? newTask : task),
+        ),
       };
     }
 

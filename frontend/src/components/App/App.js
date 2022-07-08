@@ -6,10 +6,14 @@ import Main from '../Main';
 import store from '../../store';
 import Login from '../Login';
 import Registr from '../Registr/Registr';
+import Navbar from '../UI/Navbar/Navbar';
+import Home from '../Home/Home';
 
 function App() {
   return (
     <Provider store={store}>
+      <Navbar />
+      <Home/>
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/login' element={<Login />} />
