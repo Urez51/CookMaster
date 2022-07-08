@@ -7,8 +7,8 @@ import { AUTH_LOGIN } from '../../store/auth/actionsTypes';
 import Login from '../Login/Login';
 import Registr from '../Registr/Registr';
 import Navbar from '../UI/Navbar/Navbar';
+import LK from '../LK/LK';
 
-import Home from '../Home/Home';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,9 +24,11 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path='/CookMaster' element={ <Home/>} />
-        <Route path='/login' element={<Login />} /> 
-        <Route path='/registration' element={<Registr />} /> 
+
+        <Route path='/' element={<Main />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/registration' element={<Registr />} />
+        <Route path='/profile' element={<LK />} />
       </Routes>
     </>
   );
