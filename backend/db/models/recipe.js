@@ -5,13 +5,14 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Recipe extends Model {
     static associate({
-      User, Comment, Kitchen, Step, Recipe_product,
+      User, Comment, Kitchen, Step, Recipe_product, Favorite_recipe,
     }) {
       Recipe.belongsTo(User, { foreignKey: 'user_id' });
       Recipe.hasMany(Comment, { foreignKey: 'recipe_id' });
       Recipe.belongsTo(Kitchen, { foreignKey: 'kitchen_id' });
       Recipe.hasMany(Step, { foreignKey: 'step_id' });
       Recipe.hasMany(Recipe_product, { foreignKey: 'recipe_id' });
+      Recipe.hasMany(Favorite_recipe, { foreignKey: 'recipe_id' });
     }
   }
   Recipe.init({

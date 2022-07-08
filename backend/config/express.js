@@ -3,7 +3,6 @@ const express = require('express');
 const session = require('express-session');
 const getUser = require('../middlewares/getUser');
 const FileStore = require('session-file-store')(session);
-const reactSsrMiddleware = require('../middlewares/reactSsr');
 
 // Конфигурация сессии
 const sessionConfig = {
@@ -25,7 +24,7 @@ function expressConfig(app) {
 
   // позволяет запрашивать статический контент
   // (файлы, которые лежат в / public) с нашего сервера
-  app.use(express.static(`${__dirname}/../public`));
+  app.use(express.static(`${__dirname}/../../frontend/build`));
 
   // при отправке формы методом POST данные из формы приходят
   // не сервер в зашифрованном виде
@@ -40,10 +39,6 @@ function expressConfig(app) {
 
   // миддлварка для работы с сессиями
   app.use(session(sessionConfig));
-
-  // наша миддлварка для более компактного кода рендеринга
-  app.use(reactSsrMiddleware);
-
   app.use(getUser);
 }
 
