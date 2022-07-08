@@ -1,8 +1,14 @@
 #cardsDiv {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-content: space-around;
-  justify-content: flex-start;
+  justify-content:space-between ;
   margin-top: 25px;
+  max-width: 1080px;
+  min-width: 1080px;
 }
 
+.home_page {
+  display: flex;
+  justify-content: center;
+}

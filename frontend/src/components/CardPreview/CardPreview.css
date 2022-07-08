@@ -1,3 +1,8 @@
 .MuiPaper-root {
   min-width: 345px;
 }
+
+.card {
+  margin-top: 25px!important;
+  box-shadow: 0.3em 0.3em 4px rgba(122,122,122,0.5)!important;
+}
