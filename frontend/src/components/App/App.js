@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import './App.css';
 import Main from '../Main';
 import store from '../../store';
-import Login from '../Login';
+import Login from '../Login/Login';
 import Registr from '../Registr/Registr';
 import Navbar from '../UI/Navbar/Navbar';
 import Home from '../Home/Home';

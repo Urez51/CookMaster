@@ -8,9 +8,6 @@ const express = require('express');
 const expressConfig = require('./config/express');
 
 // импортируем роутеры (там лежат наши ручки)
-const mainRouter = require('./routes/views/main.routes');
-const taskRouter = require('./routes/views/tasks.routes');
-const taskApiRouter = require('./routes/api/tasks.routes');
 const authRouter = require('./routes/views/auth.routes');
 
 const app = express();
@@ -20,10 +17,7 @@ const PORT = process.env.PORT ?? 3000;
 expressConfig(app);
 
 // подключаем роутеры
-app.use(mainRouter); // роутер главной страницы
-app.use('/tasks', taskRouter); // роутер списка задач (все url начинаются с /tasks)
-app.use('/auth', authRouter);
-app.use('/api/tasks', taskApiRouter); // роутер списка задач (все url начинаются с /tasks)
+app.use('/', authRouter);
 
 app.use((error, req, res, next) => {
   console.error('Произошла ошибка', error);
