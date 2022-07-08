@@ -24,7 +24,7 @@ function expressConfig(app) {
 
   // позволяет запрашивать статический контент
   // (файлы, которые лежат в / public) с нашего сервера
-  app.use(express.static(`${__dirname}/../public`));
+  app.use(express.static(`${__dirname}/../../frontend/build`));
 
   // при отправке формы методом POST данные из формы приходят
   // не сервер в зашифрованном виде
