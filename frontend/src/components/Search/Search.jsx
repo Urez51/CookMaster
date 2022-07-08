@@ -1,7 +1,9 @@
 import React from "react";
 
 function Search() {
-  return <div>Search</div>;
+  return (
+    <div>Поиск рецептов</div>
+    );
 }
 
 export default Search;
