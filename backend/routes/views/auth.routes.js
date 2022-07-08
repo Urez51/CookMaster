@@ -8,8 +8,8 @@ authRouter
   //   res.renderComponent(Register);
   // })
   .post(async (req, res) => {
-    const { name, surname, email, password, role, img } = req.body;
-
+    const { name, surname, email, password } = req.body;
+    console.log(req.body);
     const existingUser = await User.findOne({ where: { email } });
     // проверяем есть ли уже такой пользователь в БД
     if (existingUser) {
@@ -24,8 +24,6 @@ authRouter
       email,
       // хэшируем пароль, чтобы не хранить в открытом виде в БД
       password: await bcrypt.hash(password, 10),
-      role,
-      img
     });
 
     // кладём id нового пользователя в хранилище сессии (сразу логиним пользователя)
@@ -41,15 +39,22 @@ authRouter
   .post(async (req, res) => {
     const { email, password } = req.body;
     const existingUser = await User.findOne({ where: { email } });
-
+    console.log(existingUser);
     // проверяем, что такой пользователь есть в БД и пароли совпадают
     if (existingUser && await bcrypt.compare(password, existingUser.password)) {
       // кладём id нового пользователя в хранилище сессии (логиним пользователя)
       req.session.userId = existingUser.id;
       req.session.user = existingUser;
-      res.redirect('/');
+      const user = {
+        id: existingUser.id,
+        name: existingUser.name,
+        surmane: existingUser.surname,
+        email: existingUser.email,
+        img: existingUser.img,
+      }
+      res.json(user)
     } else {
-      res.send('Такого пользователя нет либо пароли не совпадают');
+      res.json('Неправильный email или пароль');
     }
   });
 

@@ -16,7 +16,10 @@ const PORT = process.env.PORT ?? 3000;
 expressConfig(app);
 
 // подключаем роутеры
-app.use('/auth', authRouter);
+
+
+app.use('/', authRouter);
+
 
 app.use((error, req, res, next) => {
   console.error('Произошла ошибка', error);
