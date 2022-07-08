@@ -29,6 +29,7 @@
   color: red;
   text-align: center;
   display: block;
-  margin: 5px;
+  margin: 0 auto 5px;
+  max-width: 400px;
 }
 

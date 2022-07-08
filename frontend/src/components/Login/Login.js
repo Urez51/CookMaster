@@ -1,14 +1,14 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { AUTH_LOGIN} from '../../store/auth/actionsTypes';
+import { AUTH_LOGIN } from '../../store/auth/actionsTypes';
 import {TextField, Button} from '@mui/material';
 import './Login.css';
 
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [state, setState] = React.useState('');
+  const [error, setError] = React.useState('');
   const handleSubmit = React.useCallback((event) => {
 
     event.preventDefault();
@@ -26,11 +26,11 @@ function Login() {
     })
       .then((data) => data.json())
       .then((data) => {
-        if (typeof data === Object) {
+        if (data.id) {
           dispatch({ type: AUTH_LOGIN, payload: data });
           navigate('/');
         } else {
-          setState(data);
+          setError(data);
         }
         // проверка что мы залогинились
     });
@@ -41,8 +41,8 @@ function Login() {
     <div className='container'>
       <div className='Login'>
         <h2 className='Login-title'>Авторизация</h2>
-        {state && <span className='Login-error'>*{state}</span>}
-        <form className='Login-form' onSubmit={handleSubmit} onChange={() => setState('')}>
+        {error && <span className='Login-error'>*{error}</span>}
+        <form className='Login-form' onSubmit={handleSubmit} onChange={() => setError('')}>
           <TextField
             type="email"
             label="email"
