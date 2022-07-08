@@ -39,7 +39,6 @@ function expressConfig(app) {
 
   // миддлварка для работы с сессиями
   app.use(session(sessionConfig));
-
   app.use(getUser);
 }
 
