@@ -1,47 +1,50 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {TextField, Button} from '@mui/material';
-import { useParams } from 'react-router-dom';
+
+import './AddNewRecipe.css'
 
 function AddNewRecipe(){
-  const {id} = useParams;
+
   const dispatch = useDispatch();
-  const sendRecipe = useCallback((event) => {
-    event.preventDefault();
+  const sendRecipe = React.useCallback((event) => {
     const {title:{value:title}, body:{value:body},img:{value:img} } = event.target;
-    console.log(title,body,img)
-  })
+    const recipe = {title,body,img};
+    dispatch(addRecipe(recipe))
+  },)
 
   return(
-   <section className='Login-section'>
+   <section className='New-Recipe-section'>
     <div className='container'>
-      <div className='Login'>
-        <h2 className='Login-title'>Новый рецепт</h2>
-        <form className='Login-form' onSubmit={sendRecipe} >
+      <div className='New-Recipe'>
+        <h2 className='New-Recipe-title'>Новый рецепт</h2>
+        <form className='New-Recipe-form' onSubmit={sendRecipe} >
           <TextField
             type="text"
             label="Новый рецепт"
             name="title"
             variant="outlined"
-            className='Login-form__input'
+            className='New-Recipe-form__input'
           />
           <TextField
             type="text"
             label="Описание рецепта"
             name="body"
             variant="outlined"
-            className='Login-form__input'
+            multiline
+            maxRows={20}
+            className='New-Recipe-form__input'
           />
           <TextField
             type="text"
             label="Url картинки"
             name="img"
             variant="outlined"
-            className='Login-form__input'
+            className='New-Recipe-form__input'
           />
           
-          <Button variant="contained" color="primary" type="submit" className='Login-form__btn'>
+          <Button variant="contained" color="primary" type="submit" className='New-Recipe-form__btn'>
             Создать
           </Button>
         </form>
