@@ -2,13 +2,14 @@ import React from 'react';
 import {TextField, Button} from '@mui/material';
 import {useDispatch} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { AUTH_REGISTR } from "../../store/auth/actionsTypes";
+import { AUTH_LOGIN } from "../../store/auth/actionsTypes";
 import './Registr.css';
 
 
 function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [error, setError] = React.useState('');
 
   const handleSubmit = React.useCallback((event) => {
     event.preventDefault();
@@ -31,9 +32,14 @@ function Register() {
       .then((data) => data.json())
       .then((data) => {
         console.log(data);
+        if (data.id) {
+          dispatch({ type: AUTH_LOGIN, payload: data });
+          navigate('/');
+        } else {
+          setError(data);
+        }
+  
         // проверка что мы залогинились
-        dispatch({ type: AUTH_REGISTR, payload: { id: data.id, login: data.login } });
-        navigate('/');
     });
   }, [dispatch, navigate]);
   return (
@@ -41,7 +47,8 @@ function Register() {
       <div className='container'>
         <div className='Registration'>
           <h2 className='Registration-title'>Регистрация</h2>
-          <form className='Registration-form' onSubmit={handleSubmit}>
+          {error && <span className='Registration-error'>*{error}</span>}
+          <form className='Registration-form' onSubmit={handleSubmit} onChange={() => setError('')}>
             <TextField
               type="text"
               label="name"

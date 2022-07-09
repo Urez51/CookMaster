@@ -24,3 +24,11 @@
   text-align: center;
   margin-bottom: 50px;
 }
+
+.Registration-error {
+  color: red;
+  text-align: center;
+  display: block;
+  margin: 0 auto 5px;
+  max-width: 400px;
+}
