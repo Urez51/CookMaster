@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
         model: 'Kitchens',
         key: 'id',
       },
+      defaultValue: 1,
     },
     user_id: {
       type: DataTypes.INTEGER,

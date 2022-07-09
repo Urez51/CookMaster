@@ -7,8 +7,8 @@ const express = require('express');
 const expressConfig = require('./config/express');
 
 // импортируем роутеры (там лежат наши ручки)
-const authRouter = require('./routes/views/auth.routes');
-const recipeRouter = require('./routes/views/recipe.routes');
+const authRouter = require('./routes/api/auth.routes');
+const recipeRouter = require('./routes/api/recipe.routes');
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;

@@ -11,6 +11,17 @@ export function getRecipe() {
   }
 }
 
+export function addRecipe(recipe){
+  return async (dispatch) => {
+    const data = await fetch('/recipe/new', {
+    method: 'POST',
+    body: JSON.stringify({ recipe }),
+    headers: {
+      'Content-Type': 'application/json',
+    }})
+    const newData = await data.json()
+}
+}
 export function getMyRecipes(recipes) {
   return { type: GET_MY_RECIPE, payload: recipes }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {TextField, Button} from '@mui/material';
-
+import {addRecipe} from './../../store/recipe/actionsCreators'
 import './AddNewRecipe.css'
 
 function AddNewRecipe(){

@@ -42,5 +42,16 @@ router.delete('/:id', async (req, res) => {
     res.json({ message: 'Произошла ошибка удаления' });
   }
 });
+router.post('/', (req, res) => {
+  try {
+    const { id } = req.session.user;
+    const { title, body, img } = req.body;
+    Recipe.create({
+      title, body, img, user_id: id,
+    });
+  } catch (error) {
+    res.json({ message: 'Произошла ошибка добавления' });
+  }
+});
 
 module.exports = router;
