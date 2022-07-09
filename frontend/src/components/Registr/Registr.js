@@ -2,7 +2,7 @@ import React from 'react';
 import {TextField, Button} from '@mui/material';
 import {useDispatch} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { AUTH_LOGIN } from "../../store/auth/actionsTypes";
+import { AUTH_REGISTRATION } from "../../store/auth/actionsTypes";
 import './Registr.css';
 
 
@@ -31,15 +31,12 @@ function Register() {
     })
       .then((data) => data.json())
       .then((data) => {
-        console.log(data);
         if (data.id) {
-          dispatch({ type: AUTH_LOGIN, payload: data });
+          dispatch({ type: AUTH_REGISTRATION, payload: data });
           navigate('/');
         } else {
           setError(data);
         }
-  
-        // проверка что мы залогинились
     });
   }, [dispatch, navigate]);
   return (
@@ -88,21 +85,3 @@ function Register() {
 }
 
 export default Register;
-
-
-// import "./styles.css";
-
-// export default function App() {
-//   return (
-//     <div className="App">
-//       <AppBar>
-//         <toolbar>
-//           <h1>SIGNIN FORM </h1>
-//         </toolbar>
-//       </AppBar>
-
-//       <Typography variant="h5">BASIC WITH MATERIAL UI</Typography>
-
-//     </div>
-//   );
-// }

@@ -54,6 +54,7 @@ function Navbar() {
   const handleClickLogout = (e) => {
     e.preventDefault();
     dispatch(deleteAuth())
+    navigate('/')
   }
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);

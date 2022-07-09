@@ -8,7 +8,6 @@ import './LK.css'
 
 function LK() {
   const user = useSelector((state) => state.auth.User)
-  console.log(user)
 
   const [myRecipeFormVision, setmyRecipeFormVision] = useState(true) // базовое отображение по переходу на /profile
   const [newRecipeFormVision, setNewRecipeFormVision] = useState(false)
@@ -86,12 +85,12 @@ function LK() {
       </div>
 
       <div className="body-form">
-        <form className="forms-vision">
+        <div className="forms-vision">
           {myRecipeFormVision && <MyRecipe />}
           {newRecipeFormVision && <NewRecipe />}
           {likesRecipeFormVision && <LikesRecipe />}
-          {editProfileFormVision && <EditProfile />}
-        </form>
+          {editProfileFormVision && <EditProfile  />}
+        </div>
       </div>
       
     </div>
