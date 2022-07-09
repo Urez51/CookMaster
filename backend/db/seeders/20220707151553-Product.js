@@ -34,6 +34,41 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }], {});
+
+    await queryInterface.bulkInsert('Products', [{
+      name: 'Рис',
+      measure_id: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Products', [{
+      name: 'Паста',
+      measure_id: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Products', [{
+      name: 'Сыр',
+      measure_id: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Products', [{
+      name: 'Колбаса',
+      measure_id: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Products', [{
+      name: 'Кабачок',
+      measure_id: 3,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
   },
 
   async down(queryInterface) {
