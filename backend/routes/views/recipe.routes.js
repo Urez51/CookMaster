@@ -1,14 +1,18 @@
 const router = require('express').Router();
 const { Recipe } = require('../../db/models');
 
-router.get('/recipe', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const { id } = req.session;
-    console.log(id);
-    res.json({ mes: 'qq' });
-    // const recipes = await
+    const { id } = req.session.user;
+    const recipe = await Recipe.findAll({
+      raw: true,
+      where: {
+        user_id: id,
+      },
+    });
+    res.json(recipe);
   } catch (error) {
-    res.redirect('/error');
+    res.json({ message: 'Произошла ошибка' });
   }
 });
 

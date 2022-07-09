@@ -8,7 +8,6 @@ import './LK.css'
 
 function LK() {
   const user = useSelector((state) => state.auth.User)
-  console.log(user)
 
   const [myRecipeFormVision, setmyRecipeFormVision] = useState(true) // базовое отображение по переходу на /profile
   const [newRecipeFormVision, setNewRecipeFormVision] = useState(false)
@@ -77,10 +76,10 @@ function LK() {
 
           <form className="profile-left-navigate">
             <ul className="profile-left-navigate-ul">
-              <li className="profile-left-navigate-li"><a className="my-recipe" href="/" onClick={RecipeVision}>My recipe</a></li>
-              <li className="profile-left-navigate-li"><a className="new-recipe" href="/" onClick={NewRecipeVision}>New recipe</a></li>
-              <li className="profile-left-navigate-li"><a className="likes-recipe" href="/" onClick={LikesRecipeVision}>Likes recipe</a></li>
-              <li className="profile-left-navigate-li"><a className="edit-profile" href="/" onClick={EditProfileVision}>Edit profile</a></li>
+              <li className="profile-left-navigate-li"><a className="my-recipe" href="/" onClick={RecipeVision}>Мои рецепты</a></li>
+              <li className="profile-left-navigate-li"><a className="new-recipe" href="/" onClick={NewRecipeVision}>Добавить новый рецепт</a></li>
+              <li className="profile-left-navigate-li"><a className="likes-recipe" href="/" onClick={LikesRecipeVision}>Избранные рецепты</a></li>
+              <li className="profile-left-navigate-li"><a className="edit-profile" href="/" onClick={EditProfileVision}>Настройки профиля</a></li>
             </ul>
           </form>
       </div>
