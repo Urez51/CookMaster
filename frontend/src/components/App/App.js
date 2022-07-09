@@ -15,7 +15,11 @@ import { AUTH_LOGIN } from '../../store/auth/actionsTypes';
 import Login from '../Login/Login';
 import Registr from '../Registr/Registr';
 import Navbar from '../UI/Navbar/Navbar';
+
+import AddNewRecipe from '../AddNewRecipe/AddNewRecipe'
+
 import LK from '../LK/LK';
+
 
 
 function App() {
@@ -32,14 +36,12 @@ function App() {
     <>
       <Navbar />
       <Routes>
+        <Route path='/new-recipe' element={<AddNewRecipe />} />
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/registration' element={<Registr />} />
-
         <Route path='/search' element={<Search />} />
-
         <Route path='/profile' element={<LK />} />
-
       </Routes>
     </>
   );
