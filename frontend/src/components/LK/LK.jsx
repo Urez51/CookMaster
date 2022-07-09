@@ -47,53 +47,40 @@ function LK() {
   }
 
   return (
-    
-    <div className="cont">
-
-      <div className="body-lk">
-          <form className="profile-user-data">
-            <div className="mb-3">
-              <label htmlFor="name-input" className="form-label">
-                <img className="lk-avatar" src={user.img} alt="" />
-              </label>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="name-input" className="form-label">
-                Имя:{' '}{user.name}
-              </label>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="exampleInputPassword1" className="form-label">
-              Фамилия:{' '}{user.surname}
-              </label>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="exampleInputPassword1" className="form-label">
-              Почта:{' '}{user.email}
-              </label>
-            </div>
-          </form>
-
-          <form className="profile-left-navigate">
-            <ul className="profile-left-navigate-ul">
-              <li className="profile-left-navigate-li"><a className="my-recipe" href="/" onClick={RecipeVision}>Мои рецепты</a></li>
-              <li className="profile-left-navigate-li"><a className="new-recipe" href="/" onClick={NewRecipeVision}>Добавить новый рецепт</a></li>
-              <li className="profile-left-navigate-li"><a className="likes-recipe" href="/" onClick={LikesRecipeVision}>Избранные рецепты</a></li>
-              <li className="profile-left-navigate-li"><a className="edit-profile" href="/" onClick={EditProfileVision}>Настройки профиля</a></li>
-            </ul>
-          </form>
-      </div>
-
-      <div className="body-form">
-        <div className="forms-vision">
-          {myRecipeFormVision && <MyRecipe />}
-          {newRecipeFormVision && <AddNewRecipe />}
-          {likesRecipeFormVision && <LikesRecipe />}
-          {editProfileFormVision && <EditProfile  />}
+    <section className="LK-section">
+      <div className="container">
+        <div className="LK">
+          <div className="LK-info">
+              <ul className="LK__list-data">
+                <li className="LK__list-data-item">
+                  <div className="LK__list-data-img" style={{background:  `center/cover url(${user.img}) no-repeat`}}/>
+                </li>
+                <li className="LK__list-data-item data-li">
+                    <div className="data-li__name">Имя:</div><div className="data-li__res">{user.name}</div>
+                </li>
+                <li className="LK__list-data-item">
+                <div className="data-li__name">Фамилия:</div><div className="data-li__res">{user.surname}</div>
+                </li>
+                <li className="LK__list-data-item">
+                  <div className="data-li__name">Почта:</div><div className="data-li__res">{user.email}</div>
+                </li>
+              </ul>
+              <ul className="profile-left-navigate-ul">
+                <li className="profile-left-navigate-li" onClick={RecipeVision}>Мои рецепты</li>
+                <li className="profile-left-navigate-li" onClick={NewRecipeVision}>Добавить новый рецепт</li>
+                <li className="profile-left-navigate-li" onClick={LikesRecipeVision}>Избранные рецепты</li>
+                <li className="profile-left-navigate-li" onClick={EditProfileVision}>Настройки профиля</li>
+              </ul>
+          </div>
+          <div className="LK-body">
+              {myRecipeFormVision && <MyRecipe />}
+              {newRecipeFormVision && <NewRecipe />}
+              {likesRecipeFormVision && <LikesRecipe />}
+              {editProfileFormVision && <EditProfile  />}
+          </div>
         </div>
       </div>
-      
-    </div>
+    </section>
   );
 }
 
