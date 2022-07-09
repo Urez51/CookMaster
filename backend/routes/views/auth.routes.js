@@ -42,7 +42,7 @@ authRouter
     const user = {
       id: userNew.id,
       name: userNew.name,
-      surmane: userNew.surname,
+      surname: userNew.surname,
       email: userNew.email,
       img: userNew.img,
     };
@@ -50,7 +50,8 @@ authRouter
     res.json(user);
 
     // кладём id нового пользователя в хранилище сессии (сразу логиним пользователя)
-    req.session.userId = userNew.id;
+    req.session.userId = user.id;
+    req.session.user = user;
   });
 
 authRouter
@@ -63,16 +64,16 @@ authRouter
     const existingUser = await User.findOne({ where: { email } });
     // проверяем, что такой пользователь есть в БД и пароли совпадают
     if (existingUser && await bcrypt.compare(password, existingUser.password)) {
-      // кладём id нового пользователя в хранилище сессии (логиним пользователя)
-      req.session.userId = existingUser.id;
-      req.session.user = existingUser;
       const user = {
         id: existingUser.id,
         name: existingUser.name,
-        surmane: existingUser.surname,
+        surname: existingUser.surname,
         email: existingUser.email,
         img: existingUser.img,
       };
+      // кладём id нового пользователя в хранилище сессии (логиним пользователя)
+      req.session.userId = user.id;
+      req.session.user = user;
       res.json(user);
     } else {
       res.json('Неправильный email или пароль');
@@ -88,7 +89,7 @@ authRouter
         const user = {
           id: existingUser.id,
           name: existingUser.name,
-          surmane: existingUser.surname,
+          surname: existingUser.surname,
           email: existingUser.email,
           img: existingUser.img,
         };
@@ -113,6 +114,35 @@ authRouter.get('/logout', (req, res) => {
   } catch (error) {
     res.json('Ошибка удаления');
   }
+});
+
+authRouter.route('/edit').put(async (req, res) => {
+  const { name, surname, img } = req.body;
+  const [count, updateUser] = await User.update(
+    {
+      name,
+      surname,
+      img,
+    },
+    {
+      where: {
+        id: req.session.userId,
+      },
+      returning: true,
+      plain: true,
+      raw: true,
+    },
+  );
+  const user = {
+    id: updateUser.id,
+    name: updateUser.name,
+    surname: updateUser.surname,
+    email: updateUser.email,
+    img: updateUser.img,
+  };
+  req.session.userId = user.id;
+  req.session.user = user;
+  res.json(user);
 });
 
 module.exports = authRouter;

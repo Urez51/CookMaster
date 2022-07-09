@@ -85,12 +85,12 @@ function LK() {
       </div>
 
       <div className="body-form">
-        <form className="forms-vision">
+        <div className="forms-vision">
           {myRecipeFormVision && <MyRecipe />}
           {newRecipeFormVision && <NewRecipe />}
           {likesRecipeFormVision && <LikesRecipe />}
-          {editProfileFormVision && <EditProfile />}
-        </form>
+          {editProfileFormVision && <EditProfile  />}
+        </div>
       </div>
       
     </div>

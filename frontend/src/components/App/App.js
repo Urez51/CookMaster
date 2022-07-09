@@ -3,8 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import './App.css';
 
-import store from '../../store';
-
 
 
 import Home from '../Home/Home';
