@@ -1,5 +1,6 @@
 const authRouter = require('express').Router();
 const bcrypt = require('bcrypt');
+const { signedCookie } = require('cookie-parser');
 const validator = require('validator');
 const { User } = require('../../db/models');
 
@@ -60,7 +61,6 @@ authRouter
   .post(async (req, res) => {
     const { email, password } = req.body;
     const existingUser = await User.findOne({ where: { email } });
-    console.log(existingUser);
     // проверяем, что такой пользователь есть в БД и пароли совпадают
     if (existingUser && await bcrypt.compare(password, existingUser.password)) {
       // кладём id нового пользователя в хранилище сессии (логиним пользователя)
@@ -102,8 +102,17 @@ authRouter
   });
 
 authRouter.get('/logout', (req, res) => {
-  req.session.destroy();
-  res.redirect('/');
+  try {
+    req.session.destroy((err) => {
+      if (err) {
+        return next(err);
+      }
+      res.clearCookie('user_sid');
+      return res.sendStatus(200);
+    });
+  } catch (error) {
+    res.json('Ошибка удаления');
+  }
 });
 
 module.exports = authRouter;
