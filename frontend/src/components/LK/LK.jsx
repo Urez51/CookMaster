@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import MyRecipe from './Forms/MyRecipe'
-import NewRecipe from './Forms/NewRecipe'
 import LikesRecipe from './Forms/LikesRecipe'
 import EditProfile from './Forms/EditProfile'
 import { useSelector } from "react-redux";
 import './LK.css'
+import AddNewRecipe from '../AddNewRecipe/AddNewRecipe'
 
 function LK() {
   const user = useSelector((state) => state.auth.User)

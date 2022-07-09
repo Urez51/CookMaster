@@ -9,7 +9,6 @@ export default function recipeReducer(state = initialState, action) {
     case GET_MY_RECIPE: {
       return { ...state, recipes: action.payload}
     }
-    
     default: return state;
   }
 }
