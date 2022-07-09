@@ -6,7 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipe } from "../../../store/recipe/actionsCreators";
+import { getRecipe, deleteRecipe } from "../../../store/recipe/actionsCreators";
 
 function MyRecipe() {
   const recipes = useSelector((state) => state.recipes.recipes);
@@ -15,6 +15,12 @@ function MyRecipe() {
   useEffect(() => {
     dispatch(getRecipe());
   }, [dispatch]);
+
+  const handleDelete = (event) => {
+    event.preventDefault()
+    const id = event.target.value
+    dispatch(deleteRecipe(id))
+  }
 
   return (
     <>
@@ -58,8 +64,8 @@ function MyRecipe() {
                   <Button size="small" color="primary">
                     Подробнее
                   </Button>
-                  <Button size="small" color="primary">
-                    Скрыть
+                  <Button size="small" color="primary" value={recipe.id} onClick={handleDelete}>
+                    Удалить
                   </Button>
                 </CardActions>
               </Card>

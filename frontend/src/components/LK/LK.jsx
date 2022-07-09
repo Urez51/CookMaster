@@ -64,7 +64,7 @@ function LK() {
             </div>
             <div className="mb-3">
               <label htmlFor="exampleInputPassword1" className="form-label">
-              Фамилия:{' '}{user.surmane}
+              Фамилия:{' '}{user.surname}
               </label>
             </div>
             <div className="mb-3">
