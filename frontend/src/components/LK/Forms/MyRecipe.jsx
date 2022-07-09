@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {TextField, Button, CardActionArea, CardActions} from '@mui/material';
 import './MyRecipe.css'
 import Card from '@mui/material/Card';
@@ -10,21 +10,31 @@ const recept = { rec: ['яичница', 'сырники', 'макароны с 
 
 
 function MyRecipe() {
-  
+
+  const [recipe, setRecipe] = useState()
+
+  useEffect(() => {
+    fetch('/recipe')
+    .then((data) => console.log(data))
+  }, [])
+
   return (
     <>
     <form className='MyRecipe-form'>
     <h2>Мои рецепты</h2>
-    <TextField
-            type="text"
-            label="Поиск рецептов"
-            name="searchRecipe"
-            variant="outlined"
-            className='searchRecipe-input'
-    />
-    <Button variant="contained" color="primary" type="submit" className='searchRecipe-btn'>
-            Найти
-    </Button>
+
+      <div id="input-bar">
+        <TextField
+                type="text"
+                label="Поиск рецептов"
+                name="searchRecipe"
+                variant="outlined"
+                className='searchRecipe-input'
+        />
+        <Button variant="contained" color="primary" type="submit" className='searchRecipe-btn'>
+                Поиск
+        </Button>
+      </div>
 
       <div className="recipe-card-list">
 

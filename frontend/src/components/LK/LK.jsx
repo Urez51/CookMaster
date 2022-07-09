@@ -55,7 +55,7 @@ function LK() {
           <form className="profile-user-data">
             <div className="mb-3">
               <label htmlFor="name-input" className="form-label">
-                <img src={user.img} alt="" />
+                <img className="lk-avatar" src={user.img} alt="" />
               </label>
             </div>
             <div className="mb-3">

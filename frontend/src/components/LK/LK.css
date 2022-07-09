@@ -21,3 +21,12 @@
 .profile-left-navigate-ul a {
   text-decoration: none;
 }
+
+.profile-left-navigate-ul a:hover {
+  text-decoration: none;
+  color: red;
+}
+
+.lk-avatar {
+  border-radius: 50%;
+}
