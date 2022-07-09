@@ -2,8 +2,8 @@
   width: 450px;
 }
 
-.searchRecipe-btn {
-  width: 120px;
+.MuiButton-root.searchRecipe-btn {
+  color: rgb(255, 255, 255)!important;
   height: 55px;
   margin-left: 20px;
 }
@@ -17,4 +17,15 @@
   margin-top: 10px;
   margin-right: 25px;
   margin-bottom: 10px;
+}
+
+#input-bar {
+  display: flex;
+  justify-content: center;
+  margin: 25px 0px;
+  align-items: center;
+}
+
+h2 {
+  font-family: 'Courier New', Courier, monospace;
 }

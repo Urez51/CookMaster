@@ -8,6 +8,7 @@ const expressConfig = require('./config/express');
 
 // импортируем роутеры (там лежат наши ручки)
 const authRouter = require('./routes/views/auth.routes');
+const recipeRouter = require('./routes/views/recipe.routes');
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -17,8 +18,8 @@ expressConfig(app);
 
 // подключаем роутеры
 
-
 app.use('/', authRouter);
+app.use('/recipe', recipeRouter);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
 })

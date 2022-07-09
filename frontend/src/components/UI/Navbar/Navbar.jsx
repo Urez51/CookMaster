@@ -45,6 +45,7 @@ function Navbar() {
   const handleClickRecipes = (e) => {
     e.preventDefault();
     navigate('/my_recipes')
+    dispatch()
   }
 
   const handleClickFavorites = (e) => {
