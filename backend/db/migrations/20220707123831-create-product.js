@@ -11,13 +11,9 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false,
       },
-      measure_id: {
-        type: Sequelize.INTEGER,
+      measure: {
+        type: Sequelize.TEXT,
         allowNull: false,
-        references: {
-          model: 'Measures',
-          key: 'id',
-        },
       },
       createdAt: {
         allowNull: false,
