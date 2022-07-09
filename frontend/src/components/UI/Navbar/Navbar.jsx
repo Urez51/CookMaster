@@ -14,11 +14,14 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteAuth } from '../../../store/auth/actionsCreators'
 
 
-function Navbar({user}) {
-
+function Navbar() {
+  const user = useSelector((state) => state.auth.User);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleClickRega = (e) => {
     e.preventDefault();
     navigate('/registration')
@@ -36,7 +39,7 @@ function Navbar({user}) {
 
   const handleClickLk = (e) => {
     e.preventDefault();
-    navigate('/lk')
+    navigate('/profile')
   }
 
   const handleClickRecipes = (e) => {
@@ -50,7 +53,7 @@ function Navbar({user}) {
   }
   const handleClickLogout = (e) => {
     e.preventDefault();
-    navigate('/logout')
+    dispatch(deleteAuth())
   }
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -147,7 +150,7 @@ function Navbar({user}) {
               Главная
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            { !user ? (
+            { !Object.keys(user).length ? (
               <><Button sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleClickRega}>
                 Зарегистрироваться
               </Button><Button sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleClickLoga}>
@@ -164,7 +167,7 @@ function Navbar({user}) {
               )}
             </Box>
             <Box sx={{ flexGrow: 0 }}>
-            { !user ? (
+            { !Object.keys(user).length ? (
                <Tooltip title="Open settings" className="avatar_profile" style={{'display': 'none'}}>
                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
