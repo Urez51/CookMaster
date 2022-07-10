@@ -10,6 +10,9 @@ router.get('/', async (req, res) => {
         user_id: id,
         delete_visible: false,
       },
+      order: [
+        ['updatedAt', 'DESC'],
+      ],
     });
     res.json(recipe);
   } catch (error) {
@@ -36,6 +39,9 @@ router.delete('/:id', async (req, res) => {
         user_id: userId,
         delete_visible: false,
       },
+      order: [
+        ['updatedAt', 'DESC'],
+      ],
     });
     res.json(recipes);
   } catch (error) {
@@ -51,6 +57,34 @@ router.post('/', (req, res) => {
     });
   } catch (error) {
     res.json({ message: 'Произошла ошибка добавления' });
+  }
+});
+
+router.post('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const recipe = await Recipe.findOne(
+      {
+        where: {
+          id,
+        },
+      },
+    );
+    recipe.moder_visible = true;
+    await recipe.save();
+    const userId = req.session.user.id;
+    const recipes = await Recipe.findAll({
+      where: {
+        user_id: userId,
+        delete_visible: false,
+      },
+      order: [
+        ['updatedAt', 'DESC'],
+      ],
+    });
+    res.json(recipes);
+  } catch (error) {
+    res.json({ message: 'Произошла ошибка публикации рецепта' });
   }
 });
 

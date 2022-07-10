@@ -1,7 +1,7 @@
 import { GET_MY_RECIPE } from './actionsTypes'
 
 const initialState = {
-  recipes: []
+  recipes: [],
 };
 
 export default function recipeReducer(state = initialState, action) {

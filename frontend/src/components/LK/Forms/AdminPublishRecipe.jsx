@@ -1,39 +1,21 @@
-import React, { useEffect } from "react";
-import { TextField, Button, CardActionArea, CardActions } from "@mui/material";
-import "./MyRecipe.css";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { useDispatch, useSelector } from "react-redux";
-import { getRecipe, deleteRecipe, publishRecipe } from "../../../store/recipe/actionsCreators";
+import { TextField, Button, CardActionArea, CardActions } from "@mui/material";
+import { useEffect } from "react";
 
 function MyRecipe() {
   const recipes = useSelector((state) => state.recipes.recipes);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getRecipe());
-  }, [dispatch]);
-
-  const handleDelete = (event) => {
-    event.preventDefault()
-    const id = event.target.value
-    dispatch(deleteRecipe(id))
-  }
-
-  const handlePublish = (event) => {
-    event.preventDefault()
-    const id = event.target.value
-    dispatch(publishRecipe(id))
-  }
+  console.log(recipes)
 
   return (
-    <>
-      <form className="MyRecipe-form">
-        <h2>Мои рецепты</h2>
-
-        <div id="input-bar">
+    <form className="UserRecipe-form">
+    <h2>Заявки на добавление рецептов</h2>
+      <div id="input-bar">
           <TextField
             type="text"
             label="Поиск рецептов"
@@ -51,8 +33,9 @@ function MyRecipe() {
           </Button>
         </div>
 
-        <div className="recipe-card-list">
-          {recipes.map((recipe) => (
+        <div className="UserRecipe-card-list">
+        {recipes.map((recipe) => (
+            recipe.moder_visible ? (
             <div className="recipe-card" id={recipe.id}>
               <Card sx={{ maxWidth: 250 }}>
                 <CardActionArea>
@@ -67,22 +50,22 @@ function MyRecipe() {
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                <Button size="small" className="MyRecipe-btn-publish" color="primary" value={recipe.id} onClick={handlePublish}>
-                    Опубликовать
+                <Button size="small" className="MyRecipe-btn-publish" color="primary" value={recipe.id}>
+                    Подтверить
                   </Button>
                   <Button size="small" color="primary">
                     Подробнее
                   </Button>
-                  <Button size="small" className="MyRecipe-btn-delete" color="primary" value={recipe.id} onClick={handleDelete}>
-                    Удалить
+                  <Button size="small" className="MyRecipe-btn-delete" color="primary" value={recipe.id}>
+                    Отклонить
                   </Button>
                 </CardActions>
               </Card>
-            </div>
+            </div>) : (<></>)
           ))}
         </div>
-      </form>
-    </>
+
+    </form>
   );
 }
 
