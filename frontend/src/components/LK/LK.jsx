@@ -74,7 +74,7 @@ function LK() {
           </div>
           <div className="LK-body">
               {myRecipeFormVision && <MyRecipe />}
-              {newRecipeFormVision && <NewRecipe />}
+              {newRecipeFormVision && <AddNewRecipe />}
               {likesRecipeFormVision && <LikesRecipe />}
               {editProfileFormVision && <EditProfile  />}
           </div>

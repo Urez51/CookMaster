@@ -1,4 +1,5 @@
-import { GET_MY_RECIPE } from './actionsTypes'
+import { GET_MY_RECIPES } from './actionsTypes'
+import { ERROR_MASSAGE_POST_RECIPE,ADD_RECIPE,DELETE_ERROR_MASSEGE } from './actionsTypes'
 
 
 export function getRecipe() {
@@ -20,12 +21,28 @@ export function addRecipe(recipe){
       'Content-Type': 'application/json',
     }})
     const newData = await data.json()
+    if(newData.errorMessage){
+      dispatch(errorMessagePostRecipe(newData.errorMessage))
+    }else{
+      dispatch(addRecipeInState(newData.message))
+    }
+     
+    return
 }
 }
-export function getMyRecipes(recipes) {
-  return { type: GET_MY_RECIPE, payload: recipes }
+export function deleteErrorMassage(){
+  return {type:DELETE_ERROR_MASSEGE}
+}
+export function errorMessagePostRecipe(errorMessage){
+  return {type:ERROR_MASSAGE_POST_RECIPE, payload : errorMessage }
 }
 
+export function getMyRecipes(recipes) {
+  return { type: GET_MY_RECIPES, payload: recipes }
+}
+export function addRecipeInState(messangeComplite){
+  return { type: ADD_RECIPE, payload: messangeComplite }
+}
 
 export function deleteRecipe(id) {
   return async (dispatch) => {
