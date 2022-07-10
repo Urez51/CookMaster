@@ -6,11 +6,15 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { TextField, Button, CardActionArea, CardActions } from "@mui/material";
 import { useEffect } from "react";
+import { getPublishRecipe } from "../../../store/recipe/actionsCreators";
 
 function MyRecipe() {
   const recipes = useSelector((state) => state.recipes.recipes);
   const dispatch = useDispatch();
-  console.log(recipes)
+  
+  useEffect(() => {
+    dispatch(getPublishRecipe());
+  }, [dispatch])
 
   return (
     <form className="UserRecipe-form">

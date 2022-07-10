@@ -5,7 +5,7 @@ import EditProfile from "./Forms/EditProfile";
 import { useSelector } from "react-redux";
 import "./LK.css";
 import AddNewRecipe from "../AddNewRecipe/AddNewRecipe";
-import UserRecipe from "./Forms/AdminPublishRecipe";
+import AdminPublishRecipe from "./Forms/AdminPublishRecipe";
 
 function LK() {
   const user = useSelector((state) => state.auth.User);
@@ -188,7 +188,7 @@ function LK() {
             {newRecipeFormVision && <AddNewRecipe />}
             {likesRecipeFormVision && <LikesRecipe />}
             {editProfileFormVision && <EditProfile />}
-            {user.role && userRecipeFormVision && <UserRecipe />}
+            {user.role && userRecipeFormVision && <AdminPublishRecipe />}
           </div>
         </div>
       </div>

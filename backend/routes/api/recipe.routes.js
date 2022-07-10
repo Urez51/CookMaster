@@ -88,4 +88,19 @@ router.post('/:id', async (req, res) => {
   }
 });
 
+router.get('/publish', async (req, res) => {
+  try {
+    const recipes = await Recipe.findAll({
+      raw: true,
+      where: {
+        moder_visible: true,
+      },
+    });
+    console.log(recipes);
+    res.json(recipes);
+  } catch (error) {
+    res.json({ message: 'Произошла ошибка получения рецептов на проверку' });
+  }
+});
+
 module.exports = router;
