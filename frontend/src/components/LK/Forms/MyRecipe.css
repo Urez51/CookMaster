@@ -29,3 +29,11 @@
 h2 {
   font-family: 'Courier New', Courier, monospace;
 }
+
+.MyRecipe-btn-delete {
+  color: red!important;
+}
+
+.MyRecipe-btn-publish {
+  color: green!important;
+}
