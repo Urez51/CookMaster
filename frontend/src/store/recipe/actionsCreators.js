@@ -55,3 +55,24 @@ export function deleteRecipe(id) {
   }
 }
 
+export function publishRecipe(id) {
+  return async (dispatch) => {
+    const data = await fetch (`/recipe/${id}`, {
+      method: 'POST'
+    })
+    const resData = await data.json()
+    console.log(resData);
+    dispatch(getMyRecipes(resData))
+  }
+}
+
+export function getPublishRecipe() {
+  return async (dispatch) => {
+    const data = await fetch('/recipe/publish', {
+      method: 'GET',
+    })
+    const resData = await data.json()
+    console.log(resData)
+    dispatch(getMyRecipes(resData))
+  }
+}

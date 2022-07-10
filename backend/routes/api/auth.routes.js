@@ -70,6 +70,7 @@ authRouter
         surname: existingUser.surname,
         email: existingUser.email,
         img: existingUser.img,
+        role: existingUser.role,
       };
       // кладём id нового пользователя в хранилище сессии (логиним пользователя)
       req.session.userId = user.id;
