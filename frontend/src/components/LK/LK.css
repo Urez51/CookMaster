@@ -10,6 +10,7 @@
 
 .LK-body {
   width: 80%;
+  padding: 0 50px;
 }
 
 .LK-info {
@@ -55,10 +56,18 @@
 
 .data-li__name {
   font-weight: bold;
+
 }
 
 .data-li__res {
+  white-space: nowrap; /* Отменяем перенос текста */
+  overflow: hidden; /* Обрезаем содержимое */
+  text-overflow: ellipsis; /* Многоточие */
+}
 
+.data-li__res:hover {
+  background: rgba(0, 0, 255, .2); /* Цвет фона */
+  white-space: normal; 
 }
 
 /* color: #1D809F; */
