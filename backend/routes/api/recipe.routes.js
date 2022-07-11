@@ -9,6 +9,8 @@ router.get('/', async (req, res) => {
       where: {
         user_id: id,
         delete_visible: false,
+        moder_visible: false,
+        private: true,
       },
       order: [
         ['updatedAt', 'DESC'],
@@ -104,6 +106,7 @@ router.get('/publish', async (req, res) => {
       where: {
         moder_visible: true,
         private: true,
+        delete_visible: false,
       },
       order: [
         ['updatedAt', 'DESC'],
@@ -130,29 +133,43 @@ router.post('/publish/:id', async (req, res) => {
       where: {
         moder_visible: true,
         private: true,
+        delete_visible: false,
       },
       order: [
         ['updatedAt', 'DESC'],
       ],
     });
-    console.log('publish/:id')
     res.json(recipes);
   } catch (error) {
     res.json({ message: 'Произошла ошибка подтверждения публикации рецепта в личном кабинете администратора' });
   }
 });
 
-// router.delete('/publish/:id', async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const recipe = await Recipe.findOne({
-//       where: { id },
-//     });
-//     recipe.moder_visible = false;
-//     await recipe.save();
-//   } catch (error) {
-//     res.json({ message: 'Произошла ошибка удаления рецепта в личном кабинете администратора' });
-//   }
-// });
+router.delete('/publish/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const recipe = await Recipe.findOne({
+      where: { id },
+    });
+    recipe.moder_visible = false;
+    recipe.private = true;
+    await recipe.save();
+
+    const recipes = await Recipe.findAll({
+      raw: true,
+      where: {
+        moder_visible: true,
+        private: true,
+        delete_visible: false,
+      },
+      order: [
+        ['updatedAt', 'DESC'],
+      ],
+    });
+    res.json(recipes);
+  } catch (error) {
+    res.json({ message: 'Произошла ошибка отклонения рецепта на публикацию в личном кабинете администратора' });
+  }
+});
 
 module.exports = router;
