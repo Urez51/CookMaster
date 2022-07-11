@@ -6,7 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { TextField, Button, CardActionArea, CardActions } from "@mui/material";
 import { useEffect } from "react";
-import { getPublishRecipe, adminPublishRecipe } from "../../../store/recipe/actionsCreators";
+import { getPublishRecipe, adminPublishRecipe, adminRejectRecipe } from "../../../store/recipe/actionsCreators";
 import './AdminPublishRecipe.css'
 
 function MyRecipe() {
@@ -26,7 +26,7 @@ function MyRecipe() {
   const handleAdminReject = (event) => {
     event.preventDefault()
     const id = event.target.value
-    console.log(id);
+    dispatch(adminRejectRecipe(id))
   }
 
   return (
