@@ -13,8 +13,8 @@ import { AUTH_LOGIN } from '../../store/auth/actionsTypes';
 import Login from '../Login/Login';
 import Registr from '../Registr/Registr';
 import Navbar from '../UI/Navbar/Navbar';
-
 import LK from '../LK/LK';
+import CardPage from '../CardPage/CardPage';
 
 
 
@@ -37,6 +37,7 @@ function App() {
         <Route path='/registration' element={<Registr />} />
         <Route path='/search' element={<Search />} />
         <Route path='/profile' element={<LK />} />
+        <Route path='/recipe/:id' element={<CardPage />} />
       </Routes>
     </>
   );

@@ -7,10 +7,12 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecipe, deleteRecipe } from "../../../store/recipe/actionsCreators";
+import { useNavigate } from "react-router-dom";
 
 function MyRecipe() {
   const recipes = useSelector((state) => state.recipes.recipes);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getRecipe());
@@ -61,7 +63,7 @@ function MyRecipe() {
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                  <Button size="small" color="primary">
+                  <Button size="small" color="primary" onClick={() => navigate(`/recipe/${recipe.id}`, { replace: true })}>
                     Подробнее
                   </Button>
                   <Button size="small" color="primary" value={recipe.id} onClick={handleDelete}>
