@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './Home.css';
 import CardPreview from "../CardPreview/CardPreview";
 
 function Home() {
+
+  useEffect(() => {
+    fetch('http://localhost:4000/api/cards')
+    .then((response) => response.json)
+    .then((data) => console.log('kartochki', data))
+  }, [])
+  
   const card = [{
     img: 'https://24health.by/wp-content/uploads/2022/04/Klassicheskii-borsch-s-govyadinoi.jpeg',
     title: 'Borsch',
@@ -33,6 +40,8 @@ function Home() {
     title: 'Borsch',
     description: 'Rasskazhu 77 zdes resept'
   },];
+
+
   return (
     <>
     <div className="home_page">
@@ -40,8 +49,6 @@ function Home() {
         {card.map((el) => <CardPreview card={el}  />)}
       </div>
     </div>
-      <img src="https://fermabenua.ru/templates/benua/img/apple.png"/>
-      <img src="https://fermabenua.ru/templates/benua/img/fish.png"/>
     </>
   );
 }

@@ -70,6 +70,7 @@ authRouter
         surname: existingUser.surname,
         email: existingUser.email,
         img: existingUser.img,
+        role: existingUser.role,
       };
       // кладём id нового пользователя в хранилище сессии (логиним пользователя)
       req.session.userId = user.id;
@@ -92,6 +93,7 @@ authRouter
           surname: existingUser.surname,
           email: existingUser.email,
           img: existingUser.img,
+          role: existingUser.role,
         };
         res.json(user);
       } else {
@@ -139,6 +141,7 @@ authRouter.route('/edit').put(async (req, res) => {
     surname: updateUser.surname,
     email: updateUser.email,
     img: updateUser.img,
+    role: updateUser.role,
   };
   req.session.userId = user.id;
   req.session.user = user;

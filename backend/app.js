@@ -5,6 +5,7 @@ const path = require('path');
 // также не забудь положить файл .babelrc в корень проекта
 const express = require('express');
 const expressConfig = require('./config/express');
+const cardsRouter = require('./routes/views/cards.routes');
 
 // импортируем роутеры (там лежат наши ручки)
 const authRouter = require('./routes/api/auth.routes');
