@@ -20,9 +20,9 @@ expressConfig(app);
 
 app.use('/', authRouter);
 app.use('/recipe', recipeRouter);
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-// })
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+})
 
 app.use((error, req, res, next) => {
   console.error('Произошла ошибка', error);
