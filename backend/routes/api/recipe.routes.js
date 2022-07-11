@@ -1,5 +1,7 @@
 const router = require('express').Router();
-const { Recipe } = require('../../db/models');
+const {
+  Recipe, Step, Recipe_product, Product,
+} = require('../../db/models');
 
 router.get('/', async (req, res) => {
   try {
@@ -9,6 +11,8 @@ router.get('/', async (req, res) => {
       where: {
         user_id: id,
         delete_visible: false,
+        moder_visible: false,
+        private: true,
       },
       order: [
         ['updatedAt', 'DESC'],
@@ -69,6 +73,36 @@ router.post('/new', async (req, res) => {
   }
 });
 
+router.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const recipe = await Recipe.findAll({
+      raw: true,
+      where: {
+        id,
+        delete_visible: false,
+      },
+    });
+    const steps = await Step.findAll({
+      raw: true,
+      where: {
+        recipe_id: id,
+      },
+    });
+    const recipeProduct = await Recipe_product.findAll({
+      raw: true,
+      include: [Product.name],
+      where: {
+        recipe_id: id,
+      },
+    });
+    res.json({ recipe, steps, recipeProduct });
+  } catch (error) {
+    res.json({ message: 'Произошла ошибка' });
+  }
+});
+
+
 router.post('/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -103,15 +137,71 @@ router.get('/publish', async (req, res) => {
       raw: true,
       where: {
         moder_visible: true,
+        private: true,
+        delete_visible: false,
       },
+      order: [
+        ['updatedAt', 'DESC'],
+      ],
     });
-    console.log(recipes);
     res.json(recipes);
   } catch (error) {
     res.json({ message: 'Произошла ошибка получения рецептов на проверку' });
   }
 });
 
+router.post('/publish/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const recipe = await Recipe.findOne({
+      where: { id },
+    });
+    recipe.moder_visible = false;
+    recipe.private = false;
+    await recipe.save();
 
+    const recipes = await Recipe.findAll({
+      raw: true,
+      where: {
+        moder_visible: true,
+        private: true,
+        delete_visible: false,
+      },
+      order: [
+        ['updatedAt', 'DESC'],
+      ],
+    });
+    res.json(recipes);
+  } catch (error) {
+    res.json({ message: 'Произошла ошибка подтверждения публикации рецепта в личном кабинете администратора' });
+  }
+});
+
+router.delete('/publish/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const recipe = await Recipe.findOne({
+      where: { id },
+    });
+    recipe.moder_visible = false;
+    recipe.private = true;
+    await recipe.save();
+
+    const recipes = await Recipe.findAll({
+      raw: true,
+      where: {
+        moder_visible: true,
+        private: true,
+        delete_visible: false,
+      },
+      order: [
+        ['updatedAt', 'DESC'],
+      ],
+    });
+    res.json(recipes);
+  } catch (error) {
+    res.json({ message: 'Произошла ошибка отклонения рецепта на публикацию в личном кабинете администратора' });
+  }
+});
 
 module.exports = router;

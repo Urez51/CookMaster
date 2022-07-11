@@ -1,10 +1,11 @@
 require('dotenv').config();
-const path = require('path')
+const path = require('path');
 // не забудь установить babel:
 // npm i @babel/core @babel/preset - env @babel/preset-react @babel/register
 // также не забудь положить файл .babelrc в корень проекта
 const express = require('express');
 const expressConfig = require('./config/express');
+const cardsRouter = require('./routes/views/cards.routes');
 
 // импортируем роутеры (там лежат наши ручки)
 const authRouter = require('./routes/api/auth.routes');
@@ -22,7 +23,7 @@ app.use('/', authRouter);
 app.use('/recipe', recipeRouter);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-})
+});
 
 app.use((error, req, res, next) => {
   console.error('Произошла ошибка', error);

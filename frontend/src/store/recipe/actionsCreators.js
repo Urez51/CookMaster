@@ -3,7 +3,8 @@ import {
   ADD_RECIPE,
   DELETE_ERROR_MASSEGE,
   CLEAR_MESSAGE_AFTER_ADDED_RECIPE,
-  GET_MY_RECIPES
+  GET_MY_RECIPES,
+  ADMIN_PUBLICK_RECIPE
 } from './actionsTypes'
 
 export function getRecipe() {
@@ -56,7 +57,6 @@ export function deleteRecipe(id) {
       method: 'DELETE'
     })
     const resData = await data.json()
-    console.log(resData)
     dispatch(getMyRecipes(resData))
   }
 }
@@ -67,7 +67,6 @@ export function publishRecipe(id) {
       method: 'POST'
     })
     const resData = await data.json()
-    console.log(resData);
     dispatch(getMyRecipes(resData))
   }
 }
@@ -78,7 +77,18 @@ export function getPublishRecipe() {
       method: 'GET',
     })
     const resData = await data.json()
-    console.log(resData)
     dispatch(getMyRecipes(resData))
   }
 }
+
+export function adminPublishRecipe(id) {
+  console.log(id)
+  return async (dispatch) => {
+    const data = await fetch(`/recipe/publish/${id}`, {
+      method: 'POST',
+    })
+    const resData = await data.json()
+    dispatch(getMyRecipes(resData))
+  }
+}
+

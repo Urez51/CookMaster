@@ -16,11 +16,30 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteAuth } from '../../../store/auth/actionsCreators'
+// import { makeStyles } from "@material-ui/styles";
 
+// import '../../../static/images/logo-cookmaster-копия2'
+
+// import headerBackground from "../../../static/images/logo-cookmaster 2копия.png";
+// const useStyles = makeStyles((theme) => ({
+//   header: {
+//     backgroundImage: `url(${headerBackground})`,
+//   },
+// }));
 
 function Navbar() {
+
+  // const classes = useStyles();
+
+
   const user = useSelector((state) => state.auth.User);
   const navigate = useNavigate();
+
+  const handleClickHome = (e) => {
+    e.preventDefault();
+    navigate('/')
+  }
+
   const dispatch = useDispatch();
   const handleClickRega = (e) => {
     e.preventDefault();
@@ -79,12 +98,12 @@ function Navbar() {
       <AppBar position="static" className="nav" >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+            <img sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} style={{'maxWidth': "88px"}} alt="logo" src="https://downloader.disk.yandex.ru/preview/3313c88eef18652b945fe50e569ebdd7083e14f0350835b517b49bf59ecb128c/62cc0e32/N7yX2YnPSsN7xptI8rYTjpnNU5-kbG6WySDigM4ncBOyA89NWtRi2bFK3vA8iLFGthmecIBuH3ZeNUsJCDNDPw%3D%3D?uid=0&filename=logo-cookmaster%202копия.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=0&tknv=v2&size=2048x2048" />
             <Typography
               variant="h6"
               noWrap
+              href='#'
               component="a"
-              href="/"
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
@@ -94,8 +113,8 @@ function Navbar() {
                 textDecoration: 'none',
               }}
               className="typography"
-            >
-              LOGO
+            onClick={handleClickHome}>
+              CookMaster
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>

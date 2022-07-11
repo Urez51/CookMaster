@@ -52,7 +52,7 @@ function CardPreview() {
           {card.title}
         </Typography>
         <Typography variant="body2" color="text.secondary" name="description">
-         {card.description}
+         {card.body}
         </Typography>
       </CardContent>
       <CardActions>
