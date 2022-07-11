@@ -1,5 +1,5 @@
 require('dotenv').config();
-const path = require('path')
+const path = require('path');
 // не забудь установить babel:
 // npm i @babel/core @babel/preset - env @babel/preset-react @babel/register
 // также не забудь положить файл .babelrc в корень проекта
@@ -22,7 +22,7 @@ app.use('/', authRouter);
 app.use('/recipe', recipeRouter);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-})
+});
 
 app.use((error, req, res, next) => {
   console.error('Произошла ошибка', error);
