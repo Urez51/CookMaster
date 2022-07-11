@@ -1,5 +1,7 @@
 const router = require('express').Router();
-const { Recipe } = require('../../db/models');
+const {
+  Recipe, Step, Recipe_product, Product,
+} = require('../../db/models');
 
 router.get('/', async (req, res) => {
   try {
@@ -68,6 +70,36 @@ router.post('/new', async (req, res) => {
     res.json({ message: 'Произошла ошибка добавления' });
   }
 });
+
+router.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const recipe = await Recipe.findAll({
+      raw: true,
+      where: {
+        id,
+        delete_visible: false,
+      },
+    });
+    const steps = await Step.findAll({
+      raw: true,
+      where: {
+        recipe_id: id,
+      },
+    });
+    const recipeProduct = await Recipe_product.findAll({
+      raw: true,
+      include: [Product.name],
+      where: {
+        recipe_id: id,
+      },
+    });
+    res.json({ recipe, steps, recipeProduct });
+  } catch (error) {
+    res.json({ message: 'Произошла ошибка' });
+  }
+});
+
 
 router.post('/:id', async (req, res) => {
   try {

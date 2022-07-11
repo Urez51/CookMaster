@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       Recipe.belongsTo(User, { foreignKey: 'user_id' });
       Recipe.hasMany(Comment, { foreignKey: 'recipe_id' });
       Recipe.belongsTo(Kitchen, { foreignKey: 'kitchen_id' });
-      Recipe.hasMany(Step, { foreignKey: 'step_id' });
+      Recipe.hasMany(Step, { foreignKey: 'recipe_id' });
       Recipe.hasMany(Recipe_product, { foreignKey: 'recipe_id' });
       Recipe.hasMany(Favorite_recipe, { foreignKey: 'recipe_id' });
     }
