@@ -100,31 +100,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.delete('/publish/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-    const recipe = await Recipe.findOne({
-      where: { id },
-    });
-    recipe.moder_visible = false;
-    recipe.private = true;
-    await recipe.save();
 
-    const recipes = await Recipe.findAll({
-      raw: true,
-      where: {
-        moder_visible: true,
-        private: true,
-        delete_visible: false,
-      },
-      order: [
-        ['updatedAt', 'DESC'],
-      ],
-    });
-    res.json(recipes);
-  } catch (error) {
-    res.json({ message: 'Произошла ошибка отклонения рецепта на публикацию в личном кабинете администратора' });
-  }
-});
 
 module.exports = router;

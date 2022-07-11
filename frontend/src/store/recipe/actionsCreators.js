@@ -96,7 +96,7 @@ export function adminPublishRecipe(id) {
 export function adminRejectRecipe(id) {
   console.log(id)
   return async (dispatch) => {
-    const data = await fetch(`/recipe/publish/${id}`, {
+    const data = await fetch(`/publish/${id}`, {
       method: 'DELETE',
     })
     const resData = await data.json()
