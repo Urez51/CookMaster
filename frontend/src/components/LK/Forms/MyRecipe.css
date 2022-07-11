@@ -34,6 +34,10 @@ h2 {
   color: red!important;
 }
 
-.MyRecipe-btn-publish {
+.MyRecipe-btn-publish-nenaproverke {
   color: green!important;
+}
+
+.MyRecipe-btn-publish-naproverke {
+  color: goldenrod!important;
 }
