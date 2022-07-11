@@ -52,7 +52,7 @@ function MyRecipe() {
         </div>
 
         <div className="recipe-card-list">
-          {recipes.map((recipe) => (
+          {recipes.map((recipe) => ( recipe.private ? (
             <div className="recipe-card" id={recipe.id}>
               <Card sx={{ maxWidth: 250 }}>
                 <CardActionArea>
@@ -67,8 +67,8 @@ function MyRecipe() {
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                <Button size="small" className="MyRecipe-btn-publish" color="primary" value={recipe.id} onClick={handlePublish}>
-                    Опубликовать
+                <Button size="small" disabled={recipe.moder_visible ? true : false} className={recipe.moder_visible ? 'MyRecipe-btn-publish-naproverke' : 'MyRecipe-btn-publish-nenaproverke'} color="primary" value={recipe.id} onClick={handlePublish}>
+                    {recipe.moder_visible ? 'На проверке' : 'Опубликовать'}
                   </Button>
                   <Button size="small" color="primary">
                     Подробнее
@@ -78,7 +78,7 @@ function MyRecipe() {
                   </Button>
                 </CardActions>
               </Card>
-            </div>
+            </div>) : (<></>)
           ))}
         </div>
       </form>

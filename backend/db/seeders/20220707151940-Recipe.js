@@ -17,6 +17,36 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }], {});
+
+    await queryInterface.bulkInsert('Recipes', [{
+      title: 'Макароны с сыром',
+      body: 'Макароны, сыр, все дела',
+      kitchen_id: 1,
+      user_id: 1,
+      moder_visible: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipes', [{
+      title: 'Пельмени',
+      body: 'Пельмени со сметаной',
+      kitchen_id: 1,
+      user_id: 1,
+      moder_visible: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipes', [{
+      title: 'Говяжый дошик',
+      body: 'Одумайся глупец',
+      kitchen_id: 1,
+      user_id: 1,
+      moder_visible: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
   },
 
   async down(queryInterface) {
