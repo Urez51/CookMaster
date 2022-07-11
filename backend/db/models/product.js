@@ -5,8 +5,7 @@ const {
 
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
-    static associate({ Measure, Recipe_product }) {
-      Product.belongsTo(Measure, { foreignKey: 'measure_id' });
+    static associate({ Recipe_product }) {
       Product.hasMany(Recipe_product, { foreignKey: 'product_id' });
     }
   }
@@ -15,13 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    measure_id: {
-      type: DataTypes.INTEGER,
+    measure: {
+      type: DataTypes.TEXT,
       allowNull: false,
-      references: {
-        model: 'Measures',
-        key: 'id',
-      },
     },
   }, {
     sequelize,

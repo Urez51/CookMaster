@@ -1,16 +1,51 @@
 import React from 'react';
-// import Box from '@mui/material/Box';
 import {TextField, Button} from '@mui/material';
+import {useDispatch} from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { AUTH_REGISTRATION } from "../../store/auth/actionsTypes";
 import './Registr.css';
 
 
 function Register() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [error, setError] = React.useState('');
+
+  const handleSubmit = React.useCallback((event) => {
+    event.preventDefault();
+    const name = event.target.name.value;
+    const surname = event.target.surname.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    fetch("/register", {
+      method: "POST",
+      body: JSON.stringify({
+        name,
+        surname,
+        email,
+        password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((data) => data.json())
+      .then((data) => {
+        if (data.id) {
+          dispatch({ type: AUTH_REGISTRATION, payload: data });
+          navigate('/');
+        } else {
+          setError(data);
+        }
+    });
+  }, [dispatch, navigate]);
   return (
     <section className='Registration-section'>
       <div className='container'>
         <div className='Registration'>
           <h2 className='Registration-title'>Регистрация</h2>
-          <form className='Registration-form'>
+          {error && <span className='Registration-error'>*{error}</span>}
+          <form className='Registration-form' onSubmit={handleSubmit} onChange={() => setError('')}>
             <TextField
               type="text"
               label="name"
@@ -50,21 +85,3 @@ function Register() {
 }
 
 export default Register;
-
-
-// import "./styles.css";
-
-// export default function App() {
-//   return (
-//     <div className="App">
-//       <AppBar>
-//         <toolbar>
-//           <h1>SIGNIN FORM </h1>
-//         </toolbar>
-//       </AppBar>
-
-//       <Typography variant="h5">BASIC WITH MATERIAL UI</Typography>
-
-//     </div>
-//   );
-// }

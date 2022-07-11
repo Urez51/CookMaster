@@ -1,15 +1,24 @@
-import { AUTH_LOGIN } from "./actionsTypes";
+import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_EDIT, AUTH_REGISTRATION } from "./actionsTypes";
 
 const initialState = {
-  // name: '',
-  // id: 1,
+  User: {
+
+  }
 };
 
 export default function authReducer(state = initialState, action) {
   switch (action.type) {
     case AUTH_LOGIN: {
-      // action.payload = {name: '...', id: ...}
-      return { ...state, ...action.payload }
+      return { ...state, User: action.payload}
+    }
+    case AUTH_REGISTRATION: {
+      return { ...state, User: action.payload}
+    }
+    case AUTH_LOGOUT: {
+      return { ...state, User: {} }
+    }
+    case AUTH_EDIT: {
+      return { ...state, User: action.payload}
     }
     
     default: return state;

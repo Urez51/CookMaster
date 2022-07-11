@@ -1,31 +1,35 @@
-.Registration-section {
+.EditProfile {
+
+}
+
+.EditProfile-section {
   padding: 50px 0;
 }
 
-.Registration-form {
+.EditProfile-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 400px;
   width: 100%;
-  margin: 0 auto;
+  margin: 50px auto 0;
 }
 
-.Registration-form__input {
+.EditProfile-form__input {
   width: 100%;
   margin-bottom: 10px!important;
 }
 
-.Registration-form__btn {
+.EditProfile-form__btn {
   width: 50%;
 }
 
-.Registration-title {
+.EditProfile-title {
   text-align: center;
   margin-bottom: 50px;
 }
 
-.Registration-error {
+.EditProfile-error {
   color: red;
   text-align: center;
   display: block;

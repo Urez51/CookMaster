@@ -1,0 +1,73 @@
+.LK {
+  display: flex;
+  padding: 50px 0;
+}
+
+.LK-info {
+  width: 20%;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.LK-body {
+  width: 80%;
+  padding: 0 50px;
+}
+
+.LK-info {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 255, .2);
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px
+}
+
+.profile-left-navigate-li {
+  margin-top: 10px;
+  text-decoration: underline;
+}
+
+.profile-left-navigate-ul {
+  text-decoration: none;
+}
+
+.profile-left-navigate-li:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: rgba(0, 0, 255, .5);
+}
+
+.LK__list-data-img {
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+  margin: 0 auto;
+}
+
+.LK__list-data-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.LK__list-data-item:last-child {
+  margin-bottom: 0px;
+}
+
+.data-li__name {
+  font-weight: bold;
+
+}
+
+.data-li__res {
+  white-space: nowrap; /* Отменяем перенос текста */
+  overflow: hidden; /* Обрезаем содержимое */
+  text-overflow: ellipsis; /* Многоточие */
+}
+
+.data-li__res:hover {
+  background: rgba(0, 0, 255, .2); /* Цвет фона */
+  white-space: normal; 
+}
+
+/* color: #1D809F; */
