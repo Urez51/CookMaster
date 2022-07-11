@@ -91,3 +91,9 @@ select {
     scroll-behavior: auto !important;
   }
 }
+
+.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButtonBase-root.css-sghohy-MuiButtonBase-root-MuiButton-root {
+  background-color: rgba(0, 0, 255, .2)!important;
+  color: #fff!important;
+}
+

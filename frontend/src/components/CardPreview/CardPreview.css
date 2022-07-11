@@ -4,5 +4,8 @@
 
 .card {
   margin-top: 25px!important;
-  box-shadow: 0.3em 0.3em 4px rgba(122,122,122,0.5)!important;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 255, .2)!important;
+  background: linear-gradient(to top, rgba(255, 241, 235, 0.8) 0%, rgba(172, 224, 249, 0.8) 100%)!important;
+  border-radius: 10px!important;
+  padding: 10px;
 }
