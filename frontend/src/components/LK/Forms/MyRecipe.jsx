@@ -54,7 +54,7 @@ function MyRecipe() {
         </div>
 
         <div className="recipe-card-list">
-          {recipes.map((recipe) => ( recipe.private ? (
+          {recipes.map((recipe) => ( !recipe.delete_visible ? (
             <div className="recipe-card" id={recipe.id}>
               <Card sx={{ maxWidth: 250 }}>
                 <CardActionArea>
@@ -69,9 +69,11 @@ function MyRecipe() {
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                  <Button size="small" disabled={recipe.moder_visible ? true : false} className={recipe.moder_visible ? 'MyRecipe-btn-publish-naproverke' : 'MyRecipe-btn-publish-nenaproverke'} color="primary" value={recipe.id} onClick={handlePublish}>
+                  {recipe.private ? (<Button size="small" disabled={recipe.moder_visible ? true : false} className={recipe.moder_visible ? 'MyRecipe-btn-publish-naproverke' : 'MyRecipe-btn-publish-nenaproverke'} color="primary" value={recipe.id} onClick={handlePublish}>
                     {recipe.moder_visible ? 'На проверке' : 'Опубликовать'}
-                  </Button>
+                  </Button>) : (<Button size="small" disabled className="MyRecipe-btn-opublikovano" color="primary" value={recipe.id} onClick={handlePublish}>
+                    Опубликовано
+                  </Button>)}
                   <Button size="small" color="primary" onClick={() => navigate(`/recipe/${recipe.id}`, { replace: true })}>Подробнее</Button>
                   <Button size="small" className="MyRecipe-btn-delete" color="primary" value={recipe.id} onClick={handleDelete}>
                     Удалить

@@ -10,6 +10,7 @@ const cardsRouter = require('./routes/views/cards.routes');
 // импортируем роутеры (там лежат наши ручки)
 const authRouter = require('./routes/api/auth.routes');
 const recipeRouter = require('./routes/api/recipe.routes');
+const publishRouter = require('./routes/api/publish.routes');
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -21,6 +22,7 @@ expressConfig(app);
 
 app.use('/', authRouter);
 app.use('/recipe', recipeRouter);
+app.use('/publish', publishRouter);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
 });
