@@ -1,6 +1,10 @@
-import { GET_MY_RECIPES } from './actionsTypes'
-import { ERROR_MASSAGE_POST_RECIPE,ADD_RECIPE,DELETE_ERROR_MASSEGE } from './actionsTypes'
-
+import { 
+  ERROR_MASSAGE_POST_RECIPE,
+  ADD_RECIPE,
+  DELETE_ERROR_MASSEGE,
+  CLEAR_MESSAGE_AFTER_ADDED_RECIPE,
+  GET_MY_RECIPES
+} from './actionsTypes'
 
 export function getRecipe() {
   return async (dispatch) => {
@@ -36,7 +40,9 @@ export function deleteErrorMassage(){
 export function errorMessagePostRecipe(errorMessage){
   return {type:ERROR_MASSAGE_POST_RECIPE, payload : errorMessage }
 }
-
+export function clearMessageAfterAddedRecipe(){
+  return {type:CLEAR_MESSAGE_AFTER_ADDED_RECIPE}
+}
 export function getMyRecipes(recipes) {
   return { type: GET_MY_RECIPES, payload: recipes }
 }

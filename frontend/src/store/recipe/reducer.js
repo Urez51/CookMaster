@@ -1,9 +1,16 @@
-import { GET_MY_RECIPES,ADD_RECIPE, ERROR_MASSAGE_POST_RECIPE,DELETE_ERROR_MASSEGE } from './actionsTypes'
+import {
+  GET_MY_RECIPES,
+  ADD_RECIPE,
+  ERROR_MASSAGE_POST_RECIPE,
+  DELETE_ERROR_MASSEGE,
+  CLEAR_MESSAGE_AFTER_ADDED_RECIPE,
+} from './actionsTypes'
 
 
 const initialState = {
   recipes: [],
-  newRecipeMessage:'', 
+  newRecipeMessage: undefined, 
+  errorMassage: undefined,
 };
 
 export default function recipeReducer(state = initialState, action) {
@@ -19,6 +26,9 @@ export default function recipeReducer(state = initialState, action) {
     }
     case ADD_RECIPE:{
       return { ...state, newRecipeMessage: action.payload}
+    }
+    case CLEAR_MESSAGE_AFTER_ADDED_RECIPE :{
+      return {...state, newRecipeMessage: undefined}
     }
     default: return state;
   }
