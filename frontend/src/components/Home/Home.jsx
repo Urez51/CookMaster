@@ -45,8 +45,10 @@ function Home() {
   return (
     <>
     <div className="home_page">
-      <div id="cardsDiv">
-        {card.map((el) => <CardPreview card={el}  />)}
+      <div className="container">
+        <div id="cardsDiv">
+          {card.map((el) => <CardPreview card={el}  />)}
+        </div>
       </div>
     </div>
     </>

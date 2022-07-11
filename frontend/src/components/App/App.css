@@ -18,57 +18,49 @@
 
 .done-checkbox {}
 
-body {
+.App-section {
   background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
   background-attachment: fixed;
+  position: relative;
+  z-index: 10;
+  height: 100vh;
 }
+
 
 #img1 {
   position: absolute;
-  right: 30px;
-  bottom: -66px;
-  top: 76px;
+  right: 3%;
+  top: 15%;
   left: auto;
-
+  z-index: -1;
 }
 
 #img2 {
   position: absolute;
-  right: 66px;
-  bottom: 0px;
-  top: 403px;
-  left: 290px;
+  top: 50%;
+  left: 20%;
+  transform: scale(-1, 1);
+  z-index: -1;
 }
 
 #img3 {
   position: absolute;
-  right: 33px;
-  bottom: -6px;
-  top: 915px;
-  left: 15px;
+  bottom: 0%;
+  left: 5%;
+  z-index: -1;
 }
 
 #img4 {
   position: absolute;
-  right: 0px;
-  bottom: -66px;
-  top: 1229px;
-  left: 1038px;
+  top: 15%;
+  left: 2%;
+  background-attachment: fixed;
+  z-index: -1;
 }
 
 #img5 {
   position: absolute;
-  right: 0px;
-  bottom: -66px;
-  top: 76px;
-  left: 30px;
-  background-attachment: fixed;
-}
-
-#img6 {
-  position: absolute;
-  right: 30px;
-  bottom: -66px;
-  top: 816px;
-  left: auto;
+  top: 80%;
+  left: 83%;
+  z-index: -1;
 }

@@ -189,11 +189,11 @@ function Navbar() {
             </Box>
             <Box sx={{ flexGrow: 0 }}>
             { !Object.keys(user).length ? (
-               <Tooltip title="Open settings" className="avatar_profile" style={{'display': 'none'}}>
-               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-               </IconButton>
-             </Tooltip>
+              <Tooltip title="Open settings" className="avatar_profile" style={{'display': 'none'}}>
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Tooltip>
             ) : (
                 <><Tooltip title="Open settings" className="avatar_profile">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -215,17 +215,17 @@ function Navbar() {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                    <MenuItem>
-                      <Typography textAlign="center" onClick={handleClickLk}>Профиль</Typography>
+                    <MenuItem onClick={handleClickLk}>
+                      Профиль
                     </MenuItem>
-                    <MenuItem onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center" onClick={handleClickRecipes}>Мои рецепты</Typography>
+                    <MenuItem onClick={handleClickRecipes}>
+                      Мои рецепты
                     </MenuItem>
-                    <MenuItem>
-                      <Typography textAlign="center" onClick={handleClickFavorites}>Избранное</Typography>
+                    <MenuItem onClick={handleClickFavorites}>
+                      Избранное
                     </MenuItem>
-                    <MenuItem>
-                      <Typography textAlign="center" onClick={handleClickLogout}>Выход</Typography>
+                    <MenuItem onClick={handleClickLogout}>
+                      Выход
                     </MenuItem>
                   </Menu></>
             )}
