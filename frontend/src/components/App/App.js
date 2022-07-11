@@ -31,6 +31,12 @@ function App() {
   return (
     <>
       <Navbar />
+      <img  id="img1" alt="img" src="https://fermabenua.ru/templates/benua/img/apple.png"/>
+      <img  id="img2" alt="img" src="https://fermabenua.ru/templates/benua/img/fish.png"/>
+      <img  id="img3" alt="img" src="https://fermabenua.ru/templates/benua/img/sheff.png"/>
+      <img  id="img4" alt="img" src="https://fermabenua.ru/templates/benua/img/ring.png"/>
+      <img  id="img5" alt="img" src="https://fermabenua.ru/templates/benua/img/shop.png"/>
+      <img  id="img6" alt="img" src="https://fermabenua.ru/templates/benua/img/fish.png"/>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />

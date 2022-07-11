@@ -49,15 +49,6 @@ function Home() {
         {card.map((el) => <CardPreview card={el}  />)}
       </div>
     </div>
-      <img src="https://fermabenua.ru/templates/benua/img/apple.png"/>
-      <img src="https://fermabenua.ru/templates/benua/img/fish.png"/>
-      <img src="https://fermabenua.ru/templates/benua/img/sheff.png"/>
-      <img src="https://fermabenua.ru/templates/benua/img/patis.jpg"/>
-      <img src="https://fermabenua.ru/templates/benua/img/fish.png"/>
-      <img src="https://fermabenua.ru/templates/benua/img/fish.png"/>
-      <img src="https://fermabenua.ru/templates/benua/img/fish.png"/>
-      <img src="https://fermabenua.ru/templates/benua/img/fish.png"/>
-      <img src="https://fermabenua.ru/templates/benua/img/fish.png"/>
     </>
   );
 }
