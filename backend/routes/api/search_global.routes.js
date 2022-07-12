@@ -1,9 +1,20 @@
 const searchGlobalRouter = require('express').Router();
-const { Recipe } = require('../../db/models/index');
+const { Op } = require('sequelize');
+const { Recipe, sequelize } = require('../../db/models/index');
 
 searchGlobalRouter.route('/')
-  .get(async (req, res) => {
-    const card = await Recipe.findAll({ raw: true });
+  .post(async (req, res) => {
+    console.log(req.body);
+    const { title } = req.body;
+    const card = await Recipe.findAll(
+      {
+        raw: true,
+        where: {
+          title: sequelize.where(sequelize.fn('LOWER', sequelize.col('title')), 'LIKE', `%${title.toLowerCase()}%`),
+        },
+      },
+    );
+    console.log('card', card);
     res.json(card);
   });
 
