@@ -27,7 +27,7 @@
 
 
 #img1 {
-  position: absolute;
+  position: fixed;
   right: 3%;
   top: 15%;
   left: auto;
@@ -35,7 +35,7 @@
 }
 
 #img2 {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 20%;
   transform: scale(-1, 1);
@@ -43,14 +43,14 @@
 }
 
 #img3 {
-  position: absolute;
+  position: fixed;
   bottom: 0%;
   left: 5%;
   z-index: -1;
 }
 
 #img4 {
-  position: absolute;
+  position: fixed;
   top: 15%;
   left: 2%;
   background-attachment: fixed;
@@ -58,7 +58,7 @@
 }
 
 #img5 {
-  position: absolute;
+  position: fixed;
   top: 80%;
   left: 83%;
   z-index: -1;

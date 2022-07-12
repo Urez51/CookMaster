@@ -6,7 +6,7 @@ import './App.css';
 
 
 import Home from '../Home/Home';
-import Search from '../Search/Search';
+import Search from '../Search_global/Search';
 
 
 import { AUTH_LOGIN } from '../../store/auth/actionsTypes';

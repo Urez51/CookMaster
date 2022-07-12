@@ -11,6 +11,7 @@ const cardsRouter = require('./routes/views/cards.routes');
 const authRouter = require('./routes/api/auth.routes');
 const recipeRouter = require('./routes/api/recipe.routes');
 const publishRouter = require('./routes/api/publish.routes');
+const searchGlobalRouter = require('./routes/api/search_global.routes');
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -21,6 +22,7 @@ expressConfig(app);
 // подключаем роутеры
 
 app.use('/', authRouter);
+app.use('/search', searchGlobalRouter);
 app.use('/recipe', recipeRouter);
 app.use('/publish', publishRouter);
 app.get('*', (req, res) => {
