@@ -42,7 +42,6 @@ export function addRecipe(recipe){
     }else{
       dispatch(addRecipeInState(newData.message))
     }
-     
     return
 }
 }
@@ -91,13 +90,11 @@ export function getPublishRecipe() {
       method: 'GET',
     })
     const resData = await data.json()
-    console.log(resData)
     dispatch(getMyRecipes(resData))
   }
 }
 
 export function adminPublishRecipe(id) {
-  console.log(id)
   return async (dispatch) => {
     const data = await fetch(`/publish/private/${id}`, {
       method: 'POST',
@@ -108,7 +105,6 @@ export function adminPublishRecipe(id) {
 }
 
 export function adminRejectRecipe(id) {
-  console.log(id)
   return async (dispatch) => {
     const data = await fetch(`/publish/${id}`, {
       method: 'DELETE',

@@ -16,6 +16,22 @@ router.get('/', async (req, res) => {
         ['updatedAt', 'DESC'],
       ],
     });
+
+    const products = await Recipe_product.findAll({
+      raw: true,
+      include: [Recipe, Product],
+      order: [
+        ['updatedAt', 'DESC'],
+      ],
+    });
+    recipes.map((item) => {
+      item.products = [];
+      products.forEach((el) => {
+        if (item.id === el['Recipe.id']) {
+          item.products.push(el['Product.name']);
+        }
+      });
+    });
     res.json(recipes);
   } catch (error) {
     res.json({ message: 'Произошла ошибка' });
@@ -33,6 +49,22 @@ router.get('/all', async (req, res) => {
       order: [
         ['updatedAt', 'DESC'],
       ],
+    });
+
+    const products = await Recipe_product.findAll({
+      raw: true,
+      include: [Recipe, Product],
+      order: [
+        ['updatedAt', 'DESC'],
+      ],
+    });
+    recipe.map((item) => {
+      item.products = [];
+      products.forEach((el) => {
+        if (item.id === el['Recipe.id']) {
+          item.products.push(el['Product.name']);
+        }
+      });
     });
     res.json(recipe);
   } catch (error) {
