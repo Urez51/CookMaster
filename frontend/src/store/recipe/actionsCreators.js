@@ -4,6 +4,7 @@ import {
   DELETE_ERROR_MASSEGE,
   CLEAR_MESSAGE_AFTER_ADDED_RECIPE,
   GET_MY_RECIPES,
+  GET_ALL_RECIPES,
   ADMIN_PUBLICK_RECIPE
 } from './actionsTypes'
 
@@ -14,6 +15,16 @@ export function getRecipe() {
     })
     const resData = await data.json();
     dispatch(getMyRecipes(resData));
+  }
+}
+
+export function getAllRecipe() {
+  return async (dispatch) => {
+    const data = await fetch ('/recipe/all', {
+      method: 'GET'
+    })
+    const resData = await data.json();
+    dispatch(getAllRecipes(resData));
   }
 }
 
@@ -46,6 +57,9 @@ export function clearMessageAfterAddedRecipe(){
 }
 export function getMyRecipes(recipes) {
   return { type: GET_MY_RECIPES, payload: recipes }
+}
+export function getAllRecipes(recipes) {
+  return { type: GET_ALL_RECIPES, payload: recipes }
 }
 export function addRecipeInState(messangeComplite){
   return { type: ADD_RECIPE, payload: messangeComplite }

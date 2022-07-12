@@ -1,5 +1,6 @@
 import {
   GET_MY_RECIPES,
+  GET_ALL_RECIPES,
   ADD_RECIPE,
   ERROR_MASSAGE_POST_RECIPE,
   DELETE_ERROR_MASSEGE,
@@ -18,6 +19,9 @@ const initialState = {
 export default function recipeReducer(state = initialState, action) {
   switch (action.type) {
     case GET_MY_RECIPES: {
+      return { ...state, recipes: action.payload}
+    }
+    case GET_ALL_RECIPES: {
       return { ...state, recipes: action.payload}
     }
     case ERROR_MASSAGE_POST_RECIPE:{

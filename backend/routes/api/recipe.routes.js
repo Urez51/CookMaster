@@ -24,6 +24,24 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/all', async (req, res) => {
+  try {
+    const recipe = await Recipe.findAll({
+      raw: true,
+      where: {
+        delete_visible: false,
+        private: false,
+      },
+      order: [
+        ['updatedAt', 'DESC'],
+      ],
+    });
+    res.json(recipe);
+  } catch (error) {
+    res.json({ message: 'Произошла ошибка' });
+  }
+});
+
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -56,14 +74,13 @@ router.post('/new', async (req, res) => {
   try {
     const { id } = req.session.user;
     const { title, body, img } = req.body.recipe;
-    console.log(title,body,img);
     if (title.length === 0 || body.length === 0 || img.length === 0) {
       res.json({ errorMessage: 'Поля не могут быть пустыми' });
     } else {
       const recipe = await Recipe.create({
         title, body, img, user_id: id,
       });
-      res.json({message: 'Рецепт успешно добавлен!'});
+      res.json({ message: 'Рецепт успешно добавлен!' });
     }
     // Recipe.create({
     //   title, body, img, user_id: id,
@@ -101,7 +118,6 @@ router.get('/:id', async (req, res) => {
     res.json({ message: 'Произошла ошибка' });
   }
 });
-
 
 router.post('/:id', async (req, res) => {
   try {
