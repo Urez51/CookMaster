@@ -44,6 +44,15 @@ function Home() {
                       {el.body}
                     </Typography>
                   </CardContent>
+                  <CardContent>
+                    <Typography variant="body3" color="text.secondary" className="cards-list__item-body">
+                      <ul className="list-priducts">
+                        {el.products.map(item => (
+                          <li className="list-priducts__item">{item}</li> 
+                        ))}
+                      </ul>
+                    </Typography>
+                  </CardContent>
                 </CardActionArea>
                 <CardActions>
                   <Button size="small" color="primary" id={el.id} onClick={() => navigate(`/recipe/${el.id}`, { replace: true })}>

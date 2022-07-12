@@ -11,11 +11,16 @@
 .recipe-card-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.recipe-card {
+.recipe-card-list__item {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.recipe-card-list__item-title, .recipe-card-list__item{
+  overflow-wrap: break-word;
 }
 
 #input-bar {
