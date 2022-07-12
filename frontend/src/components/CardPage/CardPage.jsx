@@ -33,7 +33,7 @@ function CardPage() {
             <p className="CardPage__descr">{recipe.body}</p>
             <ul className="CardPage__list-products products-list">
               {recipeProduct.map(item => (
-                <li className="products-list__item"><span>{item["Product.name"]}</span> - {item.product_value} {item["Product.measure"]}</li>
+                <li className="products-list__item" key={uuidv4()}><span>{item["Product.name"]}</span> - {item.product_value} {item["Product.measure"]}</li>
               ))}
             </ul>
             <h3 className="CardPage__recipe-title">Рецепт {recipe.title}:</h3>

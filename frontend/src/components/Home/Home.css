@@ -38,3 +38,14 @@
   background: linear-gradient(to top, rgba(255, 241, 235, 0.7) 0%, rgba(172, 224, 249, 0.7) 100%);
   background-color: inherit;
 }
+
+.list-priducts {
+  display: flex;
+}
+
+.list-priducts__item {
+  background-color: rgba(0, 0, 255, .2);
+  margin-right: 5px;
+  padding: 3px;
+  border-radius: 5px;
+}
