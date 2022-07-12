@@ -77,7 +77,7 @@ export function deleteRecipe(id) {
 
 export function publishRecipe(id) {
   return async (dispatch) => {
-    const data = await fetch (`/recipe/${id}`, {
+    const data = await fetch (`/publish/moder/${id}`, {
       method: 'POST'
     })
     const resData = await data.json()
@@ -87,10 +87,11 @@ export function publishRecipe(id) {
 
 export function getPublishRecipe() {
   return async (dispatch) => {
-    const data = await fetch('/recipe/publish', {
+    const data = await fetch('/publish', {
       method: 'GET',
     })
     const resData = await data.json()
+    console.log(resData)
     dispatch(getMyRecipes(resData))
   }
 }
@@ -98,7 +99,7 @@ export function getPublishRecipe() {
 export function adminPublishRecipe(id) {
   console.log(id)
   return async (dispatch) => {
-    const data = await fetch(`/recipe/publish/${id}`, {
+    const data = await fetch(`/publish/private/${id}`, {
       method: 'POST',
     })
     const resData = await data.json()
@@ -109,7 +110,7 @@ export function adminPublishRecipe(id) {
 export function adminRejectRecipe(id) {
   console.log(id)
   return async (dispatch) => {
-    const data = await fetch(`/recipe/publish/${id}`, {
+    const data = await fetch(`/publish/${id}`, {
       method: 'DELETE',
     })
     const resData = await data.json()

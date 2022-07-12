@@ -6,19 +6,17 @@ const {
 router.get('/', async (req, res) => {
   try {
     const { id } = req.session.user;
-    const recipe = await Recipe.findAll({
+    const recipes = await Recipe.findAll({
       raw: true,
       where: {
         user_id: id,
         delete_visible: false,
-        moder_visible: false,
-        private: true,
       },
       order: [
         ['updatedAt', 'DESC'],
       ],
     });
-    res.json(recipe);
+    res.json(recipes);
   } catch (error) {
     res.json({ message: 'Произошла ошибка' });
   }
@@ -116,107 +114,6 @@ router.get('/:id', async (req, res) => {
     res.json({ recipe, steps, recipeProduct });
   } catch (error) {
     res.json({ message: 'Произошла ошибка' });
-  }
-});
-
-router.post('/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-    const recipe = await Recipe.findOne(
-      {
-        where: {
-          id,
-        },
-      },
-    );
-    recipe.moder_visible = true;
-    await recipe.save();
-    const userId = req.session.user.id;
-    const recipes = await Recipe.findAll({
-      where: {
-        user_id: userId,
-        delete_visible: false,
-      },
-      order: [
-        ['updatedAt', 'DESC'],
-      ],
-    });
-    res.json(recipes);
-  } catch (error) {
-    res.json({ message: 'Произошла ошибка публикации рецепта' });
-  }
-});
-
-router.get('/publish', async (req, res) => {
-  try {
-    const recipes = await Recipe.findAll({
-      raw: true,
-      where: {
-        moder_visible: true,
-        private: true,
-        delete_visible: false,
-      },
-      order: [
-        ['updatedAt', 'DESC'],
-      ],
-    });
-    res.json(recipes);
-  } catch (error) {
-    res.json({ message: 'Произошла ошибка получения рецептов на проверку' });
-  }
-});
-
-router.post('/publish/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-    const recipe = await Recipe.findOne({
-      where: { id },
-    });
-    recipe.moder_visible = false;
-    recipe.private = false;
-    await recipe.save();
-
-    const recipes = await Recipe.findAll({
-      raw: true,
-      where: {
-        moder_visible: true,
-        private: true,
-        delete_visible: false,
-      },
-      order: [
-        ['updatedAt', 'DESC'],
-      ],
-    });
-    res.json(recipes);
-  } catch (error) {
-    res.json({ message: 'Произошла ошибка подтверждения публикации рецепта в личном кабинете администратора' });
-  }
-});
-
-router.delete('/publish/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-    const recipe = await Recipe.findOne({
-      where: { id },
-    });
-    recipe.moder_visible = false;
-    recipe.private = true;
-    await recipe.save();
-
-    const recipes = await Recipe.findAll({
-      raw: true,
-      where: {
-        moder_visible: true,
-        private: true,
-        delete_visible: false,
-      },
-      order: [
-        ['updatedAt', 'DESC'],
-      ],
-    });
-    res.json(recipes);
-  } catch (error) {
-    res.json({ message: 'Произошла ошибка отклонения рецепта на публикацию в личном кабинете администратора' });
   }
 });
 

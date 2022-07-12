@@ -40,3 +40,7 @@ h2 {
 .MyRecipe-btn-publish-naproverke {
   color: goldenrod!important;
 }
+
+.MyRecipe-btn-opublikovano {
+  color: blue!important;
+}

@@ -11,6 +11,7 @@ import './AdminPublishRecipe.css'
 
 function MyRecipe() {
   const recipes = useSelector((state) => state.recipes.recipes);
+  console.log(recipes)
   const dispatch = useDispatch();
   
   useEffect(() => {
