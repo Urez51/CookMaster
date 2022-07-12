@@ -5,7 +5,7 @@ import {
   CLEAR_MESSAGE_AFTER_ADDED_RECIPE,
   GET_MY_RECIPES,
   GET_ALL_RECIPES,
-  ADMIN_PUBLICK_RECIPE
+  GET_MY_FAVORITE,
 } from './actionsTypes'
 
 export function getRecipe() {
@@ -114,3 +114,27 @@ export function adminRejectRecipe(id) {
   }
 }
 
+export function getFavorite() {
+  return async (dispatch) => {
+    const data = await fetch('/favorite', {
+      method: "GET",
+    });
+    const resData = await data.json();
+    dispatch(getMyFavorite(resData))
+  }
+}
+
+export function getMyFavorite(recipes) {
+  return { type: GET_MY_FAVORITE, payload: recipes }
+}
+
+
+export function addToFavoriteRecipe(id) {
+  return async (dispatch) => {
+    const data = await fetch(`/favorite/${id}`, {
+      method: 'POST',
+    })
+    const resData = await data.json()
+    console.log("🚀 ~ file: actionsCreators.js ~ line 138 ~ return ~ resData", resData)
+  }
+}

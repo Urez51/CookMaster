@@ -1,0 +1,9 @@
+.LikesIconOn {
+  color: red!important;
+  font-size: 20px!important;
+}
+
+.LikesIconOff {
+  color: grey!important;
+  font-size: 20px!important;
+}
