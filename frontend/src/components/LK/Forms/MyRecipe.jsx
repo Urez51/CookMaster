@@ -8,9 +8,11 @@ import Typography from "@mui/material/Typography";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecipe, deleteRecipe, publishRecipe } from "../../../store/recipe/actionsCreators";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function MyRecipe() {
   const recipes = useSelector((state) => state.recipes.recipes);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -30,6 +32,13 @@ function MyRecipe() {
     dispatch(publishRecipe(id))
   }
 
+  // search input 
+  const [value, setValue] = useState('')
+  
+  const filteredRecipes = recipes.filter((recipe) => {
+    return recipe.title.toLowerCase().includes(value.toLowerCase())
+  })
+
   return (
     <>
       <form className="MyRecipe-form">
@@ -42,19 +51,12 @@ function MyRecipe() {
             name="searchRecipe"
             variant="outlined"
             className="searchRecipe-input"
+            onChange={(event) => setValue(event.target.value)}
           />
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            className="searchRecipe-btn"
-          >
-            Поиск
-          </Button>
         </div>
 
         <div className="recipe-card-list">
-          {recipes.map((recipe) => ( !recipe.delete_visible ? (
+          {filteredRecipes.map((recipe) => ( !recipe.delete_visible ? (
             <div className="recipe-card" id={recipe.id}>
               <Card sx={{ maxWidth: 250 }}>
                 <CardActionArea>
