@@ -37,7 +37,19 @@ function MyRecipe() {
   
   const filteredRecipes = recipes.filter((recipe) => {
     return recipe.title.toLowerCase().includes(value.toLowerCase())
-  })
+  });
+
+  // search click
+  const [isOpen, setIsOpen] = useState(true);
+
+  const itemClickHandler = (event) => {
+    setValue(event.target.textContent)
+    setIsOpen(!isOpen)
+  };
+
+  const inputClickHandler = () => {
+    setIsOpen(true)
+  }
 
   return (
     <>
@@ -51,9 +63,25 @@ function MyRecipe() {
             name="searchRecipe"
             variant="outlined"
             className="searchRecipe-input"
+            value={value}
             onChange={(event) => setValue(event.target.value)}
+            onClick={inputClickHandler}
           />
         </div>
+
+        <ul className="autocomlete">
+          {
+            value && isOpen
+              ? filteredRecipes.map((recipe) => (
+                <li
+                className="autocomplete__item"
+                onClick={itemClickHandler}
+                >
+                  {recipe.title}
+                </li>
+              )) : null
+          }
+        </ul>
 
         <div className="recipe-card-list">
           {filteredRecipes.map((recipe) => ( !recipe.delete_visible ? (
