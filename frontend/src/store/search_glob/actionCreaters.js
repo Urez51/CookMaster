@@ -1,5 +1,5 @@
 import { 
-  GET_ALL_RECIPES,
+  GET_SEARCH_RECIPES,
 } from './actionsTypes'
 
 export function getAllRecipe() {
@@ -13,6 +13,6 @@ export function getAllRecipe() {
 }
 
 
-export function getAllRecipes(recipes) {
-  return { type: GET_ALL_RECIPES, payload: recipes }
+export function getAllRecipes(search) {
+  return { type: GET_SEARCH_RECIPES, payload: search }
 }

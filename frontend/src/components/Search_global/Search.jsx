@@ -14,7 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
 function Search() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const cards = useSelector((state) => state.recipes.recipes);
+  // const cards = useSelector((state) => state.recipes.recipes);
 
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = React.useState([]);
@@ -22,12 +22,12 @@ function Search() {
     setSearchTerm(event.target.value);
   };
 
-  useEffect(() => {
-    const results = cards.filter(recipe =>
-      recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setSearchResults(results);
-  }, [searchTerm]);
+  // useEffect(() => {
+  //   const results = cards.filter(recipe =>
+  //     recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
+  //   );
+  //   setSearchResults(results);
+  // }, [cards]);
 
 
 
@@ -52,6 +52,9 @@ function Search() {
         <AccordionDetails>
           <Input placeholder="Введите название блюда" value={searchTerm} onChange={handleChange} type="text" style={{ "maxWidth": '900px', "minWidth": '900px' }} />
         </AccordionDetails>
+        <Button size="small" color="primary">
+                    Искать
+                  </Button>
       </Accordion>
       <Accordion style={{ "maxWidth": '960px', "minWidth": '960px' }}>
         <AccordionSummary
@@ -69,7 +72,7 @@ function Search() {
         </AccordionDetails>
       </Accordion>
       <ul className="home__list-cards cards-list">
-          {searchResults.map((el) => (
+          {[searchResults].map((el) => (
             <li className="cards-list__item" id={el.id} key={uuidv4()}>
               <Card /* sx={{ maxWidth: 350 }} */ style={{"minWidth": '330px', "maxWidth": '330px',}} className="card">
                 <CardActionArea>
