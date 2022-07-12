@@ -1,1 +1,0 @@
-export const GET_SEARCH_RECIPES = 'GET_SEARCH_RECIPES';

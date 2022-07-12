@@ -6,7 +6,7 @@ import './App.css';
 
 
 import Home from '../Home/Home';
-import Search from '../Search_global/Search';
+// import Search from '../Search_global/Search';
 
 
 import { AUTH_LOGIN } from '../../store/auth/actionsTypes';
@@ -40,7 +40,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/registration' element={<Registr />} />
-        <Route path='/search' element={<Search />} />
+        {/* <Route path='/search' element={<Search />} /> */}
         <Route path='/profile' element={<LK />} />
         <Route path='/recipe/:id' element={<CardPage />} />
       </Routes>
