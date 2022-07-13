@@ -49,3 +49,7 @@
   padding: 3px;
   border-radius: 5px;
 }
+
+.MuiButton-root.red {
+  color:red!important;
+}

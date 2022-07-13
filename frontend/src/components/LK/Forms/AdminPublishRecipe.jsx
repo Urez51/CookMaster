@@ -5,30 +5,29 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { TextField, Button, CardActionArea, CardActions } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { getPublishRecipe, adminPublishRecipe, adminRejectRecipe } from "../../../store/recipe/actionsCreators";
 import './AdminPublishRecipe.css'
 
 function MyRecipe() {
   const recipes = useSelector((state) => state.recipes.recipes);
-  console.log(recipes)
   const dispatch = useDispatch();
   
   useEffect(() => {
     dispatch(getPublishRecipe());
   }, [dispatch])
 
-  const handleAdminPublish = (event) => {
+  const handleAdminPublish = useCallback((event) => {
     event.preventDefault()
     const id = event.target.value
     dispatch(adminPublishRecipe(id))
-  }
+  }, [dispatch])
 
-  const handleAdminReject = (event) => {
+  const handleAdminReject = useCallback((event) => {
     event.preventDefault()
     const id = event.target.value
     dispatch(adminRejectRecipe(id))
-  }
+  }, [dispatch])
 
   return (
     <form className="UserRecipe-form">

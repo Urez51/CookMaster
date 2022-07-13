@@ -12,6 +12,7 @@ const authRouter = require('./routes/api/auth.routes');
 const recipeRouter = require('./routes/api/recipe.routes');
 const publishRouter = require('./routes/api/publish.routes');
 const commentRouter = require('./routes/api/comment.routes');
+const favoriteRouter = require('./routes/api/favorite.routes');
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -25,6 +26,7 @@ app.use('/', authRouter);
 app.use('/recipe', recipeRouter);
 app.use('/publish', publishRouter);
 app.use('/comment', commentRouter);
+app.use('/favorite', favoriteRouter);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
 });

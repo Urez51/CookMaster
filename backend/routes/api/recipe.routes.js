@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  Recipe, Step, Recipe_product, Product,
+  Recipe, Step, Recipe_product, Product, Favorite_recipe,
 } = require('../../db/models');
 
 router.get('/', async (req, res) => {
@@ -12,6 +12,15 @@ router.get('/', async (req, res) => {
         user_id: id,
         delete_visible: false,
       },
+      include: [
+        {
+          model: Favorite_recipe,
+          where: {
+            user_id: id,
+          },
+          required: false,
+        },
+      ],
       order: [
         ['updatedAt', 'DESC'],
       ],
@@ -40,12 +49,28 @@ router.get('/', async (req, res) => {
 
 router.get('/all', async (req, res) => {
   try {
+    let id;
+    try {
+      id = req.session.user.id;
+    } catch (e) {
+      id = -1;
+    }
+    
     const recipe = await Recipe.findAll({
       raw: true,
       where: {
         delete_visible: false,
         private: false,
       },
+      include: [
+        {
+          model: Favorite_recipe,
+          where: {
+            user_id: id,
+          },
+          required: false,
+        },
+      ],
       order: [
         ['updatedAt', 'DESC'],
       ],
@@ -86,16 +111,16 @@ router.delete('/:id', async (req, res) => {
     recipe.delete_visible = true;
     await recipe.save();
     const userId = req.session.user.id;
-    const recipes = await Recipe.findAll({
-      where: {
-        user_id: userId,
-        delete_visible: false,
-      },
-      order: [
-        ['updatedAt', 'DESC'],
-      ],
-    });
-    res.json(recipes);
+    // const recipes = await Recipe.findAll({
+    //   where: {
+    //     user_id: userId,
+    //     delete_visible: false,
+    //   },
+    //   order: [
+    //     ['updatedAt', 'DESC'],
+    //   ],
+    // });
+    res.json({message : 'удалениe ok'});
   } catch (error) {
     res.json({ message: 'Произошла ошибка удаления' });
   }
