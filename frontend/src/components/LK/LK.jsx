@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MyRecipe from "./Forms/MyRecipe";
 import LikesRecipe from "./Forms/LikesRecipe";
 import EditProfile from "./Forms/EditProfile";
@@ -6,11 +6,19 @@ import { useSelector } from "react-redux";
 import "./LK.css";
 import AddNewRecipe from "../AddNewRecipe/AddNewRecipe";
 import AdminPublishRecipe from "./Forms/AdminPublishRecipe";
+import { useNavigate } from "react-router-dom";
 
 function LK() {
   const user = useSelector((state) => state.auth.User);
+  const navigate = useNavigate()
+  
+  useEffect(() => {
+    if (Object.keys(user).length === 0) {
+      navigate('/login')
+    } 
+  }, [user, navigate])
 
-  const [myRecipeFormVision, setmyRecipeFormVision] = useState(true); // базовое отображение по переходу на /profile
+  const [myRecipeFormVision, setmyRecipeFormVision] = useState(true);
   const [newRecipeFormVision, setNewRecipeFormVision] = useState(false);
   const [likesRecipeFormVision, setLikesRecipeFormVision] = useState(false);
   const [editProfileFormVision, setEditProfileFormVision] = useState(false);

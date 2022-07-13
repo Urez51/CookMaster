@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { TextField, Button, CardActionArea, CardActions } from "@mui/material";
 import "./MyRecipe.css";
 import Card from "@mui/material/Card";
@@ -24,25 +24,25 @@ function MyRecipe() {
     dispatch(getRecipe());
   }, [dispatch]);
 
-  const handleDelete = (event) => {
+  const handleDelete = useCallback((event) => {
     event.preventDefault();
     const id = event.target.value;
     dispatch(deleteRecipe(id));
-  };
+  }, [dispatch]);
 
-  const handlePublish = (event) => {
+  const handlePublish = useCallback((event) => {
     event.preventDefault();
     const id = event.target.value;
     dispatch(publishRecipe(id));
-  };
+  }, [dispatch]);
 
 
   // добавление/удаление в избранное
-  const addOrDeleteFavoriteRecipe = (event) => {
+  const addOrDeleteFavoriteRecipe = useCallback((event) => {
     event.preventDefault();
     const id = event.target.value;
     dispatch(addToFavoriteRecipe(id))
-  }
+  }, [dispatch]);
 
   // search input
   const [value, setValue] = useState("");
@@ -54,14 +54,14 @@ function MyRecipe() {
   // search click
   const [isOpen, setIsOpen] = useState(true);
 
-  const itemClickHandler = (event) => {
+  const itemClickHandler = useCallback((event) => {
     setValue(event.target.textContent);
     setIsOpen(!isOpen);
-  };
+  }, [isOpen]);
 
-  const inputClickHandler = () => {
+  const inputClickHandler = useCallback(() => {
     setIsOpen(true);
-  };
+  }, [setIsOpen]);
 
   return (
     <section className="MyRecipe">
