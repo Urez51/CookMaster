@@ -54,14 +54,22 @@ router.post('/new', async (req, res) => {
   try {
     const { id } = req.session.user;
     const { title, body, img } = req.body.recipe;
-    console.log(title,body,img);
+    const { recipeIngridients, stepsForRecipes } = req.body;
+    console.log(recipeIngridients, stepsForRecipes);
+    console.log(title, body, img);
     if (title.length === 0 || body.length === 0 || img.length === 0) {
       res.json({ errorMessage: 'Поля не могут быть пустыми' });
     } else {
       const recipe = await Recipe.create({
         title, body, img, user_id: id,
       });
-      res.json({message: 'Рецепт успешно добавлен!'});
+      if (recipeIngridients.length > 0) {
+        recipeIngridients.map((el)=> Recipe_product.create({product_id: el.id, recipe_id: recipe.id, product_value: el.amount}) )
+      }
+      if(stepsForRecipes.length >0){
+        stepsForRecipes.map((el)=> Step.create({recipe_id:recipe.id, img:el.img, body:el.body}) )
+      }
+      res.json({ message: 'Рецепт успешно добавлен!' });
     }
     // Recipe.create({
     //   title, body, img, user_id: id,
@@ -99,7 +107,5 @@ router.get('/:id', async (req, res) => {
     res.json({ message: 'Произошла ошибка' });
   }
 });
-
-
 
 module.exports = router;

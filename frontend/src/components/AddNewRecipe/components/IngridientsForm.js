@@ -9,7 +9,7 @@ import './AddNewRecipe.css'
 import { Box, Autocomplete } from '@mui/system';
 
 
-function IngridientsForm(){
+function IngridientsForm({ingridients}){
    const [state, detState] = useState({name: '', mes: '', q: ''})
 
    const setCurrentIng = (val)=>setState(prev=>{...prev, name: val.name, mes: val.name})
@@ -18,7 +18,7 @@ function IngridientsForm(){
       <Autocomplete
        disablePortal
        id="combo-box-demo"
-       options={}
+       options={ingridients}
         sx={{ width: 300 }}
         renderInput={(params) => <TextField {...params} label="Movie" />}
         onChange = {setCurrentIng}
