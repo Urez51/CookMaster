@@ -28,13 +28,13 @@ function MyRecipe() {
     event.preventDefault();
     const id = event.target.value;
     dispatch(deleteRecipe(id));
-  }, [dispatch]);
+  }, []);
 
   const handlePublish = useCallback((event) => {
     event.preventDefault();
     const id = event.target.value;
     dispatch(publishRecipe(id));
-  }, [dispatch]);
+  }, []);
 
 
   // добавление/удаление в избранное
@@ -42,7 +42,7 @@ function MyRecipe() {
     event.preventDefault();
     const id = event.target.value;
     dispatch(addToFavoriteRecipe(id))
-  }, [dispatch]);
+  }, []);
 
   // search input
   const [value, setValue] = useState("");
@@ -54,14 +54,14 @@ function MyRecipe() {
   // search click
   const [isOpen, setIsOpen] = useState(true);
 
-  const itemClickHandler = useCallback((event) => {
+  const itemClickHandler = (event) => {
     setValue(event.target.textContent);
     setIsOpen(!isOpen);
-  }, [isOpen]);
+  };
 
-  const inputClickHandler = useCallback(() => {
+  const inputClickHandler = () => {
     setIsOpen(true);
-  }, [setIsOpen]);
+  };
 
   return (
     <section className="MyRecipe">
@@ -93,7 +93,7 @@ function MyRecipe() {
       <ul className="recipe-card-list">
         {filteredRecipes.map((recipe) =>
           !recipe.delete_visible ? (
-            <li className="recipe-card-list__item" id={recipe.id}>
+            <li className="recipe-card-list__item" id={recipe.id} key={uuidv4()}>
               <Card sx={{ maxWidth: 320 }} className="card">
                 <CardActionArea>
                   <CardMedia component="img" height="140" image={recipe.img} />
@@ -133,6 +133,7 @@ function MyRecipe() {
                 <CardActions>
                   {recipe.private ? (
                     <Button
+                      id={recipe.id}
                       size="small"
                       disabled={recipe.moder_visible ? true : false}
                       className={
@@ -148,6 +149,7 @@ function MyRecipe() {
                     </Button>
                   ) : (
                     <Button
+                      id={recipe.id}
                       size="small"
                       disabled
                       className="MyRecipe-btn-opublikovano"
@@ -159,6 +161,7 @@ function MyRecipe() {
                     </Button>
                   )}
                   <Button
+                    id={recipe.id}
                     size="small"
                     color="primary"
                     onClick={() =>
@@ -168,6 +171,7 @@ function MyRecipe() {
                     Подробнее
                   </Button>
                   <Button
+                    id={recipe.id}
                     size="small"
                     className="MyRecipe-btn-delete"
                     color="primary"
@@ -178,6 +182,7 @@ function MyRecipe() {
                   </Button>
 
                   <Button
+                    id={recipe.id}
                     className={recipe['Favorite_recipes.recipe_id'] ? 'red' : 'gray'}
                     value={recipe.id}
                     label="Favorites"

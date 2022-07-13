@@ -6,7 +6,12 @@ import {
   GET_MY_RECIPES,
   GET_ALL_RECIPES,
   GET_MY_FAVORITE,
-  ADD_LIKE
+  ADD_LIKE,
+  DELETE_ONE_RECIPE,
+  PUBLISH_ONE_RECIPE,
+  ADMIN_PUBLISH_ONE_RECIPE,
+  ADMIN_REJECT_ONE_RECIPE,
+  GET_ADMIN_PUBLISH_RECIPE,
 } from './actionsTypes'
 
 export function getRecipe() {
@@ -71,8 +76,12 @@ export function deleteRecipe(id) {
       method: 'DELETE'
     })
     const resData = await data.json()
-    dispatch(getMyRecipes(resData))
+    dispatch(deleteOneRecipeOnstate(id))
   }
+}
+
+export function deleteOneRecipeOnstate(id) {
+  return {type : DELETE_ONE_RECIPE, payload: id}
 }
 
 export function publishRecipe(id) {
@@ -81,18 +90,25 @@ export function publishRecipe(id) {
       method: 'POST'
     })
     const resData = await data.json()
-    dispatch(getMyRecipes(resData))
+    console.log(resData)
+    dispatch(publishOneRecipe(id))
   }
 }
-
+export function publishOneRecipe(id) {
+  return { type: PUBLISH_ONE_RECIPE, payload: id }
+}
 export function getPublishRecipe() {
   return async (dispatch) => {
     const data = await fetch('/publish', {
       method: 'GET',
     })
     const resData = await data.json()
-    dispatch(getMyRecipes(resData))
+    dispatch(getAdminPublishRecipe(resData))
   }
+}
+
+export function getAdminPublishRecipe(id) {
+  return { type: GET_ADMIN_PUBLISH_RECIPE, payload: id }
 }
 
 export function adminPublishRecipe(id) {
@@ -101,8 +117,12 @@ export function adminPublishRecipe(id) {
       method: 'POST',
     })
     const resData = await data.json()
-    dispatch(getMyRecipes(resData))
+    dispatch(adminPublishOneRecipe(id))
   }
+}
+
+export function adminPublishOneRecipe(id) {
+  return { type: ADMIN_PUBLISH_ONE_RECIPE, payload: id }
 }
 
 export function adminRejectRecipe(id) {
@@ -111,8 +131,12 @@ export function adminRejectRecipe(id) {
       method: 'DELETE',
     })
     const resData = await data.json()
-    dispatch(getMyRecipes(resData))
+    dispatch(adminRejectOneRecipe(id))
   }
+}
+
+export function adminRejectOneRecipe(id) {
+  return { type: ADMIN_REJECT_ONE_RECIPE, payload: id }
 }
 
 export function getFavorite() {

@@ -21,7 +21,7 @@ function Home() {
     event.preventDefault();
     const id = event.target.value;
     dispatch(addToFavoriteRecipe(id))
-  }, [dispatch])
+  }, []);
 
   useEffect(() => {
     dispatch(getAllRecipe());
@@ -61,7 +61,7 @@ function Home() {
                   </Button>
                   {user.id && 
                     <Button
-                    id={cards['Favorite_recipes.recipe_id']}
+                    id={cards.id}
                     value={el.id}
                     label="Favorites"
                     className={el['Favorite_recipes.recipe_id'] ? 'red' : 'gray'}

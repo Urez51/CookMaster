@@ -111,16 +111,16 @@ router.delete('/:id', async (req, res) => {
     recipe.delete_visible = true;
     await recipe.save();
     const userId = req.session.user.id;
-    const recipes = await Recipe.findAll({
-      where: {
-        user_id: userId,
-        delete_visible: false,
-      },
-      order: [
-        ['updatedAt', 'DESC'],
-      ],
-    });
-    res.json(recipes);
+    // const recipes = await Recipe.findAll({
+    //   where: {
+    //     user_id: userId,
+    //     delete_visible: false,
+    //   },
+    //   order: [
+    //     ['updatedAt', 'DESC'],
+    //   ],
+    // });
+    res.json({message : 'удалениe ok'});
   } catch (error) {
     res.json({ message: 'Произошла ошибка удаления' });
   }

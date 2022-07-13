@@ -12,11 +12,11 @@ function LK() {
   const user = useSelector((state) => state.auth.User);
   const navigate = useNavigate()
   
-  useEffect(() => {
-    if (Object.keys(user).length === 0) {
-      navigate('/login')
-    } 
-  }, [user, navigate])
+  // useEffect(() => {
+  //   if (Object.keys(user).length === 0) {
+  //     navigate('/login')
+  //   } 
+  // }, [user, navigate])
 
   const [myRecipeFormVision, setmyRecipeFormVision] = useState(true);
   const [newRecipeFormVision, setNewRecipeFormVision] = useState(false);
