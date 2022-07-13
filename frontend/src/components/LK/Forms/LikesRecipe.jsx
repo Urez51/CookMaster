@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import "./LikesRecipe.css";
 
 function LikesRecipe() {
-  const favoriteRecipes = useSelector((state) => state.recipes.favoriteRecipes);
+  const recipes = useSelector((state) => state.recipes.recipes);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -19,7 +19,6 @@ function LikesRecipe() {
   const addOrDeleteFavoriteRecipe = (event) => {
     event.preventDefault();
     const id = event.target.value;
-    console.log("🚀 ~ file: LikesRecipe.jsx ~ line 24 ~ addOrDeleteFavoriteRecipe ~ id", id)
     dispatch(addToFavoriteRecipe(id))
   }
 
@@ -31,8 +30,8 @@ function LikesRecipe() {
     <section className="MyRecipe">
       <h2>Избранные рецепты</h2>
       <ul className="recipe-card-list">
-        {favoriteRecipes.map((recipe) =>
-          !recipe.delete_visible ? (
+        {recipes.map((recipe) =>
+          !recipe.delete_visible && recipe['Favorite_recipes.recipe_id'] ? (
             <li className="recipe-card-list__item" id={recipe.id}>
               <Card sx={{ maxWidth: 320 }} className="card">
                 <CardActionArea>
@@ -44,14 +43,14 @@ function LikesRecipe() {
                       component="div"
                       className="recipe-card-list__item-title"
                     >
-                      {recipe['Recipe.title']}
+                      {recipe.title}
                     </Typography>
                     <Typography
                       variant="body3"
                       color="text.secondary"
                       className="c"
                     >
-                      {recipe['Recipe.body']}
+                      {recipe.body}
                     </Typography>
                   </CardContent>
                   <CardContent>
@@ -82,7 +81,7 @@ function LikesRecipe() {
                   </Button>
                   <Button
                     className="red"
-                    value={recipe['recipe_id']}
+                    value={recipe.id}
                     label="Favorites"
                     onClick={addOrDeleteFavoriteRecipe}
                   >❤</Button>
