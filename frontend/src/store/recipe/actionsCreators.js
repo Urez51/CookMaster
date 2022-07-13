@@ -24,21 +24,13 @@ export function getRecipe() {
   }
 }
 
-export function getAllRecipe() {
-  return async (dispatch) => {
-    const data = await fetch ('/recipe/all', {
-      method: 'GET'
-    })
-    const resData = await data.json();
-    dispatch(getAllRecipes(resData));
-  }
-}
 
-export function addRecipe(recipe){
+export function addRecipe(recipe,recipeIngridients,stepsForRecipes){
+
   return async (dispatch) => {
     const data = await fetch('/recipe/new', {
     method: 'POST',
-    body: JSON.stringify({ recipe }),
+    body: JSON.stringify({ recipe, recipeIngridients, stepsForRecipes }),
     headers: {
       'Content-Type': 'application/json',
     }})
