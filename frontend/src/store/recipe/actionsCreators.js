@@ -6,6 +6,7 @@ import {
   GET_MY_RECIPES,
   GET_ALL_RECIPES,
   GET_MY_FAVORITE,
+  ADD_LIKE
 } from './actionsTypes'
 
 export function getRecipe() {
@@ -134,7 +135,12 @@ export function addToFavoriteRecipe(id) {
     const data = await fetch(`/favorite/${id}`, {
       method: 'POST',
     })
-    const resData = await data.json()
-    console.log("🚀 ~ file: actionsCreators.js ~ line 138 ~ return ~ resData", resData)
+    const resData = await data.text()
+    // console.log(id);
+    dispatch(editStateForFavorite(id))
+    // console.log("🚀 ~ file: actionsCreators.js ~ line 138 ~ return ~ resData", resData)
   }
+}
+export function editStateForFavorite(id){
+  return {type: ADD_LIKE , payload : id}
 }

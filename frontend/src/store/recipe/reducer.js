@@ -6,7 +6,8 @@ import {
   DELETE_ERROR_MASSEGE,
   CLEAR_MESSAGE_AFTER_ADDED_RECIPE,
   ADMIN_PUBLICK_RECIPE,
-  GET_MY_FAVORITE
+  GET_MY_FAVORITE,
+  ADD_LIKE
 } from './actionsTypes'
 
 
@@ -43,6 +44,24 @@ export default function recipeReducer(state = initialState, action) {
     }
     case GET_MY_FAVORITE: {
       return {...state, favoriteRecipes: action.payload }
+    }
+    case ADD_LIKE :{
+      
+      const kek = state.recipes.map((el)=> 
+       { if(el.id===Number(action.payload)){
+        if(el['Favorite_recipes.recipe_id'] === null){
+            el['Favorite_recipes.recipe_id'] = 1
+            return el
+          }else{
+              el['Favorite_recipes.recipe_id'] = null
+              return el
+            }
+        }else{
+          return el
+        }}
+      )
+      console.log(action.payload , kek )
+      return {...state, recipes: kek }
     }
 
     default: return state;

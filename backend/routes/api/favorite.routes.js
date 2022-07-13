@@ -76,6 +76,7 @@ router.post('/:id', async (req, res) => {
         recipe_id: recipeId,
       });
     }
+    res.send('ok')
   } catch (error) {
     res.json({ message: 'Произошла ошибка добавления/удаления избранного' });
   }

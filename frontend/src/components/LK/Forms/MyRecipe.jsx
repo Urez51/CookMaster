@@ -41,7 +41,6 @@ function MyRecipe() {
   const addOrDeleteFavoriteRecipe = (event) => {
     event.preventDefault();
     const id = event.target.value;
-    console.log("🚀 ~ file: MyRecipe.jsx ~ line 44 ~ addOrDeleteFavoriteRecipe ~ id", id)
     dispatch(addToFavoriteRecipe(id))
   }
 
@@ -179,7 +178,7 @@ function MyRecipe() {
                   </Button>
 
                   <Button
-                    className=""
+                    className={recipe['Favorite_recipes.recipe_id'] ? 'red' : 'gray'}
                     value={recipe.id}
                     label="Favorites"
                     onClick={addOrDeleteFavoriteRecipe}

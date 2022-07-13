@@ -81,6 +81,7 @@ function LikesRecipe() {
                     Подробнее
                   </Button>
                   <Button
+                    className="red"
                     value={recipe['recipe_id']}
                     label="Favorites"
                     onClick={addOrDeleteFavoriteRecipe}
