@@ -60,7 +60,6 @@ export default function recipeReducer(state = initialState, action) {
           return el
         }}
       )
-      console.log(action.payload , kek )
       return {...state, recipes: kek }
     }
 
