@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useCallback } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -16,19 +16,12 @@ function Home() {
   const cards = useSelector((state) => state.recipes.recipes);
   const user = useSelector((state) => state.auth.User)
   
-  // useEffect(() => {
-  //   fetch('/recipe/all')
-  //   .then((response) => response.json())
-  //   .then((data) => setCards(data));
-  // }, [])
-  
   // добавление/удаление в избранное
-  const addOrDeleteFavoriteRecipe = (event) => {
+  const addOrDeleteFavoriteRecipe = useCallback((event) => {
     event.preventDefault();
     const id = event.target.value;
-    // console.log(id);
     dispatch(addToFavoriteRecipe(id))
-  }
+  }, [dispatch])
 
   useEffect(() => {
     dispatch(getAllRecipe());

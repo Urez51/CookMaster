@@ -5,18 +5,15 @@ const {
 
 publishRouter.get('/', async (req, res) => {
   try {
-    console.log('ya tut')
     const recipes = await Recipe.findAll({
       where: {
         moder_visible: true,
-        // private: true,
         delete_visible: false,
       },
       order: [
         ['updatedAt', 'DESC'],
       ],
     });
-    console.log(recipes)
     res.json(recipes);
   } catch (error) {
     res.json({ message: 'Произошла ошибка получения рецептов на проверку' });
@@ -45,7 +42,6 @@ publishRouter.post('/moder/:id', async (req, res) => {
         ['updatedAt', 'DESC'],
       ],
     });
-    console.log(recipes);
     res.json(recipes);
   } catch (error) {
     res.json({ message: 'Произошла ошибка публикации рецепта' });

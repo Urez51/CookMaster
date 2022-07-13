@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import React, { useEffect, useCallback } from "react";
+import { Button, CardActionArea } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -16,11 +16,11 @@ function LikesRecipe() {
   const navigate = useNavigate();
 
   // добавление/удаление в избранное
-  const addOrDeleteFavoriteRecipe = (event) => {
+  const addOrDeleteFavoriteRecipe = useCallback((event) => {
     event.preventDefault();
     const id = event.target.value;
     dispatch(addToFavoriteRecipe(id))
-  }
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getFavorite());
