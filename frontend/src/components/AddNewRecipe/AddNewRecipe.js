@@ -18,9 +18,6 @@ function AddNewRecipe(){
     const {title:{value:title}, body:{value:body},img:{value:img} } = event.target;
     const recipe = {title,body,img};
     dispatch(addRecipe(recipe))
-    // console.log(newRecipeMessage);
-    //   console.log(errorMassage);
-    // console.log(newRecipeMessage !== undefined);
   },[dispatch]);
 
   const handlerDeleteMassage = React.useCallback(()=>{
@@ -34,8 +31,6 @@ function AddNewRecipe(){
 
   useEffect(()=>{
     if(newRecipeMessage !== undefined && errorMassage === undefined ) {
-      console.log(newRecipeMessage);
-      console.log(errorMassage);
       clearForm.current.reset()
     }
   },[newRecipeMessage, errorMassage])

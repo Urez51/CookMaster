@@ -93,7 +93,6 @@ router.get('/all', async (req, res) => {
     });
     res.json(recipe);
   } catch (error) {
-    console.log(error)
     res.json({ message: 'Произошла ошибка' });
   }
 });

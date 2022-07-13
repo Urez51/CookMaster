@@ -44,7 +44,6 @@ export function editAuth(name, surname, img) {
 //       },
 //     })
 //       const resData = await data.json()
-//       console.log(resData);
 //       dispatch(registrData(resData));
 //   }
 // }

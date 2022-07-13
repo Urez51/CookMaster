@@ -136,9 +136,7 @@ export function addToFavoriteRecipe(id) {
       method: 'POST',
     })
     const resData = await data.text()
-    // console.log(id);
     dispatch(editStateForFavorite(id))
-    // console.log("🚀 ~ file: actionsCreators.js ~ line 138 ~ return ~ resData", resData)
   }
 }
 export function editStateForFavorite(id){
