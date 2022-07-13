@@ -49,7 +49,7 @@ function Home() {
                     <Typography variant="body3" color="text.secondary" className="cards-list__item-body">
                       <ul className="list-priducts">
                         {el.products.map(item => (
-                          <li className="list-priducts__item">{item}</li> 
+                          <li className="list-priducts__item" key={uuidv4()}>{item}</li> 
                         ))}
                       </ul>
                     </Typography>

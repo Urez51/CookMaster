@@ -64,35 +64,35 @@ function MyRecipe() {
   };
 
   return (
-    <section className="MyRecipe">
-      <h2>Мои рецепты</h2>
 
-      <div id="input-bar">
-        <TextField
-          type="text"
-          label="Поиск рецептов"
-          name="searchRecipe"
-          variant="outlined"
-          className="searchRecipe-input"
-          value={value}
-          onChange={(event) => setValue(event.target.value)}
-          onClick={inputClickHandler}
-        />
-      </div>
+      <section className="MyRecipe">
+        <h2>Мои рецепты</h2>
 
-      <ul className="autocomlete">
-        {value && isOpen
-          ? filteredRecipes.map((recipe) => (
-              <li className="autocomplete__item" onClick={itemClickHandler}>
-                {recipe.title}
-              </li>
-            ))
-          : null}
-      </ul>
+        <div id="input-bar">
+          <TextField
+            type="text"
+            label="Поиск рецептов"
+            name="searchRecipe"
+            variant="outlined"
+            className="searchRecipe-input"
+            value={value}
+            onChange={(event) => setValue(event.target.value)}
+            onClick={inputClickHandler}
+          />
+        </div>
 
-      <ul className="recipe-card-list">
-        {filteredRecipes.map((recipe) =>
-          !recipe.delete_visible ? (
+        <ul className="autocomlete">
+          {value && isOpen
+            ? filteredRecipes.map((recipe) => (
+                <li className="autocomplete__item" key={uuidv4()} onClick={itemClickHandler}>
+                  {recipe.title}
+                </li>
+              ))
+            : null}
+        </ul>
+
+        <ul className="recipe-card-list">
+          {filteredRecipes.map((recipe) => ( !recipe.delete_visible ? (
             <li className="recipe-card-list__item" id={recipe.id} key={uuidv4()}>
               <Card sx={{ maxWidth: 320 }} className="card">
                 <CardActionArea>

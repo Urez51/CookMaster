@@ -3,9 +3,9 @@ import MyRecipe from "./Forms/MyRecipe";
 import LikesRecipe from "./Forms/LikesRecipe";
 import EditProfile from "./Forms/EditProfile";
 import { useSelector } from "react-redux";
-import "./LK.css";
 import AddNewRecipe from "../AddNewRecipe/AddNewRecipe";
 import AdminPublishRecipe from "./Forms/AdminPublishRecipe";
+import "./LK.css";
 import { useNavigate } from "react-router-dom";
 
 function LK() {
@@ -130,7 +130,7 @@ function LK() {
             <ul className="profile-left-navigate-ul">
               {user.role ? (
                 <>
-                 <li
+                  <li
                     className="profile-left-navigate-li"
                     onClick={RecipeVision}
                   >
