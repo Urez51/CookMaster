@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getAllRecipe } from "../../store/recipe/actionsCreators";
+import { getAllRecipe, addToFavoriteRecipe } from "../../store/recipe/actionsCreators";
 import { v4 as uuidv4 } from 'uuid';
 import './Home.css';
 
@@ -14,13 +14,21 @@ function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cards = useSelector((state) => state.recipes.recipes);
+  const user = useSelector((state) => state.auth.User)
+  
   // useEffect(() => {
   //   fetch('/recipe/all')
   //   .then((response) => response.json())
   //   .then((data) => setCards(data));
   // }, [])
-
-
+  
+  // добавление/удаление в избранное
+  const addOrDeleteFavoriteRecipe = (event) => {
+    event.preventDefault();
+    const id = event.target.value;
+    // console.log(id);
+    dispatch(addToFavoriteRecipe(id))
+  }
 
   useEffect(() => {
     dispatch(getAllRecipe());
@@ -58,6 +66,15 @@ function Home() {
                   <Button size="small" color="primary" id={el.id} onClick={() => navigate(`/recipe/${el.id}`, { replace: true })}>
                     Подробнее
                   </Button>
+                  {user.id && 
+                    <Button
+                    id={cards['Favorite_recipes.recipe_id']}
+                    value={el.id}
+                    label="Favorites"
+                    className={el['Favorite_recipes.recipe_id'] ? 'red' : 'gray'}
+                    onClick={addOrDeleteFavoriteRecipe}
+                  >❤</Button>
+                  }
                 </CardActions>
               </Card>
             </li>
