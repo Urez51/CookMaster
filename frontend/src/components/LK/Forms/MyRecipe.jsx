@@ -206,7 +206,7 @@ function MyRecipe() {
         <ul className="autocomlete">
           {value && isOpen
             ? filteredRecipes.map((recipe) => (
-                <li className="autocomplete__item" onClick={itemClickHandler}>
+                <li className="autocomplete__item" key={uuidv4()} onClick={itemClickHandler}>
                   {recipe.title}
                 </li>
               ))
@@ -215,7 +215,7 @@ function MyRecipe() {
 
         <ul className="recipe-card-list">
           {filteredRecipes.map((recipe) => ( !recipe.delete_visible ? (
-            <li className="recipe-card-list__item" id={recipe.id}>
+            <li className="recipe-card-list__item" id={recipe.id} key={uuidv4()}>
               <Card sx={{ maxWidth: 320 }} className="card">
                 <CardActionArea>
                   <CardMedia component="img" height="140" image={recipe.img} />

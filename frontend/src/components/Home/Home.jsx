@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -48,7 +48,7 @@ function Home() {
                     <Typography variant="body3" color="text.secondary" className="cards-list__item-body">
                       <ul className="list-priducts">
                         {el.products.map(item => (
-                          <li className="list-priducts__item">{item}</li> 
+                          <li className="list-priducts__item" key={uuidv4()}>{item}</li> 
                         ))}
                       </ul>
                     </Typography>
