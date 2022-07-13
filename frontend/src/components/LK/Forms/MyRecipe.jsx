@@ -194,7 +194,7 @@ function MyRecipe() {
           ) : (
             <></>
           )
-        )}
+        ))}
       </ul>
     </section>
   );
