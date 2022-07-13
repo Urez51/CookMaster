@@ -7,7 +7,12 @@ import {
   CLEAR_MESSAGE_AFTER_ADDED_RECIPE,
   ADMIN_PUBLICK_RECIPE,
   GET_MY_FAVORITE,
-  ADD_LIKE
+  ADD_LIKE,
+  DELETE_ONE_RECIPE,
+  PUBLISH_ONE_RECIPE,
+  ADMIN_PUBLISH_ONE_RECIPE,
+  ADMIN_REJECT_ONE_RECIPE,
+  GET_ADMIN_PUBLISH_RECIPE,
 } from './actionsTypes'
 
 
@@ -47,7 +52,7 @@ export default function recipeReducer(state = initialState, action) {
     }
     case ADD_LIKE :{
       
-      const kek = state.recipes.map((el)=> 
+      const recipe = state.recipes.map((el)=> 
        { if(el.id===Number(action.payload)){
         if(el['Favorite_recipes.recipe_id'] === null){
             el['Favorite_recipes.recipe_id'] = 1
@@ -60,7 +65,45 @@ export default function recipeReducer(state = initialState, action) {
           return el
         }}
       )
-      return {...state, recipes: kek }
+      return {...state, recipes: recipe }
+    }
+    case DELETE_ONE_RECIPE: {
+      const id = Number(action.payload)
+      const arr = state.recipes.filter((el) => el.id !== id)
+      return {...state, recipes: arr }
+    }
+    case PUBLISH_ONE_RECIPE:{
+      const id = Number(action.payload)
+      const arr = state.recipes.map((el) => {
+        if(el.id === id){
+          el.moder_visible = true
+          return el
+        }else{
+          return el
+        }
+      })
+      return {...state, recipes: arr }
+    }
+    case ADMIN_PUBLISH_ONE_RECIPE: {
+      const id = Number(action.payload)
+      const arr = state.recipes.map((el) => {
+        if (el.id === id) {
+          el.moder_visible = false
+          el.private = false
+          return el
+        } else {
+          return el
+        }
+      })
+      return {...state, recipes: arr}
+    }
+    case ADMIN_REJECT_ONE_RECIPE: {
+      const id = Number(action.payload)
+      const arr = state.recipes.filter((el) => el.id !== id)
+      return {...state, recipes: arr }
+    }
+    case GET_ADMIN_PUBLISH_RECIPE: {
+      return { ...state, publicRecipe: action.payload}
     }
 
     default: return state;
