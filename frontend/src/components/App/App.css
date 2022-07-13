@@ -19,11 +19,10 @@
 .done-checkbox {}
 
 .App-section {
-  background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
-  background-attachment: fixed;
+  background: center/cover linear-gradient(to top, #fff1eb 0%, #ace0f9 100%) no-repeat;
   position: relative;
   z-index: 10;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 

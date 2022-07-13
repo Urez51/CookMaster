@@ -58,6 +58,7 @@ function AddNewRecipe(){
     dispatch(addRecipe(recipe,recipeIngridients,stepsForRecipes))
   },[recipeIngridients,stepsForRecipes]);
 
+
   const handlerDeleteMassage = React.useCallback(()=>{
   if( errorMassage !== undefined )
     dispatch(deleteErrorMassage());
@@ -69,9 +70,6 @@ function AddNewRecipe(){
 
   useEffect(()=>{
     if(newRecipeMessage !== undefined && errorMassage === undefined ) {
-      // console.log(newRecipeMessage);
-      // console.log(errorMassage);
-      console.log(clearForm.current)
       clearForm.current.reset()
     }
   },[newRecipeMessage, errorMassage])

@@ -11,18 +11,22 @@
 .recipe-card-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.recipe-card {
+.recipe-card-list__item {
   margin-top: 10px;
-  margin-right: 25px;
   margin-bottom: 10px;
+}
+
+.recipe-card-list__item-title, .recipe-card-list__item{
+  overflow-wrap: break-word;
 }
 
 #input-bar {
   display: flex;
   justify-content: center;
-  margin: 25px 0px;
+  margin: 20px 0px;
   align-items: center;
 }
 
@@ -44,4 +48,31 @@ h2 {
 
 .MyRecipe-btn-opublikovano {
   color: blue!important;
+}
+
+.autocomlete {
+  position: relative;
+  left: 270px;
+  text-align: left;
+  background: white;
+  width: 45%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+  max-height: 240px;
+  height: auto;
+  overflow: auto;
+  margin-bottom: 15px!important;
+}
+
+.autocomplete__item {
+  padding: 10px;
+}
+
+.autocomplete__item:hover {
+  background: rgb(220, 220, 220);
+  cursor: pointer;
+  transition: cubic-bezier(1,0,0,1).3s all;
 }
