@@ -13,8 +13,8 @@ import {
   ADMIN_PUBLISH_ONE_RECIPE,
   ADMIN_REJECT_ONE_RECIPE,
   GET_ADMIN_PUBLISH_RECIPE,
-  DELETE_ONE_FAVORITE_STATE
-  ADD_PHOTO_RECIPE
+  DELETE_ONE_FAVORITE_STATE,
+  ADD_PHOTO_RECIPE,
 } from './actionsTypes'
 
 
@@ -113,7 +113,7 @@ export default function recipeReducer(state = initialState, action) {
       const id = Number(action.payload)
       const arr = state.favoriteRecipes.filter((el) => el['Recipe.id'] !== id)
       return {...state , favoriteRecipes: arr }
-
+    }
     case ADD_PHOTO_RECIPE:{
       return {...state, photoRecipe: action.payload}
     }
