@@ -6,7 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
-import { getFavorite, addToFavoriteRecipe } from "../../../store/recipe/actionsCreators";
+import { getFavorite, addToFavoriteRecipe,deleteOneFromFavotiteState } from "../../../store/recipe/actionsCreators";
 import { useNavigate } from "react-router-dom";
 import "./LikesRecipe.css";
 
@@ -26,7 +26,11 @@ function LikesRecipe() {
   useEffect(() => {
     dispatch(getFavorite());
   }, [dispatch]);
-
+  const handlerDelete = useCallback((event)=>{
+  event.preventDefault()
+  const id = event.target.value;
+    dispatch(deleteOneFromFavotiteState(id))
+},[dispatch])
   return (
     <section className="MyRecipe">
       <h2>Избранные рецепты</h2>
@@ -84,7 +88,8 @@ function LikesRecipe() {
                     className="red"
                     value={recipe['Recipe.id']}
                     label="Favorites"
-                    onClick={addOrDeleteFavoriteRecipe}
+                    onClick={(e)=>{addOrDeleteFavoriteRecipe(e)
+                      handlerDelete(e)}}
                   >❤</Button>
                 </Button>
               </Card>

@@ -12,6 +12,7 @@ import {
   ADMIN_PUBLISH_ONE_RECIPE,
   ADMIN_REJECT_ONE_RECIPE,
   GET_ADMIN_PUBLISH_RECIPE,
+  DELETE_ONE_FAVORITE_STATE,
 } from './actionsTypes'
 
 export function getRecipe() {
@@ -168,3 +169,6 @@ export function editStateForFavorite(id){
   return {type: ADD_LIKE , payload : id}
 }
 
+export function deleteOneFromFavotiteState(id) {
+  return { type: DELETE_ONE_FAVORITE_STATE, payload: id }
+}
