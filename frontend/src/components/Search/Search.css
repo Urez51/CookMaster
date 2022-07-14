@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-
 }
 
 .cards-list__item {
@@ -24,3 +23,5 @@
   padding: 3px;
   border-radius: 5px;
 }
+
+

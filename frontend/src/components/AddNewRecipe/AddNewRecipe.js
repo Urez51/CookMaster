@@ -192,7 +192,6 @@ const hendlerUloadPhotoStep= React.useCallback((e)=>{
             name="stepNumber"
             variant="outlined"
             className='Form-add-step__input'
-            defaultValue={1}
             onChange={(event)=> setStep(event.target.value)}
             />
             <TextField

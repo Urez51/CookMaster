@@ -22,59 +22,61 @@ function Search() {
   }
 
   return (
-    <div style={{ "display": 'flex', "flexDirection": 'column', "alignItems": 'center', "marginTop": '5%' }}>
-        <form onSubmit={handleSearch}>
-          <Accordion style={{ "maxWidth": '960px', "minWidth": '960px', "marginBottom": "20px" }}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Поиск по названию</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Input placeholder="Введите название блюда" name="title" type="text" style={{ "maxWidth": '900px', "minWidth": '900px' }} />
-            </AccordionDetails>
-            <Button size="small" color="primary" type="submit" style={{ "marginLeft": "3%" }}>
-              Искать
-            </Button>
-          </Accordion>
-        </form>
+    <div className="container">
+      <div style={{ "display": 'flex', "flexDirection": 'column', "alignItems": 'center', "marginTop": '5%' }}>
+          <form onSubmit={handleSearch}>
+            <Accordion style={{ "maxWidth": '960px', "minWidth": '960px', "marginBottom": "20px" }}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>Поиск по названию</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Input placeholder="Введите название блюда" name="title" type="text" style={{ "maxWidth": '900px', "minWidth": '900px' }} />
+              </AccordionDetails>
+              <Button size="small" color="primary" type="submit" style={{ "marginLeft": "3%" }}>
+                Искать
+              </Button>
+            </Accordion>
+          </form>
 
-        {Object.keys(recipe).length !== 0 && (
-        <ul className="home__list-cards cards-list">
-            <li className="cards-list__item" id={recipe[0]['recipe_id']} key={uuidv4()}>
-              <Card style={{ "minWidth": '330px', "maxWidth": '330px', }} className="card">
-                <CardActionArea>
-                  <CardMedia component="img" height="140" image={recipe[0]['Recipe.img']} />
-                  <CardContent>
-                    <Typography gutterBottom variant="h6" component="div" className="cards-list__item-title">
+          {Object.keys(recipe).length !== 0 && (
+          <ul className="home__list-cards cards-list">
+              <li className="cards-list__item" id={recipe[0]['recipe_id']} key={uuidv4()}>
+                <Card style={{ maxWidth: '320px', }} className="card">
+                  <CardActionArea>
+                    <CardMedia component="img" height="140" image={recipe[0]['Recipe.img']} />
+                    <CardContent>
+                      <Typography gutterBottom variant="h6" component="div" className="cards-list__item-title">
 
-                      {recipe[0]['Recipe.title']}
-                    </Typography>
-                    <Typography variant="body3" color="text.secondary" className="cards-list__item-body">
-                      {recipe[0]['Recipe.title']}
-                    </Typography>
+                        {recipe[0]['Recipe.title']}
+                      </Typography>
+                      <Typography variant="body3" color="text.secondary" className="cards-list__item-body">
+                        {recipe[0]['Recipe.title']}
+                      </Typography>
 
-                    <Typography variant="body3" color="text.secondary" className="cards-list__item-body">
-                      <ul className="list-priducts">
-                        {recipe.map((product) => (
-                          <li className="list-priducts__item" key={uuidv4()}>{product['Product.name']}</li> 
-                        ))}
-                      </ul>
-                    </Typography>
-                    
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Button size="small" color="primary" id={recipe[0]['recipe_id']} onClick={() => navigate(`/recipe/${recipe[0]['recipe_id']}`, { replace: true })}>
-                    Подробнее
-                  </Button>
-                </CardActions>
-              </Card>
-            </li>
-        </ul>
-        )}
+                      <Typography variant="body3" color="text.secondary" className="cards-list__item-body">
+                        <ul className="list-priducts">
+                          {recipe.map((product) => (
+                            <li className="list-priducts__item" key={uuidv4()}>{product['Product.name']}</li> 
+                          ))}
+                        </ul>
+                      </Typography>
+                      
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions>
+                    <Button size="small" color="primary" id={recipe[0]['recipe_id']} onClick={() => navigate(`/recipe/${recipe[0]['recipe_id']}`, { replace: true })}>
+                      Подробнее
+                    </Button>
+                  </CardActions>
+                </Card>
+              </li>
+          </ul>
+          )}
+      </div>
     </div>
     );
 }
