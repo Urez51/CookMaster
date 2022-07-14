@@ -98,7 +98,6 @@ function Navbar() {
       <AppBar position="static" className="nav" >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <img sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} style={{'maxWidth': "88px"}} alt="logo" src="https://downloader.disk.yandex.ru/preview/3313c88eef18652b945fe50e569ebdd7083e14f0350835b517b49bf59ecb128c/62cc0e32/N7yX2YnPSsN7xptI8rYTjpnNU5-kbG6WySDigM4ncBOyA89NWtRi2bFK3vA8iLFGthmecIBuH3ZeNUsJCDNDPw%3D%3D?uid=0&filename=logo-cookmaster%202копия.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=0&tknv=v2&size=2048x2048" />
             <Typography
               variant="h6"
               noWrap
@@ -106,7 +105,7 @@ function Navbar() {
               component="a"
               sx={{
                 mr: 2,
-                display: { xs: 'none', md: 'flex' },
+                display:  'flex',
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
@@ -114,6 +113,7 @@ function Navbar() {
               }}
               className="typography"
             onClick={handleClickHome}>
+              <Avatar alt="Logo" src='https://cdn-icons-png.flaticon.com/512/3565/3565418.png' sx={{ marginRight: '10px'}} />
               CookMaster
             </Typography>
 
@@ -145,32 +145,24 @@ function Navbar() {
                 sx={{
                   display: { xs: 'block', md: 'none' },
                 }}
-                className="typography">
-                <MenuItem className="typography">
-                  <Typography textAlign="center" className="typography">page</Typography>
-                </MenuItem>
+                className="burger">
+                    { !Object.keys(user).length ? (
+                  <><MenuItem sx={{ my: 2, display: 'block' }} onClick={handleClickRega}>
+                    Зарегистрироваться
+                  </MenuItem><MenuItem sx={{ my: 2, display: 'block' }} onClick={handleClickLoga}>
+                      Авторизоваться
+                    </MenuItem><MenuItem sx={{ my: 2, display: 'block' }} onClick={handleClickSearch}>
+                      Поиск блюд
+                    </MenuItem></>
+                  ) : (
+                    <MenuItem sx={{ my: 2, display: 'block' }} onClick={handleClickSearch}>
+                      Поиск блюд
+                    </MenuItem>
+                  )}
               </Menu>
             </Box>
-            <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href=""
-              sx={{
-                mr: 2,
-                display: { xs: 'flex', md: 'none' },
-                flexGrow: 1,
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'dark grey',
-                textDecoration: 'none',
-              }}
-            >
-              Главная
-            </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }}}>
             { !Object.keys(user).length ? (
               <><Button sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleClickRega}>
                 Зарегистрироваться
@@ -180,11 +172,9 @@ function Navbar() {
                   Поиск блюд
                 </Button></>
               ) : (
-              <><Button sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleClickSearch}>
+              <Button sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleClickSearch}>
                   Поиск блюд
-                </Button><Button sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleClickLogout}>
-                    Выход
-                  </Button></>
+                </Button>
               )}
             </Box>
             <Box sx={{ flexGrow: 0 }}>
@@ -217,12 +207,6 @@ function Navbar() {
                 >
                     <MenuItem onClick={handleClickLk}>
                       Профиль
-                    </MenuItem>
-                    <MenuItem onClick={handleClickRecipes}>
-                      Мои рецепты
-                    </MenuItem>
-                    <MenuItem onClick={handleClickFavorites}>
-                      Избранное
                     </MenuItem>
                     <MenuItem onClick={handleClickLogout}>
                       Выход

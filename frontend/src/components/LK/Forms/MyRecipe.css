@@ -12,11 +12,14 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  
 }
 
 .recipe-card-list__item {
   margin-top: 10px;
   margin-bottom: 10px;
+  max-width: 320px;
+  width: 100%;
 }
 
 .recipe-card-list__item-title, .recipe-card-list__item{
