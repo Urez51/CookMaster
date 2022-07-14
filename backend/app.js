@@ -6,8 +6,8 @@ const path = require('path');
 const express = require('express');
 const expressConfig = require('./config/express');
 const cardsRouter = require('./routes/views/cards.routes');
-const searchGlobalRouter = require('./routes/api/search_global.routes'); 
-const searchByIngRouter = require('./routes/api/search_by_ing.routes');
+const searchGlobalRouter = require('./routes/api/search_global.routes');
+const ingredientRouter = require('./routes/api/ingredientRouter.routes');
 
 // импортируем роутеры (там лежат наши ручки)
 const authRouter = require('./routes/api/auth.routes');
@@ -24,7 +24,7 @@ expressConfig(app);
 
 app.use('/', authRouter);
 app.use('/search', searchGlobalRouter);
-app.use('/search_ing', searchByIngRouter);
+app.use('/ingredient', ingredientRouter);
 app.use('/recipe', recipeRouter);
 app.use('/publish', publishRouter);
 app.get('*', (req, res) => {

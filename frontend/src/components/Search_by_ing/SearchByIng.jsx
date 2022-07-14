@@ -22,7 +22,6 @@ const MenuProps = {
 
 function SearchByIng() {
   const dispatch = useDispatch();
-  // const products = useSelector((state) => state.products.products);
   const navigate = useNavigate();
 
   const [productName, setProductName] = useState([]);
@@ -30,11 +29,11 @@ function SearchByIng() {
   const [recipe, setRecipe] = useState([]);
 
   useEffect(() => {
-    fetch('/search_ing')
+    fetch('/ingredient')
       .then((data) => data.json())
       .then((data) => {
         if (data.length) {
-          setNames(data.map((item) => item.name));
+          setNames(data);
           return;
         }
 
@@ -43,48 +42,36 @@ function SearchByIng() {
   }, []);
 
   console.log('names', names);
+  console.log('productName', productName);
 
-  // console.log('result', result);
+  const getName = (id) => names.find((item) => item.id === id).name;
 
-  const toProductHandleChange = (e) => {
-    console.log('chip.value', e.target.chip.value);
-  }
-
-
-  const toProductHandleSubmit = () => {
-    fetch('/search_ing', {
+  const toProductHandleSubmit = (event) => {
+    event.preventDefault();
+    fetch('/recipe/search_by_ingredients', {
       method: "POST",
       body: JSON.stringify({
-        productName,
+        ingredients: productName,
       }),
       headers: {
         "Content-Type": "application/json",
       },
     })
       .then((data) => data.json())
-      .then((data) => {
-        if (data.id) {
-          dispatch({ type: GET_SEARCH_BY_ING_RECIPES, payload: data });
-          // navigate('/search');
-        } else {
-          setRecipe(data);
-        }
-        console.log('data', data);
-      })
+      .then((data) => setRecipe(data))
   }
 
 
   const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
+    const { value } = event.target;
     console.log('e.', event.target.value);
-    setProductName(
+    console.log('value', value);
+    setProductName( 
       // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
+      // typeof value === 'string' ? value.split(',') : value,
+      value
     );
   };
-
 
   return (
     <>
@@ -100,27 +87,28 @@ function SearchByIng() {
         <AccordionDetails>
           <div>
               <InputLabel id="demo-multiple-chip-label" className="ing">Выберите ингредиенты</InputLabel>
-            <FormControl sx={{ m: 1 }} style={{ 'minWidth': '900px' }} onChange={toProductHandleChange} >
+            <FormControl sx={{ m: 1 }} style={{ 'minWidth': '900px' }} >
               <Select
                 labelId="demo-multiple-chip-label"
                 id="demo-multiple-chip"
                 multiple
                 value={productName}
                 onChange={handleChange}
+                name="searchprod"
                 input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
                 renderValue={(selected) => (
                   <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                    {selected.map((value) => (
-                      <Chip key={value} label={value} />
+                    {selected.map((id) => (
+                      <Chip key={id} label={getName(id)} />
                     ))}
                   </Box>
                 )}
                 MenuProps={MenuProps}
               >
-                {names.map((name) => (
-                  <MenuItem key={name} value={name}>
-                    <Checkbox checked={productName.indexOf(name) > -1} />
-                    <ListItemText primary={name} />
+                {names.map((item) => (
+                  <MenuItem key={item.id} value={item.id}>
+                    <Checkbox checked={productName.indexOf(item.id) > -1} />
+                    <ListItemText primary={item.name} />
                   </MenuItem>
                 ))}
               </Select>

@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { Op } = require('sequelize');
 const {
   Recipe, Step, Recipe_product, Product,
 } = require('../../db/models');
@@ -146,6 +147,47 @@ router.get('/:id', async (req, res) => {
     res.json({ recipe, steps, recipeProduct });
   } catch (error) {
     res.json({ message: 'Произошла ошибка' });
+  }
+});
+
+router.post('/search_by_ingredients', async (req, res) => {
+  try {
+    const { ingredients } = req.body;
+    const results = [];
+
+    const recipeProduct = await Recipe_product.findAll({
+      raw: true,
+      where: {
+        product_id: {
+          [Op.and]: ingredients,
+        },
+      },
+    });
+
+    const recipes = await Recipe.findAll({
+      raw: true,
+      where: {
+        delete_visible: false,
+        private: false,
+      },
+      order: [
+        ['updatedAt', 'DESC'],
+      ],
+    });
+    recipeProduct.map((item) => {
+      if (results.findIndex((result) => result.id === item.id) === -1) {
+        const recipe = recipes.find((recipe) => recipe.id === item.id);
+
+        if (!recipe) {
+          return;
+        }
+
+        results.push(recipe);
+      }
+    });
+    res.json(results);
+  } catch (error) {
+    res.json({ message: 'Произошла ошибка Recipe_product' });
   }
 });
 
