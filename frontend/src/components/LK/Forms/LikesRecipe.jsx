@@ -6,12 +6,13 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
-import { getFavorite, addToFavoriteRecipe } from "../../../store/recipe/actionsCreators";
+import { getFavorite, addToFavoriteRecipe,deleteOneFromFavotiteState } from "../../../store/recipe/actionsCreators";
 import { useNavigate } from "react-router-dom";
 import "./LikesRecipe.css";
 
 function LikesRecipe() {
-  const recipes = useSelector((state) => state.recipes.recipes);
+  const recipes = useSelector((state) => state.recipes.favoriteRecipes);
+  console.log("🚀 ~ file: LikesRecipe.jsx ~ line 15 ~ LikesRecipe ~ recipes", recipes)
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -25,17 +26,21 @@ function LikesRecipe() {
   useEffect(() => {
     dispatch(getFavorite());
   }, [dispatch]);
-
+  const handlerDelete = useCallback((event)=>{
+  event.preventDefault()
+  const id = event.target.value;
+    dispatch(deleteOneFromFavotiteState(id))
+},[dispatch])
   return (
     <section className="MyRecipe">
       <h2>Избранные рецепты</h2>
       <ul className="recipe-card-list">
         {recipes.map((recipe) =>
-          !recipe.delete_visible && recipe['Favorite_recipes.recipe_id'] ? (
-            <li className="recipe-card-list__item" id={recipe.id}>
+          recipe['Recipe.id'] ? (
+            <li className="recipe-card-list__item" id={recipe['Recipe.id']}>
               <Card sx={{ maxWidth: 320 }} className="card">
                 <CardActionArea>
-                  <CardMedia component="img" height="140" image={recipe.img} />
+                  <CardMedia component="img" height="140" image={recipe['Recipe.img']} />
                   <CardContent>
                     <Typography
                       gutterBottom
@@ -43,14 +48,14 @@ function LikesRecipe() {
                       component="div"
                       className="recipe-card-list__item-title"
                     >
-                      {recipe.title}
+                      {recipe['Recipe.title']}
                     </Typography>
                     <Typography
                       variant="body3"
                       color="text.secondary"
                       className="c"
                     >
-                      {recipe.body}
+                      {recipe['Recipe.body']}
                     </Typography>
                   </CardContent>
                   <CardContent>
@@ -74,16 +79,17 @@ function LikesRecipe() {
                     size="small"
                     color="primary"
                     onClick={() =>
-                      navigate(`/recipe/${recipe.id}`, { replace: true })
+                      navigate(`/recipe/${recipe['Recipe.id']}`, { replace: true })
                     }
                   >
                     Подробнее
                   </Button>
                   <Button
                     className="red"
-                    value={recipe.id}
+                    value={recipe['Recipe.id']}
                     label="Favorites"
-                    onClick={addOrDeleteFavoriteRecipe}
+                    onClick={(e)=>{addOrDeleteFavoriteRecipe(e)
+                      handlerDelete(e)}}
                   >❤</Button>
                 </Button>
               </Card>

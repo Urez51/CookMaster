@@ -12,6 +12,9 @@ import {
   ADMIN_PUBLISH_ONE_RECIPE,
   ADMIN_REJECT_ONE_RECIPE,
   GET_ADMIN_PUBLISH_RECIPE,
+  DELETE_ONE_FAVORITE_STATE,
+  CLEAR_STATE_AFTER_COMPLITE_RECIPE,
+  ADD_PHOTO_RECIPE,
 } from './actionsTypes'
 
 export function getRecipe() {
@@ -23,8 +26,16 @@ export function getRecipe() {
     dispatch(getMyRecipes(resData));
   }
 }
-
-
+export  function addPhotoRecipe(file){
+  return async (dispatch) =>{
+      const data = await fetch('/photo', {
+    method: 'POST',
+    body: file
+    })
+    const nameData = await data.json()
+    dispatch({type:ADD_PHOTO_RECIPE, payload: nameData})
+  }
+}
 export function addRecipe(recipe,recipeIngridients,stepsForRecipes){
 
   return async (dispatch) => {
@@ -39,9 +50,13 @@ export function addRecipe(recipe,recipeIngridients,stepsForRecipes){
       dispatch(errorMessagePostRecipe(newData.errorMessage))
     }else{
       dispatch(addRecipeInState(newData.message))
+      dispatch(clearStateAfterAddedRecipe())
     }
     return
 }
+}
+export function clearStateAfterAddedRecipe(){
+  return {type:CLEAR_STATE_AFTER_COMPLITE_RECIPE}
 }
 export function deleteErrorMassage(){
   return {type:DELETE_ERROR_MASSEGE}
@@ -150,11 +165,9 @@ export function getAllRecipe() {
   }
 }
 
-
 export function getMyFavorite(recipes) {
   return { type: GET_MY_FAVORITE, payload: recipes }
 }
-
 
 export function addToFavoriteRecipe(id) {
   return async (dispatch) => {
@@ -164,7 +177,12 @@ export function addToFavoriteRecipe(id) {
     const resData = await data.text()
     dispatch(editStateForFavorite(id))
   }
+
 }
 export function editStateForFavorite(id){
   return {type: ADD_LIKE , payload : id}
+}
+
+export function deleteOneFromFavotiteState(id) {
+  return { type: DELETE_ONE_FAVORITE_STATE, payload: id }
 }

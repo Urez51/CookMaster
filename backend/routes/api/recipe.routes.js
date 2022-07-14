@@ -55,7 +55,7 @@ router.get('/all', async (req, res) => {
     } catch (e) {
       id = -1;
     }
-    
+
     const recipe = await Recipe.findAll({
       raw: true,
       where: {
@@ -120,7 +120,7 @@ router.delete('/:id', async (req, res) => {
     //     ['updatedAt', 'DESC'],
     //   ],
     // });
-    res.json({message : 'удалениe ok'});
+    res.json({ message: 'удалениe ok' });
   } catch (error) {
     res.json({ message: 'Произошла ошибка удаления' });
   }
@@ -140,10 +140,12 @@ router.post('/new', async (req, res) => {
       });
 
       if (recipeIngridients.length > 0) {
-        recipeIngridients.map((el)=> Recipe_product.create({product_id: el.id, recipe_id: recipe.id, product_value: el.amount}) )
+        recipeIngridients.map((el) => Recipe_product.create({ product_id: el.id, recipe_id: recipe.id, product_value: el.amount }));
       }
-      if(stepsForRecipes.length >0){
-        stepsForRecipes.map((el)=> Step.create({recipe_id:recipe.id, img:el.img, body:el.body}) )
+      if (stepsForRecipes.length > 0) {
+        const sortStepsForRecipes = stepsForRecipes.sort((a, b) => a.numStep - b.numStep);
+        console.log(sortStepsForRecipes);
+        sortStepsForRecipes.map((el) => Step.create({ recipe_id: recipe.id, img: el.img, body: el.body }));
       }
       res.json({ message: 'Рецепт успешно добавлен!' });
     }

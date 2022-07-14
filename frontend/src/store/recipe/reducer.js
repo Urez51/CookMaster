@@ -13,6 +13,8 @@ import {
   ADMIN_PUBLISH_ONE_RECIPE,
   ADMIN_REJECT_ONE_RECIPE,
   GET_ADMIN_PUBLISH_RECIPE,
+  DELETE_ONE_FAVORITE_STATE,
+  ADD_PHOTO_RECIPE,
 } from './actionsTypes'
 
 
@@ -21,7 +23,8 @@ const initialState = {
   newRecipeMessage: undefined, 
   errorMassage: undefined,
   publicRecipe: [],
-  favoriteRecipes: []
+  favoriteRecipes: [],
+  photoRecipe: ''
 };
 
 export default function recipeReducer(state = initialState, action) {
@@ -104,6 +107,15 @@ export default function recipeReducer(state = initialState, action) {
     }
     case GET_ADMIN_PUBLISH_RECIPE: {
       return { ...state, publicRecipe: action.payload}
+    }
+
+    case DELETE_ONE_FAVORITE_STATE:{
+      const id = Number(action.payload)
+      const arr = state.favoriteRecipes.filter((el) => el['Recipe.id'] !== id)
+      return {...state , favoriteRecipes: arr }
+    }
+    case ADD_PHOTO_RECIPE:{
+      return {...state, photoRecipe: action.payload}
     }
 
     default: return state;
