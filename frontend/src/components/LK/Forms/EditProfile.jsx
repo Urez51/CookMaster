@@ -1,20 +1,28 @@
 import React from "react";
-import {TextField, Button} from '@mui/material';
+import {TextField, Button, Input} from '@mui/material';
 import { useSelector, useDispatch} from 'react-redux';
-import { editAuth } from '../../../store/auth/actionsCreators'
+import { editAuth,upLoadPhotoUser } from '../../../store/auth/actionsCreators'
 import './EditProfile.css';
 function EditProfile() {
   const dispatch = useDispatch();
   const user = useSelector((data) => data.auth.User);
-
+  const photo = useSelector((data) => data.auth.photo)
   const editDataUser = React.useCallback((event) => {
     event.preventDefault();
     const name = event.target.name.value;
     const surname = event.target.surname.value;
-    const img = event.target.img.value;
-    dispatch(editAuth(name, surname, img))
+    dispatch(editAuth(name, surname, photo))
 
-  }, [])
+  }, [photo])
+  const hendlerUloadPhoto= React.useCallback((e)=>{
+    try {
+      const picturesData = [...e.target.files];
+      const data = new FormData();
+      picturesData.forEach((img) => {
+        data.append("homesImg", img);
+      });
+      dispatch(upLoadPhotoUser(data))
+    } catch (error) {}})
 
   return (
     <section className="EditProfile-section">
@@ -38,12 +46,12 @@ function EditProfile() {
               defaultValue={user.surname}
               className='EditProfile-form__input'
             />
-            <TextField
-              type="text"
+            <Input
+              type="file"
               label="img url"
               name="img"
               variant="outlined"
-              defaultValue={user.img}
+              onChange={hendlerUloadPhoto}
               className='EditProfile-form__input'
             />
             <Button variant="contained" color="primary" type="submit" className='EditProfile-form__btn'>

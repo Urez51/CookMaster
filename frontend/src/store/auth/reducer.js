@@ -1,9 +1,10 @@
-import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_EDIT, AUTH_REGISTRATION } from "./actionsTypes";
+import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_EDIT, AUTH_REGISTRATION,UPLOAD_PHOTHO } from "./actionsTypes";
 
 const initialState = {
   User: {
 
-  }
+  },
+  photo:""
 };
 
 export default function authReducer(state = initialState, action) {
@@ -20,7 +21,9 @@ export default function authReducer(state = initialState, action) {
     case AUTH_EDIT: {
       return { ...state, User: action.payload}
     }
-    
+    case UPLOAD_PHOTHO:{
+      return {...state, photo: action.payload}
+    }
     default: return state;
   }
 }
