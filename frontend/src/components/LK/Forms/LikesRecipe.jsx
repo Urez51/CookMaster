@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from "react";
-import { Button, CardActionArea } from "@mui/material";
+import { Button, CardActionArea, CardActions } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -38,7 +38,7 @@ function LikesRecipe() {
         {recipes.map((recipe) =>
           recipe['Recipe.id'] ? (
             <li className="recipe-card-list__item" id={recipe['Recipe.id']}>
-              <Card sx={{ maxWidth: 320 }} className="card">
+              <Card sx={{ maxWidth: 320}} className="card">
                 <CardActionArea>
                   <CardMedia component="img" height="140" image={recipe['Recipe.img']} />
                   <CardContent>
@@ -73,8 +73,8 @@ function LikesRecipe() {
                       </ul>
                     </Typography>
                   </CardContent>
-                </CardActionArea>
-                <Button>
+                </CardActionArea >
+                <CardActions className="card__btn">
                   <Button
                     size="small"
                     color="primary"
@@ -91,7 +91,7 @@ function LikesRecipe() {
                     onClick={(e)=>{addOrDeleteFavoriteRecipe(e)
                       handlerDelete(e)}}
                   >❤</Button>
-                </Button>
+                </CardActions>
               </Card>
             </li>
           ) : (
