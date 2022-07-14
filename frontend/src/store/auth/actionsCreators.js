@@ -1,4 +1,4 @@
-import { AUTH_LOGOUT, AUTH_EDIT } from "./actionsTypes";
+import { AUTH_LOGOUT, AUTH_EDIT,UPLOAD_PHOTHO } from "./actionsTypes";
 
 export function deleteAuth() {
   return async (dispatch) => {
@@ -10,7 +10,17 @@ export function deleteAuth() {
     dispatch(deleteData());
   }
 }
-
+export function upLoadPhotoUser(file){
+  return async (dispatch) =>{
+    const data = await fetch('/photo', {
+  method: 'POST',
+  body: file
+  })
+  const nameData = await data.json()
+  console.log(nameData)
+  dispatch({type:UPLOAD_PHOTHO, payload: nameData})
+}
+}
 export function editAuth(name, surname, img) {
   return async (dispatch) => {
     const data = await fetch("/edit", {
