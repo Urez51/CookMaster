@@ -34,7 +34,7 @@ function Home() {
           <ul className="home__list-cards cards-list">
           {cards.map((el) => (
             <li className="cards-list__item" id={el.id} key={uuidv4()}>
-              <Card sx={{ maxWidth: 350 }} className="card">
+              <Card sx={{ maxWidth: 320 }} className="card">
                 <CardActionArea>
                   <CardMedia component="img" height="140" image={el.img} />
                   <CardContent>

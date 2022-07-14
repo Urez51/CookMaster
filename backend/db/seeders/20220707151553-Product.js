@@ -296,7 +296,7 @@ module.exports = {
 
     await queryInterface.bulkInsert('Products', [{
       name: 'Картофель',
-      measure: 'шт',
+      measure: 'г',
       createdAt: new Date(),
       updatedAt: new Date(),
     }], {});
@@ -324,7 +324,7 @@ module.exports = {
 
     await queryInterface.bulkInsert('Products', [{
       name: 'Свёкла',
-      measure: 'шт',
+      measure: 'г',
       createdAt: new Date(),
       updatedAt: new Date(),
     }], {});
@@ -848,8 +848,36 @@ module.exports = {
     }], {});
 
     await queryInterface.bulkInsert('Products', [{
-      name: 'Колбаса',
+      name: 'Гренки',
       measure: 'г',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Products', [{
+      name: 'Салат ромэн',
+      measure: 'г',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Products', [{
+      name: 'Сыр пармезан',
+      measure: 'г',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Products', [{
+      name: 'Вино белое сухое',
+      measure: 'мл',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Products', [{
+      name: 'Вино красное полусладкое',
+      measure: 'мл',
       createdAt: new Date(),
       updatedAt: new Date(),
     }], {});

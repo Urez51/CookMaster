@@ -50,23 +50,23 @@ function MyRecipe() {
           </Button>
         </div>
 
-        <div className="UserRecipe-card-list">
+        <ul className="UserRecipe-card-list cards-list">
         {recipes.map((recipe) => (
             recipe.moder_visible ? (
-            <div className="recipe-card" id={recipe.id}>
-              <Card sx={{ maxWidth: 250 }}>
+            <li className="recipe-card" id={recipe.id}>
+              <Card sx={{ maxWidth: 350 }} className="card">
                 <CardActionArea>
                   <CardMedia component="img" height="140" image={recipe.img} />
                   <CardContent>
-                    <Typography gutterBottom variant="h6" component="div">
+                    <Typography gutterBottom variant="h6" component="div" className="cards-list__item-title">
                       {recipe.title}
                     </Typography>
-                    <Typography variant="body3" color="text.secondary">
+                    <Typography variant="body3" color="text.secondary" className="cards-list__item-body">
                       {recipe.body}
                     </Typography>
                   </CardContent>
                 </CardActionArea>
-                <CardActions>
+                <CardActions className="card__btn">
                 <Button size="small" className="MyRecipe-btn-publish" color="primary" value={recipe.id} onClick={handleAdminPublish}>
                     Подтвердить
                   </Button>
@@ -78,9 +78,9 @@ function MyRecipe() {
                   </Button>
                 </CardActions>
               </Card>
-            </div>) : (<></>)
+            </li>) : (<></>)
           ))}
-        </div>
+        </ul>
 
     </form>
   );
