@@ -89,7 +89,7 @@ export default function recipeReducer(state = initialState, action) {
     }
     case ADMIN_PUBLISH_ONE_RECIPE: {
       const id = Number(action.payload)
-      const arr = state.recipes.map((el) => {
+      const arr = state.publicRecipe.map((el) => {
         if (el.id === id) {
           el.moder_visible = false
           el.private = false
@@ -98,12 +98,12 @@ export default function recipeReducer(state = initialState, action) {
           return el
         }
       })
-      return {...state, recipes: arr}
+      return {...state, publicRecipe: arr}
     }
     case ADMIN_REJECT_ONE_RECIPE: {
       const id = Number(action.payload)
-      const arr = state.recipes.filter((el) => el.id !== id)
-      return {...state, recipes: arr }
+      const arr = state.publicRecipe.filter((el) => el.id !== id)
+      return {...state, publicRecipe: arr }
     }
     case GET_ADMIN_PUBLISH_RECIPE: {
       return { ...state, publicRecipe: action.payload}
