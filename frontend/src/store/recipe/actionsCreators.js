@@ -140,6 +140,16 @@ export function getFavorite() {
     dispatch(getMyFavorite(resData))
   }
 }
+export function getAllRecipe() {
+  return async (dispatch) => {
+    const data = await fetch ('/recipe/all', {
+      method: 'GET'
+    })
+    const resData = await data.json();
+    dispatch(getAllRecipes(resData));
+  }
+}
+
 
 export function getMyFavorite(recipes) {
   return { type: GET_MY_FAVORITE, payload: recipes }

@@ -46,12 +46,10 @@ authRouter
       email: userNew.email,
       img: userNew.img,
     };
-
-    res.json(user);
-
-    // кладём id нового пользователя в хранилище сессии (сразу логиним пользователя)
     req.session.userId = user.id;
     req.session.user = user;
+    res.json(user);
+    // кладём id нового пользователя в хранилище сессии (сразу логиним пользователя)
   });
 
 authRouter
