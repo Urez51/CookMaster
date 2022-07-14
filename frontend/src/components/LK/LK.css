@@ -116,9 +116,20 @@
   }
 
   .profile-left-navigate-li {
-    margin: 0 10px 5px 10px;
+    margin: 0 10px 10px 10px;
+  }
+
+  .cards-list {
+    justify-content: center;
   }
 }
+
+@media screen and (max-width: 576px) {
+  .profile-left-navigate-ul {
+    flex-direction: column;
+  }
+}
+
 
 
 
