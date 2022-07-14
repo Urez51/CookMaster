@@ -7,14 +7,6 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }], {});
-
-    await queryInterface.bulkInsert('Comments', [{
-      recipe_id: 2,
-      user_id: 2,
-      body: 'На любителя',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    }], {});
   },
 
   async down(queryInterface) {
