@@ -14,6 +14,7 @@ const publishRouter = require('./routes/api/publish.routes');
 const ingidientsRouter = require('./routes/api/ingridients.routes')
 const commentRouter = require('./routes/api/comment.routes');
 const favoriteRouter = require('./routes/api/favorite.routes');
+const photoUploadFileRouter = require('./routes/api/photoUpload.routes');
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -26,6 +27,7 @@ expressConfig(app);
 app.use('/', authRouter);
 app.use('/recipe', recipeRouter);
 app.use('/publish', publishRouter);
+app.use('/photo',photoUploadFileRouter)
 
 app.use('/ingridients', ingidientsRouter)
 // app.get('*', (req, res) => {

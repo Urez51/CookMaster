@@ -7,13 +7,15 @@ import { Box } from '@mui/system';
 import IconButton from '@mui/material/IconButton';
 import {addRecipe,
   deleteErrorMassage,
-  clearMessageAfterAddedRecipe } from './../../store/recipe/actionsCreators'
+  clearMessageAfterAddedRecipe,
+  addPhotoRecipe } from './../../store/recipe/actionsCreators'
 import './AddNewRecipe.css'
-import {addOneIngridient, getAllIngridients,deleteOneIngridient,addOneStepOnState,deleteOneStep} from './../../store/ingridients and stap/actionsCreators'
+import {addOneIngridient, getAllIngridients,deleteOneIngridient,addOneStepOnState,deleteOneStep,addPhotoStep} from './../../store/ingridients and stap/actionsCreators'
 import { v4 as uuidv4 } from "uuid";
 function AddNewRecipe(){
-  const {errorMassage,newRecipeMessage } = useSelector((state)=>state.recipes)
-  const {allIngridients,recipeIngridients, stepsForRecipes} = useSelector((state)=>state.ingridientsAndSteps)
+  const {errorMassage,newRecipeMessage,photoRecipe } = useSelector((state)=>state.recipes)
+  console.log(photoRecipe);
+  const {allIngridients,recipeIngridients, stepsForRecipes,photoStep} = useSelector((state)=>state.ingridientsAndSteps)
   const [errorIngridient,setErrorIngridient] = useState(true)
   const [step,setStep]= useState()
   const [body,setBody]= useState()
@@ -37,6 +39,17 @@ function AddNewRecipe(){
     options: allIngridients,
     getOptionLabel: (option) => (option.name + " " + "(" + option.measure + ")"), 
   }
+  const hendlerUloadPhoto= React.useCallback((e)=>{
+    try {
+      const picturesData = [...e.target.files];
+      const data = new FormData();
+      picturesData.forEach((img) => {
+        data.append("homesImg", img);
+      });
+      dispatch(addPhotoRecipe(data))
+    } catch (error) {}
+
+  })
   const submitFormIngridient = React.useCallback((event)=>{
     event.preventDefault()
     if(selectIngridient !== null && !!amountIngridient ){
@@ -56,10 +69,10 @@ function AddNewRecipe(){
   },)
   const sendRecipe = React.useCallback((event) => {
     event.preventDefault()
-    const {title:{value:title}, body:{value:body},img:{value:img} } = event.target;
-    const recipe = {title,body,img};
+    const {title:{value:title}, body:{value:body} } = event.target;
+    const recipe = {title,body,img:photoRecipe};
     dispatch(addRecipe(recipe,recipeIngridients,stepsForRecipes))
-  },[recipeIngridients,stepsForRecipes]);
+  },[recipeIngridients,stepsForRecipes,photoRecipe]);
 
 
   const handlerDeleteMassage = React.useCallback(()=>{
@@ -80,10 +93,21 @@ const addOneStep = useCallback((event) => {
   event.preventDefault()
   const numStep = Number(step)
   const Step = {
-    numStep, body, img, 
+    numStep, body, img:photoStep, 
   }
 dispatch(addOneStepOnState(Step))
 clearFormStep.current.reset()
+},[photoStep])
+const hendlerUloadPhotoStep= React.useCallback((e)=>{
+  try {
+    const picturesData = [...e.target.files];
+    const data = new FormData();
+    picturesData.forEach((img) => {
+      data.append("homesImg", img);
+    });
+    dispatch(addPhotoStep(data))
+  } catch (error) {}
+
 })
   return(
    <section className='New-Recipe-section'>
@@ -113,13 +137,12 @@ clearFormStep.current.reset()
             onChange={handlerDeleteMassage}
             onFocus={handlerdeleteComplite}
           />
-          <TextField
-            type="text"
-            label="Url картинки"
+          <Input
+            type="file"
             name="img"
             variant="outlined"
             className='New-Recipe-form__input'
-            onChange={handlerDeleteMassage}
+            onChange={hendlerUloadPhoto}
             onFocus={handlerdeleteComplite}
           />
           <Box>{recipeIngridients.map((el)=> (<Box key={uuidv4()}><Chip label={`${el.name} ${el.amount} (${el.measure})`} /><IconButton onClick={()=> hendlerDeleteIngridient(el.id)} aria-label="delete" size="small">
@@ -180,18 +203,18 @@ clearFormStep.current.reset()
             className='New-Recipe-form__input'
             onChange={(event)=> setBody(event.target.value)}
             />
-            <TextField
-            type="text"
-            label="Url картинки шага"
+            <Input
+            type="file"
+            label="фото шага"
             name="stepImg"
             variant="outlined"
             className='New-Recipe-form__input'
-            onChange={(event)=> setImg(event.target.value)}
+            onChange={hendlerUloadPhotoStep}
           />
            <Button type='button' onClick={addOneStep} variant="outlined">Добавить ингридиент</Button>
             </form>
           </Box>
-          <Box>{stepsForRecipes.map((el)=> (<Box key={uuidv4()}><Chip label={`Шаг:${el.step} \n Описание:${el.body}`} />{' '}Фото<Box style = {
+          <Box>{stepsForRecipes.map((el)=> (<Box key={uuidv4()}><Chip label={`Шаг:${el.numStep} \n Описание:${el.body}`} />{' '}Фото<Box style = {
                 {background: `center/cover url(${el.img}) no-repeat`,
                  height : 100}
               }></Box><IconButton onClick={()=> hendlerDeleteStep(el.numStep)} aria-label="delete" size="small">

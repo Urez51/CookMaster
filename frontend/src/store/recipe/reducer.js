@@ -13,6 +13,7 @@ import {
   ADMIN_PUBLISH_ONE_RECIPE,
   ADMIN_REJECT_ONE_RECIPE,
   GET_ADMIN_PUBLISH_RECIPE,
+  ADD_PHOTO_RECIPE
 } from './actionsTypes'
 
 
@@ -21,7 +22,8 @@ const initialState = {
   newRecipeMessage: undefined, 
   errorMassage: undefined,
   publicRecipe: [],
-  favoriteRecipes: []
+  favoriteRecipes: [],
+  photoRecipe: ''
 };
 
 export default function recipeReducer(state = initialState, action) {
@@ -104,6 +106,9 @@ export default function recipeReducer(state = initialState, action) {
     }
     case GET_ADMIN_PUBLISH_RECIPE: {
       return { ...state, publicRecipe: action.payload}
+    }
+    case ADD_PHOTO_RECIPE:{
+      return {...state, photoRecipe: action.payload}
     }
 
     default: return state;

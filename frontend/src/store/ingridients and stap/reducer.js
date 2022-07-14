@@ -3,13 +3,15 @@ import {
   ADD_ONE_INGRIDIENT,
   DELETE_ONE_INGRIDIENT,
   ADD_ONE_STEP,
-  DELETE_ONE_STEP
+  DELETE_ONE_STEP,
+  ADD_PHOTO_STEP
 } from './ActionsTypes'
 import {CLEAR_STATE_AFTER_COMPLITE_RECIPE} from '../recipe/actionsTypes'
 const initialState = {
   allIngridients:[],
   recipeIngridients:[],
   stepsForRecipes: [],
+  photoStep: ''
 }
 
 export default function ingridientsAndStepsReduser(state = initialState, action ){
@@ -39,6 +41,9 @@ export default function ingridientsAndStepsReduser(state = initialState, action 
     }
     case CLEAR_STATE_AFTER_COMPLITE_RECIPE:{
       return{...state, stepsForRecipes:[],recipeIngridients:[]}
+    }
+    case ADD_PHOTO_STEP:{
+      return {...state,photoStep: action.payload}
     }
     default: return state;
   }

@@ -12,7 +12,8 @@ import {
   ADMIN_PUBLISH_ONE_RECIPE,
   ADMIN_REJECT_ONE_RECIPE,
   GET_ADMIN_PUBLISH_RECIPE,
-  CLEAR_STATE_AFTER_COMPLITE_RECIPE
+  CLEAR_STATE_AFTER_COMPLITE_RECIPE,
+  ADD_PHOTO_RECIPE,
 } from './actionsTypes'
 
 export function getRecipe() {
@@ -24,8 +25,16 @@ export function getRecipe() {
     dispatch(getMyRecipes(resData));
   }
 }
-
-
+export  function addPhotoRecipe(file){
+  return async (dispatch) =>{
+      const data = await fetch('/photo', {
+    method: 'POST',
+    body: file
+    })
+    const nameData = await data.json()
+    dispatch({type:ADD_PHOTO_RECIPE, payload: nameData})
+  }
+}
 export function addRecipe(recipe,recipeIngridients,stepsForRecipes){
 
   return async (dispatch) => {

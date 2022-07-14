@@ -3,7 +3,8 @@ import {
   ADD_ONE_INGRIDIENT,
   DELETE_ONE_INGRIDIENT,
   ADD_ONE_STEP,
-  DELETE_ONE_STEP
+  DELETE_ONE_STEP,
+  ADD_PHOTO_STEP
 } from './ActionsTypes.js'
 
 
@@ -16,6 +17,17 @@ export function getAllIngridients(){
     })
     const resData = await data.json()
     dispatch(getAllIngridientsOnState(resData))
+  }
+}
+export  function addPhotoStep(file){
+  return async (dispatch) =>{
+      const data = await fetch('/photo', {
+    method: 'POST',
+    body: file
+    })
+    const nameData = await data.json()
+    console.log(nameData)
+    dispatch({type:ADD_PHOTO_STEP, payload: nameData})
   }
 }
 export function getAllIngridientsOnState(ingridients){
