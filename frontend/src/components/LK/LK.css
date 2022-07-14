@@ -47,10 +47,80 @@
 
 .LK__list-data-img {
   border-radius: 50%;
-  width: 250px;
+  max-width: 250px;
+  width: 100%;
   height: 250px;
   margin: 0 auto;
 }
+
+@media screen and (max-width: 1400px) {
+  .LK__list-data-img {
+    height: 203.188px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .LK__list-data-img {
+    height: 167.188px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .LK__list-data-img {
+    /* height: 119.188px; */
+  }
+  .LK-info {
+    width: 30%;
+  }
+  
+  .LK-body {
+    width: 68%;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 255, .2);
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+    background-image: linear-gradient(to top, rgba(255, 241, 235, 0.8) 0%, rgba(172, 224, 249, 0.8) 100%);
+    background-attachment: fixed;
+  }
+
+  .recipe-card-list {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .LK {
+    flex-direction: column;
+  }
+
+  .LK-info {
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 10px;
+  }
+
+  .LK-body {
+    width: 100%;
+  } 
+
+  .LK__list-data {
+    display: none;
+  }
+
+  .profile-left-navigate-ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .profile-left-navigate-li {
+    margin: 0 10px 5px 10px;
+  }
+}
+
+
 
 .LK__list-data-item {
   display: flex;

@@ -55,7 +55,7 @@ function Home() {
                     </Typography>
                   </CardContent>
                 </CardActionArea>
-                <CardActions>
+                <CardActions className="card__btn">
                   <Button size="small" color="primary" id={el.id} onClick={() => navigate(`/recipe/${el.id}`, { replace: true })}>
                     Подробнее
                   </Button>

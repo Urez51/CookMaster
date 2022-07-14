@@ -116,7 +116,7 @@ const hendlerUloadPhotoStep= React.useCallback((e)=>{
         <h2 className='New-Recipe-title'>Новый рецепт</h2>
         {errorMassage && errorMassage ? <p className='New-Recipe-error'>*{errorMassage}</p>: <></>}
         <p className='New-Recipe-complite'>{newRecipeMessage}</p>
-        <form ref={clearForm} className='New-Recipe-form' onSubmit={sendRecipe} >
+        <form ref={clearForm} className='New-Recipe-form Form-add' onSubmit={sendRecipe} >
           <TextField
             type="text"
             label="Новый рецепт"
@@ -145,52 +145,53 @@ const hendlerUloadPhotoStep= React.useCallback((e)=>{
             onChange={hendlerUloadPhoto}
             onFocus={handlerdeleteComplite}
           />
-          <Box>{recipeIngridients.map((el)=> (<Box key={uuidv4()}><Chip label={`${el.name} ${el.amount} (${el.measure})`} /><IconButton onClick={()=> hendlerDeleteIngridient(el.id)} aria-label="delete" size="small">
+          <Box className="list-ingr">{recipeIngridients.map((el)=> (<Box className="list-ingr__item" key={el.id}><Chip label={`${el.name} ${el.amount} (${el.measure})`} /><IconButton onClick={()=> hendlerDeleteIngridient(el.id)} aria-label="delete" size="small">
   <DeleteIcon fontSize="small" /></IconButton></Box>))}</Box>
-          { !errorIngridient ? (<Box><p style={{color: "red",fontSize: 20}}>*Для отправки ингридиента заполните поля</p></Box>): null}
+          { !errorIngridient ? (<Box><p style={{color: "red",fontSize: 20}}>*Для отправки ингредиента заполните поля</p></Box>): null}
 
-          <Box className='Form-add-ingridients'>
+          {/* <Box className='Form-add-ingridients'> */}
             
               
-          <Autocomplete
-      onChange={handlerInputIng}
-      {...defaultProps}
-      // {...defaultPropsS}
-       disablePortal
-       id="combo-box-demo"
-       options={allIngridients}
-        sx={{ width: 300 }}
-        // renderOption={(parapms)=><Fragment>{parapms.name}</Fragment>}
-        renderOption={(props, option) => (<Box data-value={JSON.stringify(option)} {...props} > {option.name} ({option.measure}) </Box>)}
-        renderInput={(params) => (<TextField  label="выберете ингридиент" 
-        {...params} inputProps={{...params.inputProps}}/>)}
-        // getOptionLabel={option=>option.name}
-          />        
-         <form ref={clearInputAmountIngridient}>
+       
+         <form className='Form-add-ingridients Form-add' ref={clearInputAmountIngridient}>
             <TextField
             type="number"
             label="Количество"
             name=""
             variant="outlined"
-            className='New-Recipe-form__input'
+            className='Form-add-ingridients__input'
             min="0"
             onChange={(event)=>{setseamountIngridient(event.target.value)}}
             onFocus={()=>setErrorIngridient(true)}
             
+            />
+                      <Autocomplete
+            onChange={handlerInputIng}
+            {...defaultProps}
+            // {...defaultPropsS}
+            disablePortal
+            id="combo-box-demo"
+            options={allIngridients}
+            sx={{ width: 300 }}
+              // renderOption={(parapms)=><Fragment>{parapms.name}</Fragment>}
+            renderOption={(props, option) => (<Box data-value={JSON.stringify(option)} {...props} > {option.name} ({option.measure}) </Box>)}
+            renderInput={(params) => (<TextField  label="выберете ингредиент" 
+              {...params} inputProps={{...params.inputProps}}/>)}
+              // getOptionLabel={option=>option.name}
             /> 
          
-          <Button onClick={submitFormIngridient} variant="outlined">Добавить ингридиент</Button>
+            <Button className='Form-add-ingridients__btn' onClick={submitFormIngridient} variant="outlined">Добавить ингредиент</Button>
          </form>
-
-          </Box>
-          <Box>
-            <form ref={clearFormStep}>
+{/* 
+          </Box> */}
+          {/* <Box> */}
+            <form className='Form-add-step Form-add'ref={clearFormStep}>
             <TextField
             type="number"
             label='Номер шага'
             name="stepNumber"
             variant="outlined"
-            className='New-Recipe-form__input'
+            className='Form-add-step__input'
             onChange={(event)=> setStep(event.target.value)}
             />
             <TextField
@@ -200,7 +201,7 @@ const hendlerUloadPhotoStep= React.useCallback((e)=>{
             variant="outlined"
             multiline
             maxRows={20}
-            className='New-Recipe-form__input'
+            className='Form-add-step__input'
             onChange={(event)=> setBody(event.target.value)}
             />
             <Input
@@ -208,17 +209,19 @@ const hendlerUloadPhotoStep= React.useCallback((e)=>{
             label="фото шага"
             name="stepImg"
             variant="outlined"
-            className='New-Recipe-form__input'
-            onChange={hendlerUloadPhotoStep}
+            className='Form-add-step__input'
+            onChange={(event)=> setImg(event.target.value)}
           />
-           <Button type='button' onClick={addOneStep} variant="outlined">Добавить ингридиент</Button>
+           <Button type='button' onClick={addOneStep} variant="outlined">Добавить Шаг</Button>
             </form>
-          </Box>
-          <Box>{stepsForRecipes.map((el)=> (<Box key={uuidv4()}><Chip label={`Шаг:${el.numStep} \n Описание:${el.body}`} />{' '}Фото<Box style = {
+          {/* </Box> */}
+          <Box className="list-steps">{stepsForRecipes.map((el)=> (<Box className="list-steps__item" key={el.step}><Chip label={`Шаг:${el.step} \n Описание:${el.body}`} />{' '}Фото<Box style = {
                 {background: `center/cover url(${el.img}) no-repeat`,
                  height : 100}
-              }></Box><IconButton onClick={()=> hendlerDeleteStep(el.numStep)} aria-label="delete" size="small">
-  <DeleteIcon fontSize="small" /></IconButton></Box>))}</Box>
+              }></Box><IconButton onClick={()=> hendlerDeleteIngridient(el.step)} aria-label="delete" size="small">
+            <DeleteIcon fontSize="small" /></IconButton></Box>))}
+          </Box>
+
           <Button variant="contained" color="primary" type="submit" className='New-Recipe-form__btn'>
             Создать
           </Button>
