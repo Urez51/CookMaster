@@ -191,13 +191,13 @@ function Navbar() {
             { !Object.keys(user).length ? (
               <Tooltip title="Open settings" className="avatar_profile" style={{'display': 'none'}}>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt="Remy Sharp" src={user.img} />
                 </IconButton>
               </Tooltip>
             ) : (
                 <><Tooltip title="Open settings" className="avatar_profile">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                    <Avatar alt="Remy Sharp" src={user.img} />
                   </IconButton>
                 </Tooltip><Menu
                   sx={{ mt: '45px' }}
