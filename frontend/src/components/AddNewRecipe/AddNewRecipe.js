@@ -9,8 +9,8 @@ import {addRecipe,
   deleteErrorMassage,
   clearMessageAfterAddedRecipe } from './../../store/recipe/actionsCreators'
 import './AddNewRecipe.css'
-import {addOneIngridient, getAllIngridients,deleteOneIngridient,addOneStepOnState} from './../../store/ingridients and stap/actionsCreators'
-
+import {addOneIngridient, getAllIngridients,deleteOneIngridient,addOneStepOnState,deleteOneStep} from './../../store/ingridients and stap/actionsCreators'
+import { v4 as uuidv4 } from "uuid";
 function AddNewRecipe(){
   const {errorMassage,newRecipeMessage } = useSelector((state)=>state.recipes)
   const {allIngridients,recipeIngridients, stepsForRecipes} = useSelector((state)=>state.ingridientsAndSteps)
@@ -51,6 +51,9 @@ function AddNewRecipe(){
   const hendlerDeleteIngridient = React.useCallback((id)=>{
     dispatch(deleteOneIngridient(id))
   },)
+  const hendlerDeleteStep = React.useCallback((id)=>{
+    dispatch(deleteOneStep(id))
+  },)
   const sendRecipe = React.useCallback((event) => {
     event.preventDefault()
     const {title:{value:title}, body:{value:body},img:{value:img} } = event.target;
@@ -75,8 +78,9 @@ function AddNewRecipe(){
   },[newRecipeMessage, errorMassage])
 const addOneStep = useCallback((event) => {
   event.preventDefault()
+  const numStep = Number(step)
   const Step = {
-    step, body, img, 
+    numStep, body, img, 
   }
 dispatch(addOneStepOnState(Step))
 clearFormStep.current.reset()
@@ -118,7 +122,7 @@ clearFormStep.current.reset()
             onChange={handlerDeleteMassage}
             onFocus={handlerdeleteComplite}
           />
-          <Box>{recipeIngridients.map((el)=> (<Box key={el.id}><Chip label={`${el.name} ${el.amount} (${el.measure})`} /><IconButton onClick={()=> hendlerDeleteIngridient(el.id)} aria-label="delete" size="small">
+          <Box>{recipeIngridients.map((el)=> (<Box key={uuidv4()}><Chip label={`${el.name} ${el.amount} (${el.measure})`} /><IconButton onClick={()=> hendlerDeleteIngridient(el.id)} aria-label="delete" size="small">
   <DeleteIcon fontSize="small" /></IconButton></Box>))}</Box>
           { !errorIngridient ? (<Box><p style={{color: "red",fontSize: 20}}>*Для отправки ингридиента заполните поля</p></Box>): null}
 
@@ -187,10 +191,10 @@ clearFormStep.current.reset()
            <Button type='button' onClick={addOneStep} variant="outlined">Добавить ингридиент</Button>
             </form>
           </Box>
-          <Box>{stepsForRecipes.map((el)=> (<Box key={el.step}><Chip label={`Шаг:${el.step} \n Описание:${el.body}`} />{' '}Фото<Box style = {
+          <Box>{stepsForRecipes.map((el)=> (<Box key={uuidv4()}><Chip label={`Шаг:${el.step} \n Описание:${el.body}`} />{' '}Фото<Box style = {
                 {background: `center/cover url(${el.img}) no-repeat`,
                  height : 100}
-              }></Box><IconButton onClick={()=> hendlerDeleteIngridient(el.step)} aria-label="delete" size="small">
+              }></Box><IconButton onClick={()=> hendlerDeleteStep(el.numStep)} aria-label="delete" size="small">
   <DeleteIcon fontSize="small" /></IconButton></Box>))}</Box>
           <Button variant="contained" color="primary" type="submit" className='New-Recipe-form__btn'>
             Создать

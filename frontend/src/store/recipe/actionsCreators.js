@@ -12,6 +12,7 @@ import {
   ADMIN_PUBLISH_ONE_RECIPE,
   ADMIN_REJECT_ONE_RECIPE,
   GET_ADMIN_PUBLISH_RECIPE,
+  CLEAR_STATE_AFTER_COMPLITE_RECIPE
 } from './actionsTypes'
 
 export function getRecipe() {
@@ -39,9 +40,13 @@ export function addRecipe(recipe,recipeIngridients,stepsForRecipes){
       dispatch(errorMessagePostRecipe(newData.errorMessage))
     }else{
       dispatch(addRecipeInState(newData.message))
+      dispatch(clearStateAfterAddedRecipe())
     }
     return
 }
+}
+export function clearStateAfterAddedRecipe(){
+  return {type:CLEAR_STATE_AFTER_COMPLITE_RECIPE}
 }
 export function deleteErrorMassage(){
   return {type:DELETE_ERROR_MASSEGE}

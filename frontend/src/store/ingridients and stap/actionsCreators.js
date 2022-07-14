@@ -2,7 +2,8 @@ import {
   GET_ALL_INGRIDIENTS,
   ADD_ONE_INGRIDIENT,
   DELETE_ONE_INGRIDIENT,
-  ADD_ONE_STEP
+  ADD_ONE_STEP,
+  DELETE_ONE_STEP
 } from './ActionsTypes.js'
 
 
@@ -28,4 +29,7 @@ export function deleteOneIngridient(id){
 }
 export function addOneStepOnState(step){
   return {type: ADD_ONE_STEP, payload: step}
+}
+export function deleteOneStep(id){
+  return {type: DELETE_ONE_STEP, payload: id}
 }
