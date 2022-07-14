@@ -19,7 +19,6 @@ function AddNewRecipe(){
   const [errorIngridient,setErrorIngridient] = useState(true)
   const [step,setStep]= useState()
   const [body,setBody]= useState()
-  const [img,setImg]= useState()
   const clearForm= useRef()
   const clearInputAmountIngridient = useRef()
   const clearFormStep = useRef()
@@ -50,6 +49,7 @@ function AddNewRecipe(){
     } catch (error) {}
 
   })
+  console.log(step,body);
   const submitFormIngridient = React.useCallback((event)=>{
     event.preventDefault()
     if(selectIngridient !== null && !!amountIngridient ){
@@ -192,6 +192,7 @@ const hendlerUloadPhotoStep= React.useCallback((e)=>{
             name="stepNumber"
             variant="outlined"
             className='Form-add-step__input'
+            defaultValue={1}
             onChange={(event)=> setStep(event.target.value)}
             />
             <TextField
@@ -210,15 +211,15 @@ const hendlerUloadPhotoStep= React.useCallback((e)=>{
             name="stepImg"
             variant="outlined"
             className='Form-add-step__input'
-            onChange={(event)=> setImg(event.target.value)}
+            onChange={hendlerUloadPhotoStep}
           />
            <Button type='button' onClick={addOneStep} variant="outlined">Добавить Шаг</Button>
             </form>
           {/* </Box> */}
-          <Box className="list-steps">{stepsForRecipes.map((el)=> (<Box className="list-steps__item" key={el.step}><Chip label={`Шаг:${el.step} \n Описание:${el.body}`} />{' '}Фото<Box style = {
+          <Box className="list-steps">{stepsForRecipes.map((el)=> (<Box className="list-steps__item" key={uuidv4()}><Chip label={`Шаг:${el.numStep} \n Описание:${el.body}`} />{' '}Фото<Box style = {
                 {background: `center/cover url(${el.img}) no-repeat`,
                  height : 100}
-              }></Box><IconButton onClick={()=> hendlerDeleteIngridient(el.step)} aria-label="delete" size="small">
+              }></Box><IconButton onClick={()=> hendlerDeleteStep(el.numStep)} aria-label="delete" size="small">
             <DeleteIcon fontSize="small" /></IconButton></Box>))}
           </Box>
 
