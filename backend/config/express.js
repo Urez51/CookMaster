@@ -3,6 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const getUser = require('../middlewares/getUser');
 const FileStore = require('session-file-store')(session);
+const fileUpload = require('express-fileupload')
 
 // Конфигурация сессии
 const sessionConfig = {
@@ -25,7 +26,7 @@ function expressConfig(app) {
   // позволяет запрашивать статический контент
   // (файлы, которые лежат в / public) с нашего сервера
   app.use(express.static(`${__dirname}/../../frontend/build`));
-
+  app.use(express.static(`${__dirname}/../public`));
   // при отправке формы методом POST данные из формы приходят
   // не сервер в зашифрованном виде
   // эта миддлварка расшифровывает их и кладёт в req.body
@@ -36,7 +37,7 @@ function expressConfig(app) {
 
   // расшифровывает куки в запросах от клиента
   // app.use(cookieParser());
-
+  app.use(fileUpload())
   // миддлварка для работы с сессиями
   app.use(session(sessionConfig));
   app.use(getUser);
