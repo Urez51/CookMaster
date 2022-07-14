@@ -12,6 +12,7 @@ import {
   ADMIN_PUBLISH_ONE_RECIPE,
   ADMIN_REJECT_ONE_RECIPE,
   GET_ADMIN_PUBLISH_RECIPE,
+  DELETE_ONE_FAVORITE_STATE,
   CLEAR_STATE_AFTER_COMPLITE_RECIPE,
   ADD_PHOTO_RECIPE,
 } from './actionsTypes'
@@ -164,11 +165,9 @@ export function getAllRecipe() {
   }
 }
 
-
 export function getMyFavorite(recipes) {
   return { type: GET_MY_FAVORITE, payload: recipes }
 }
-
 
 export function addToFavoriteRecipe(id) {
   return async (dispatch) => {
@@ -178,7 +177,12 @@ export function addToFavoriteRecipe(id) {
     const resData = await data.text()
     dispatch(editStateForFavorite(id))
   }
+
 }
 export function editStateForFavorite(id){
   return {type: ADD_LIKE , payload : id}
+}
+
+export function deleteOneFromFavotiteState(id) {
+  return { type: DELETE_ONE_FAVORITE_STATE, payload: id }
 }
