@@ -23,6 +23,7 @@ router.get('/', async (req, res) => {
         user_id: id,
       },
     });
+    console.log("🚀 ~ file: favorite.routes.js ~ line 26 ~ router.get ~ favoriteRecipes", favoriteRecipes)
 
     const products = await Recipe_product.findAll({
       raw: true,
@@ -38,6 +39,8 @@ router.get('/', async (req, res) => {
         }
       });
     });
+      console.log("🚀 ~ file: favorite.routes.js ~ line 42 ~ favoriteRecipes.map ~ favoriteRecipes", favoriteRecipes)
+    
     res.json(favoriteRecipes);
   } catch (error) {
     res.json({ message: 'Произошла ошибка получения избранных рецептов' });
@@ -62,6 +65,7 @@ router.post('/:id', async (req, res) => {
         recipe_id: recipeId,
       },
     });
+    console.log("🚀 ~ file: favorite.routes.js ~ line 65 ~ router.post ~ favoriteRecipes", favoriteRecipes)
     if (favoriteRecipes.length) {
       await Favorite_recipe.destroy({
         where: {

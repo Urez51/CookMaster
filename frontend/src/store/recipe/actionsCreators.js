@@ -150,11 +150,9 @@ export function getAllRecipe() {
   }
 }
 
-
 export function getMyFavorite(recipes) {
   return { type: GET_MY_FAVORITE, payload: recipes }
 }
-
 
 export function addToFavoriteRecipe(id) {
   return async (dispatch) => {
@@ -164,7 +162,9 @@ export function addToFavoriteRecipe(id) {
     const resData = await data.text()
     dispatch(editStateForFavorite(id))
   }
+
 }
 export function editStateForFavorite(id){
   return {type: ADD_LIKE , payload : id}
 }
+
