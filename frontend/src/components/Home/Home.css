@@ -37,6 +37,7 @@
   justify-content: space-between;
   background: linear-gradient(to top, rgba(255, 241, 235, 0.7) 0%, rgba(172, 224, 249, 0.7) 100%);
   background-color: inherit;
+  border-radius: 15px!important;
 }
 
 .list-priducts {

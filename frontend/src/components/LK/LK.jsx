@@ -85,19 +85,19 @@ function LK() {
                       }}
                     />
                   </li>
-                  <li className="LK__list-data-item data-li">
+                  <li className="LK__list-data-item data-li info ">
                     <div className="data-li__name">Имя:</div>
                     <div className="data-li__res">{user.name}</div>
                   </li>
-                  <li className="LK__list-data-item">
+                  <li className="LK__list-data-item info">
                     <div className="data-li__name">Фамилия:</div>
                     <div className="data-li__res">{user.surname}</div>
                   </li>
-                  <li className="LK__list-data-item">
+                  <li className="LK__list-data-item info">
                     <div className="data-li__name">Почта:</div>
                     <div className="data-li__res">{user.email}</div>
                   </li>
-                  <li className="LK__list-data-item">
+                  <li className="LK__list-data-item info">
                     <div className="data-li__name">Роль:</div>
                     <div className="data-li__res">Admin</div>
                   </li>
@@ -112,15 +112,15 @@ function LK() {
                       }}
                     />
                   </li>
-                  <li className="LK__list-data-item data-li">
+                  <li className="LK__list-data-item info data-li ">
                     <div className="data-li__name">Имя:</div>
                     <div className="data-li__res">{user.name}</div>
                   </li>
-                  <li className="LK__list-data-item">
+                  <li className="LK__list-data-item info">
                     <div className="data-li__name">Фамилия:</div>
                     <div className="data-li__res">{user.surname}</div>
                   </li>
-                  <li className="LK__list-data-item">
+                  <li className="LK__list-data-item info">
                     <div className="data-li__name">Почта:</div>
                     <div className="data-li__res">{user.email}</div>
                   </li>

@@ -130,7 +130,7 @@ function MyRecipe() {
                     </Typography>
                   </CardContent>
                 </CardActionArea>
-                <CardActions>
+                <CardActions className="card__btn">
                   {recipe.private ? (
                     <Button
                       id={recipe.id}
