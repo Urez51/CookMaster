@@ -4,35 +4,51 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
+import DeleteIcon from '@mui/icons-material/Delete';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Autocomplete, Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Input, TextField } from '@mui/material';
+import { Autocomplete, Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Chip, IconButton, Input, TextField } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
 import { searchRecipe } from '../../store/searchRecipe/actionsCreators'
 import { useNavigate } from 'react-router-dom'
-import { getAllIngridients } from "../../store/ingridients and stap/actionsCreators";
+import { addOneIngridientForSearch, clearIngridientForSearch, deleteIngridientOnstateSearch, getAllIngridients, sendForSearch } from "../../store/ingridients and stap/actionsCreators";
+import { useCallback } from "react";
 
 function Search() {
   const recipe = useSelector((state) => state.searchRecipe.searchRecipe);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {allIngridients} = useSelector((state)=>state.ingridientsAndSteps)
+  const {allIngridients,ingridientsSearch} = useSelector((state)=>state.ingridientsAndSteps)
   const handleSearch = (event) => {
     event.preventDefault();
     const title = event.target.title.value.toLowerCase().trim();
     dispatch(searchRecipe(title));
   }
+  console.log(ingridientsSearch);
   const [selectIngridient,setselectIngridient] = React.useState()
   const handlerInputIng = React.useCallback((event)=>{
     const wow = JSON.parse(event.target.getAttribute('data-value'))
     setselectIngridient (wow)
   })
+  console.log(selectIngridient);
+  const addIngridientForSeach= useCallback((e)=>{
+    e.preventDefault()
+    dispatch(addOneIngridientForSearch(selectIngridient))
+  },[selectIngridient])
   useEffect(()=>{
     dispatch(getAllIngridients())
+    return (()=> dispatch(clearIngridientForSearch())) 
   },[])
   const defaultProps = {
     options: allIngridients,
     getOptionLabel: (option) => (option.name + " " + "(" + option.measure + ")"), 
   }
+  const sendIngredientsForSearch = useCallback(()=>{
+    console.log(ingridientsSearch);
+    dispatch(sendForSearch(ingridientsSearch))
+  },[ingridientsSearch])
+  const hendlerDeleteIngridientForSearch= useCallback((id)=>{
+    dispatch(deleteIngridientOnstateSearch(id))
+  })
   return (
 
     <div className="container">
@@ -55,16 +71,8 @@ function Search() {
             </Accordion>
           </form>
         <form className='Form-add-ingridients Form-add' >
-            <TextField
-            type="number"
-            label="Количество"
-            name=""
-            variant="outlined"
-            className='Form-add-ingridients__input'
-            min="0"
-            
-            />
-                      <Autocomplete
+        
+          <Autocomplete
             onChange={handlerInputIng}
             {...defaultProps}
             disablePortal
@@ -76,8 +84,15 @@ function Search() {
               {...params} inputProps={{...params.inputProps}}/>)}
             /> 
 
-            <Button className='Form-add-ingridients__btn'  variant="outlined">Добавить ингредиент</Button>
+            <Button className='Form-add-ingridients__btn' onClick={addIngridientForSeach} variant="outlined">Добавить ингредиент</Button>
+            <Button className='Form-add-ingridients__btn' onClick={()=>{
+            sendIngredientsForSearch()
+            // dispatch(clearIngridientForSearch())
+            }} variant="outlined">Поиск по ингридиентам</Button>
+
         </form>
+        <Box className="list-ingr">{ingridientsSearch.map((el)=> (<Box className="list-ingr__item" key={el.id}><Chip label={`${el.name} (${el.measure})`} /><IconButton onClick={()=> hendlerDeleteIngridientForSearch(el.id)} aria-label="delete" size="small">
+  <DeleteIcon fontSize="small" /></IconButton></Box>))}</Box>
         {Object.keys(recipe).length !== 0 && (
           <ul className="home__list-cards cards-list">
               <li className="cards-list__item" id={recipe[0]['recipe_id']} key={uuidv4()}>
