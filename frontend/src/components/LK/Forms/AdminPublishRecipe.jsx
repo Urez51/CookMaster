@@ -10,7 +10,7 @@ import { getPublishRecipe, adminPublishRecipe, adminRejectRecipe } from "../../.
 import './AdminPublishRecipe.css'
 
 function MyRecipe() {
-  const recipes = useSelector((state) => state.recipes.recipes);
+  const recipes = useSelector((state) => state.recipes.publicRecipe);
   const dispatch = useDispatch();
   
   useEffect(() => {
