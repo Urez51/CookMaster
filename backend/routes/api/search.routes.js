@@ -36,7 +36,12 @@ router.post('/name', async (req, res) => {
 });
 router.post('/ingridients', async (req, res) => {
   try {
-    const { id } = req.session.user;
+    let id;
+    try {
+      id = req.session.user.id;
+    } catch (e) {
+      id = -1;
+    }
     const ingridients = req.body;
     // console.log(ingridients);
     const arrIdIngridients = ingridients.map((el) => el.id);
