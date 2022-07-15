@@ -78,6 +78,7 @@ function MyRecipe() {
             value={value}
             onChange={(event) => setValue(event.target.value)}
             onClick={inputClickHandler}
+            autoComplete='off'
           />
         </div>
 

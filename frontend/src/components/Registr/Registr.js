@@ -52,6 +52,7 @@ function Register() {
               name="name"
               variant="outlined"
               className='Registration-form__input'
+              autoComplete='off'
             />
             <TextField
               type="text"
@@ -59,6 +60,7 @@ function Register() {
               name="surname"
               variant="outlined"
               className='Registration-form__input'
+              autoComplete='off'
             />
             <TextField
               type="email"
@@ -66,6 +68,7 @@ function Register() {
               name="email"
               variant="outlined"
               className='Registration-form__input'
+              autoComplete='off'
             />
             <TextField
               type="password"
