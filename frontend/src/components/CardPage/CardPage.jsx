@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import Comments from "./Comments";
 import { useSelector, useDispatch } from "react-redux";
 import { getComments } from '../../store/comment/actionsCreators';
+import { Button } from '@mui/material';
 import "./CardPage.css";
 
 
 function CardPage() {
   const {id} = useParams();
+  const navigate = useNavigate();
   const [recipe, setRecipe] = useState();
   const [steps, setSteps] = useState();
   const [recipeProduct, setRecipeProduct] = useState();
@@ -37,7 +39,9 @@ function CardPage() {
   return (
     
     <section className='CardPage-section'>
-      
+      <Button variant="contained" color="primary" onClick={() => navigate(-1)} className='CardPage-btn-back Comments__form-btn'>
+        Назад
+      </Button>
       <div className="container">
         <div className="CardPage">
           {recipe === undefined? <h2>...loading</h2> :

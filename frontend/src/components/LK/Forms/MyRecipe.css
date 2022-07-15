@@ -79,3 +79,13 @@ h2 {
   cursor: pointer;
   transition: cubic-bezier(1,0,0,1).3s all;
 }
+
+.cards-list__item-body {
+	height: 100px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 6;
+	-webkit-box-orient: vertical;
+}
+
