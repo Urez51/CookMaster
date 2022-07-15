@@ -215,6 +215,126 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }], {});
+
+    await queryInterface.bulkInsert('Steps', [{
+      recipe_id: 7,
+      body: 'Приготовить чесночное масло. Чеснок мелко порубить и добавить в мягкое сливочное масло, хорошо перемешать. Убрать в холодильник.',
+
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Steps', [{
+      recipe_id: 7,
+      body: 'Лук нарезать соломкой, шампиньоны – средним ломтиком, вырезку – брусочком.',
+
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Steps', [{
+      recipe_id: 7,
+      body: 'На раскаленной сковороде обжарить в растительном масле лук, грибы и мясо. Добавить специи, сливки, сметану, чесночное масло. Выпарить до загустения соуса.',
+
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Steps', [{
+      recipe_id: 7,
+      body: 'Картофель в кожуре разрезать на дольки и обжарить во фритюре. Положить картофель на блюдо, в центр выложить соус. Украсить блюдо соленьями, зеленью и луком фри.',
+
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Steps', [{
+      recipe_id: 8,
+      body: 'Свинину для гуляша вымойте и хорошо обсушите. Нарежьте кубиками со стороной 3 см. Репчатый лук очистите и мелко нарежьте. Зубчики чеснока очистите и порубите ножом.',
+      img: '/photo/gulash1.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Steps', [{
+      recipe_id: 8,
+      body: 'Стручки сладкого перца для гуляша вымойте. Разрежьте вдоль на половинки, удалите семена и перегородки. Мякоть перца нарежьте небольшими квадратиками или некрупными ломтиками произвольной формы.',
+      img: '/photo/gulash2.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Steps', [{
+      recipe_id: 8,
+      body: 'В большой сковороде нагрейте растительное масло. Положите лук с чесноком и, помешивая, подрумяньте на среднем огне до золотистого цвета в течение 5 минут. Добавьте сладкий перец, свинину и перемешайте. Жарьте на среднем огне 10 минут.',
+      img: '/photo/gulash3.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Steps', [{
+      recipe_id: 8,
+      body: 'Приготовьте подливку. В небольшой миске соедините томатную пасту и сметану. Помешивая венчиком, постепенно разведите питьевой водой. Посолите и поперчите по вкусу.',
+      img: '/photo/gulash4.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Steps', [{
+      recipe_id: 8,
+      body: 'Огонь под сковородой с гуляшом уменьшите до слабого. Влейте подливку и доведите до кипения. Тушите гуляш из свинины на слабом огне под неплотно закрытой крышкой 40 минут.',
+      img: '/photo/gulash5.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Steps', [{
+      recipe_id: 8,
+      body: 'Осторожно, чтобы не обжечься, попробуйте подливку из сковороды и, если это необходимо, посолите еще немного. На гарнир можно предложить картофельное пюре или отварной рис.',
+      img: '/photo/gulash6.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Steps', [{
+      recipe_id: 9,
+      body: 'Картофель и морковь необязательно варить. Овощи будут вкуснее, если их приготовить на пару или запечь в духовке. Если готовым овощам «в мундире» дать постоять 8 ч, то потом их будет легче нарезать красивыми ровными кубиками.',
+      img: '/photo/ol1.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Steps', [{
+      recipe_id: 9,
+      body: 'Огурцы – варианты разнятся от соленых и маринованных до свежих. Причем некоторые используют маринованные и свежие вместе. Одни настаивают на том, чтобы огурцы полностью очистить от кожуры, а другие наоборот, что удалять нужно внутреннюю часть с семенами.',
+      img: '/photo/ol5.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Steps', [{
+      recipe_id: 9,
+      body: 'Репчатый лук можно замариновать в яблочном или винном уксусе или заменить зеленым.',
+      img: '',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Steps', [{
+      recipe_id: 9,
+      body: 'Чтобы добавить салату свежести, кладут яблоко, реже грушу.',
+      img: '',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Steps', [{
+      recipe_id: 9,
+      body: 'Если заменить консервированный горошек на отваренный свежемороженый, салат будет красивее.',
+      img: '/photo/ol2.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
   },
 
   async down(queryInterface) {

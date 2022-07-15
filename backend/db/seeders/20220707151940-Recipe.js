@@ -40,6 +40,7 @@ module.exports = {
       user_id: 2,
       img: '/photo/svek.jpg',
       moder_visible: false,
+      private: false,
       createdAt: new Date(),
       updatedAt: new Date(),
     }], {});
@@ -51,6 +52,7 @@ module.exports = {
       user_id: 2,
       img: '/photo/klub.jpg',
       moder_visible: false,
+      private: false,
       createdAt: new Date(),
       updatedAt: new Date(),
     }], {});
@@ -62,6 +64,43 @@ module.exports = {
       user_id: 2,
       img: '/photo/rost.jpg',
       moder_visible: false,
+      private: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipes', [{
+      title: 'Жаровня со свининой в сливочно-грибном соусе',
+      body: 'Жаровня со свининой в сливочно-грибном соусе - блюдо на большую компанию. Свинина и пара-тройка кружек пива - все, что нужно для празднования Октоберфеста.',
+      kitchen_id: 5,
+      user_id: 2,
+      img: '/photo/svinina.jpg',
+      moder_visible: false,
+      private: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipes', [{
+      title: 'Гуляш из свинины на сковороде с подливкой',
+      body: 'Гуляш из свинины на сковороде с подливкой любят многие, но далеко не все умеют его готовить. Мы готовы раскрыть «секрет» и поделиться одним из рецептов этого замечательного блюда.',
+      kitchen_id: 5,
+      user_id: 2,
+      img: '/photo/gulash.jpg',
+      moder_visible: false,
+      private: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipes', [{
+      title: 'Как приготовить самый вкусный оливье',
+      body: 'В середине XIX века в Москве, в трактире «Эрмитаж», повар-француз Люсьен Оливье придумал салат, который очень быстро стал известен всем московским гурманам того времени. Рецепт салата хранился в большом секрете и остался неразгаданным до сих пор. Точно известно, что в нем были рябчики, паюсная икра, телячий язык и раковые шейки.',
+      kitchen_id: 5,
+      user_id: 2,
+      img: '/photo/olive.jpg',
+      moder_visible: false,
+      private: false,
       createdAt: new Date(),
       updatedAt: new Date(),
     }], {});
