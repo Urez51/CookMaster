@@ -12,24 +12,33 @@ import { searchRecipe } from '../../store/searchRecipe/actionsCreators'
 import { useNavigate } from 'react-router-dom'
 import { addOneIngridientForSearch, clearIngridientForSearch, deleteIngridientOnstateSearch, getAllIngridients, sendForSearch } from "../../store/ingridients and stap/actionsCreators";
 import { useCallback } from "react";
+import { addToFavoriteRecipe } from "../../store/recipe/actionsCreators";
+
 
 function Search() {
   const recipe = useSelector((state) => state.searchRecipe.searchRecipe);
+  const user = useSelector((state) => state.auth.User)
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {allIngridients,ingridientsSearch} = useSelector((state)=>state.ingridientsAndSteps)
+  const [like, setlike] = React.useState(false)
+  const {allIngridients,ingridientsSearch,recipeSearchIng} = useSelector((state)=>state.ingridientsAndSteps)
   const handleSearch = (event) => {
     event.preventDefault();
     const title = event.target.title.value.toLowerCase().trim();
     dispatch(searchRecipe(title));
   }
-  console.log(ingridientsSearch);
+  const addOrDeleteFavoriteRecipe = useCallback((event) => {
+    event.preventDefault();
+    const id = event.target.value;
+    console.log(id)
+    dispatch(addToFavoriteRecipe(id))
+  }, []);
+  console.log(recipeSearchIng, 'z nenf');
   const [selectIngridient,setselectIngridient] = React.useState()
   const handlerInputIng = React.useCallback((event)=>{
     const wow = JSON.parse(event.target.getAttribute('data-value'))
     setselectIngridient (wow)
   })
-  console.log(selectIngridient);
   const addIngridientForSeach= useCallback((e)=>{
     e.preventDefault()
     dispatch(addOneIngridientForSearch(selectIngridient))
@@ -126,6 +135,48 @@ function Search() {
               </li>
           </ul>
           )}
+           <ul className="home__list-cards cards-list">
+          {recipeSearchIng.map((el) => (
+            <li className="cards-list__item" id={el.id} key={uuidv4()}>
+              <Card sx={{ maxWidth: 320 }} className="card">
+                <CardActionArea>
+                  <CardMedia component="img" height="140" image={el.img} />
+                  <CardContent>
+                    <Typography gutterBottom variant="h6" component="div" className="cards-list__item-title">
+                      {el.title}
+                    </Typography>
+                    <Typography variant="body3" color="text.secondary" className="cards-list__item-body">
+                      {el.body}
+                    </Typography>
+                  </CardContent>
+                  <CardContent>
+                    <Typography variant="body3" color="text.secondary" className="cards-list__item-body">
+                      <ul className="list-priducts">
+                        {el['Recipe_products'].map(item => (
+                          <li className="list-priducts__item" key={uuidv4()}>{item['Product']['name']}</li> 
+                        ))}
+                      </ul>
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+                <CardActions className="card__btn">
+                  <Button size="small" color="primary" id={el.id} onClick={() => navigate(`/recipe/${el.id}`, { replace: true })}>
+                    Подробнее 
+                  </Button>
+                  {user.id && 
+                    <Button
+                    id={recipeSearchIng.id}
+                    value={el.id}
+                    label="Favorites"
+                    className={el['Favorite_recipes'].length > 0 || like ? 'red' : 'gray'}
+                    onClick={addOrDeleteFavoriteRecipe}
+                  >❤</Button>
+                  }
+                </CardActions>
+              </Card>
+            </li>
+          ))}
+          </ul>
       </div>
     </div>
     );

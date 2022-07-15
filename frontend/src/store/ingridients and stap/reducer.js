@@ -8,6 +8,7 @@ import {
   ADD_INGRIDIENT_FOR_SEARCH,
   DELETE_INGRIENT_FOR_SEARCH,
   DELETE_ONE_INGREDIETN_FOR_SEARCH_IN_STATE,
+  ADD_RECIPE_SEARCH_INGRIDIENT
 } from './ActionsTypes'
 import {CLEAR_STATE_AFTER_COMPLITE_RECIPE} from '../recipe/actionsTypes'
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
   stepsForRecipes: [],
   photoStep: '',
   ingridientsSearch: [],
+  recipeSearchIng: []
 }
 
 export default function ingridientsAndStepsReduser(state = initialState, action ){
@@ -56,6 +58,9 @@ export default function ingridientsAndStepsReduser(state = initialState, action 
       const id = Number(action.payload)
       const arr = state.ingridientsSearch.filter((el)=> el.id !== id)
       return {...state, ingridientsSearch: arr}
+    }
+    case ADD_RECIPE_SEARCH_INGRIDIENT:{
+      return {...state, recipeSearchIng: action.payload}
     }
     default: return state;
   }

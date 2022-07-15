@@ -7,7 +7,8 @@ import {
   ADD_PHOTO_STEP,
   ADD_INGRIDIENT_FOR_SEARCH,
   DELETE_INGRIENT_FOR_SEARCH,
-  DELETE_ONE_INGREDIETN_FOR_SEARCH_IN_STATE
+  DELETE_ONE_INGREDIETN_FOR_SEARCH_IN_STATE,
+  ADD_RECIPE_SEARCH_INGRIDIENT
 } from './ActionsTypes.js'
 
 
@@ -35,7 +36,6 @@ export  function addPhotoStep(file){
 }
 export function sendForSearch(ingridientsSearch){
   return async (dispatch) =>{
-    console.log(ingridientsSearch);
     const data = await fetch('/search/ingridients', {
   method: 'POST',
   body: JSON.stringify(ingridientsSearch),
@@ -44,7 +44,7 @@ export function sendForSearch(ingridientsSearch){
   }
   })
   const nameData = await data.json()
-    console.log(nameData)
+   dispatch({type: ADD_RECIPE_SEARCH_INGRIDIENT, payload: nameData})
 }}
 export function getAllIngridientsOnState(ingridients){
   return {type:GET_ALL_INGRIDIENTS , payload: ingridients.ingridients}

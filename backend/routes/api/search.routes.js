@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Op } = require('sequelize');
 const {
-  Recipe, sequelize, Recipe_product, Product,
+  Recipe, sequelize, Recipe_product, Product, Favorite_recipe
 } = require('../../db/models/index');
 
 router.post('/name', async (req, res) => {
@@ -56,18 +56,29 @@ router.post('/ingridients', async (req, res) => {
     //   }],
     // });
     const recipes = await Recipe.findAll({
-      raw: true,
       where: {
         delete_visible: false,
         private: false,
       },
       include: [{
         model: Recipe_product,
+        include:[{
+          model: Product,
+          attributes: ['name'],
+        }],
+      },{
+        model: Favorite_recipe,
+        where:{
+          user_id : id
+        },
+        required: false,
       }],
     });
     // console.log(recipes);
-    console.log(recipes);
-    res.json(ing);
+    const checker = (arr, target) => target.every(v => arr.includes(v));
+    const needRecipes = recipes.filter((recipe)=> checker(recipe.Recipe_products.map((el)=> el.product_id),arrIdIngridients))
+    // console.log(recipes);
+    res.json(needRecipes);
   } catch (error) {
     res.json({ message: 'Произошла ошибка поиска рецепта (/search)' });
   }
