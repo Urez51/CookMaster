@@ -110,7 +110,7 @@ function MyRecipe() {
                     <Typography
                       variant="body3"
                       color="text.secondary"
-                      className="c"
+                      className="cards-list__item-body"
                     >
                       {recipe.body}
                     </Typography>
