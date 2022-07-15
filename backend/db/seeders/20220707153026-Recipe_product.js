@@ -287,6 +287,190 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 29,
+      recipe_id: 7,
+      product_value: 500,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 21,
+      recipe_id: 7,
+      product_value: 2,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 61,
+      recipe_id: 7,
+      product_value: 200,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 53,
+      recipe_id: 7,
+      product_value: 500,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 54,
+      recipe_id: 7,
+      product_value: 200,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 43,
+      recipe_id: 7,
+      product_value: 600,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 82,
+      recipe_id: 7,
+      product_value: 8,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 55,
+      recipe_id: 7,
+      product_value: 30,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 20,
+      recipe_id: 7,
+      product_value: 2,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 33,
+      recipe_id: 8,
+      product_value: 700,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 21,
+      recipe_id: 8,
+      product_value: 2,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 20,
+      recipe_id: 8,
+      product_value: 2,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 48,
+      recipe_id: 8,
+      product_value: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 56,
+      recipe_id: 8,
+      product_value: 30,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 54,
+      recipe_id: 8,
+      product_value: 150,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 9,
+      recipe_id: 8,
+      product_value: 200,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 10,
+      recipe_id: 8,
+      product_value: 2,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 77,
+      recipe_id: 8,
+      product_value: 2,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 43,
+      recipe_id: 9,
+      product_value: 120,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 49,
+      recipe_id: 9,
+      product_value: 3,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 63,
+      recipe_id: 9,
+      product_value: 450,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 21,
+      recipe_id: 9,
+      product_value: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
+
+    await queryInterface.bulkInsert('Recipe_products', [{
+      product_id: 78,
+      recipe_id: 9,
+      product_value: 250,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
   },
 
   async down(queryInterface) {
